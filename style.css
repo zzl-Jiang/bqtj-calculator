@@ -39,6 +39,61 @@ h1 {
     font-weight: 600;
 }
 
+/*--- 信息公告栏样式 ---*/
+.info-banner {
+    background: linear-gradient(45deg, #1f2c3a, #34495e);
+    border-radius: 8px;
+    padding: 20px 25px;
+    margin: 20px auto;
+    max-width: 1200px; /* 与主容器宽度保持一致或稍宽 */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border: 1px solid #4a627a;
+}
+
+.info-banner-content {
+    color: #ecf0f1;
+    text-align: center;
+}
+
+.info-banner .banner-highlight {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin: 0 0 15px 0;
+}
+
+.info-banner .banner-highlight a {
+    background-color: #e67e22; /* 醒目的橙色按钮 */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.info-banner .banner-highlight a:hover {
+    background-color: #d35400;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.info-banner .banner-note {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #bdc3c7;
+    margin: 0;
+}
+
+.info-banner .banner-note a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: normal;
+}
+
+.info-banner .banner-note a:hover {
+    text-decoration: underline;
+}
+
 /* --- Section & Fieldset 样式 --- */
 .calculator-section {
     border: 1px solid var(--border-color);
