@@ -1,0 +1,304 @@
+/* --- 全局与主题变量 --- */
+:root {
+    --bg-main: #1c1e21;          /* 主背景色 */
+    --bg-section: #242526;       /* 区块背景色 */
+    --bg-input: #3a3b3c;         /* 输入框背景色 */
+    --bg-input-readonly: #303132;/* 只读输入框背景 */
+    --border-color: #343a40;     /* 边框颜色 */
+    --text-primary: #e1e3e6;     /* 主要文字颜色 */
+    --text-secondary: #adb5bd;   /* 次要/标签文字颜色 */
+    --accent-color: #4dabf7;     /* 强调色，如-高亮边框 */
+    --accent-color-hover: #63baff; /* 强调色悬停效果 */
+    --accent-shadow: rgba(77, 171, 247, 0.4); /* 强调色阴影 */
+    --destructive-color: #f03e3e; /* 危险操作按钮颜色 */
+    --highlight-color: #ff6347;   /* 突出显示颜色 */
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.6;
+}
+
+#power-calculator-app {
+    max-width: 900px;
+    margin: 2em auto;
+    font-size: 14px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-main);
+    padding: 1.5em;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+h1 {
+    text-align: center;
+    color: var(--text-primary);
+    margin-bottom: 1.5em;
+    font-weight: 600;
+}
+
+/* --- Section & Fieldset 样式 --- */
+.calculator-section {
+    border: 1px solid var(--border-color);
+    padding: 1.5em;
+    margin-bottom: 1.5em;
+    border-radius: 6px;
+    background-color: var(--bg-section);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.calculator-legend {
+    font-size: 1.25em;
+    font-weight: 600;
+    color: var(--text-primary);
+    padding: 0 0.5em; /* 左右留白，避免文字贴着边框 */
+}
+
+/* --- 表单项布局(Grid) --- */
+.section-body {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); /* 响应式网格 */
+    gap: 16px 24px;
+    align-items: center;
+    margin-top: 1em;
+}
+
+.form-group {
+    display: grid;
+    grid-template-columns: 150px 1fr; /* 固定标签宽度 */
+    align-items: center;
+    gap: 10px;
+}
+
+label {
+    justify-self: start;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+/* --- 输入框与下拉框样式 --- */
+input[type="text"],
+input[type="number"],
+select {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid var(--border-color);
+    padding: 8px 12px;
+    background-color: var(--bg-input);
+    color: var(--text-primary);
+    border-radius: 4px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    font-size: 1em; /* 确保字体大小一致 */
+    font-family: inherit;
+}
+
+input:focus,
+select:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px var(--accent-shadow);
+    outline: none;
+}
+
+input[readonly] {
+    background-color: var(--bg-input-readonly);
+    color: var(--text-secondary);
+    cursor: default;
+}
+
+/* 移除数字输入框的上下箭头 (Webkit/Blink) */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* 移除数字输入框的上下箭头 (Firefox) */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* --- 按钮和结果区域 --- */
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    margin-top: 1.5em;
+    flex-wrap: wrap; /* 移动端换行 */
+}
+
+.mw-ui-button {
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-input);
+    color: var(--text-primary);
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+    transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+.mw-ui-button:hover {
+    border-color: #555;
+    background-color: #444;
+}
+
+.mw-ui-button:focus-visible {
+    box-shadow: 0 0 0 3px var(--accent-shadow);
+    outline: none;
+}
+
+.mw-ui-button.mw-ui-progressive {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    color: var(--bg-main);
+}
+.mw-ui-button.mw-ui-progressive:hover {
+    background-color: var(--accent-color-hover);
+}
+
+.mw-ui-button.mw-ui-destructive {
+    background-color: transparent;
+    border-color: var(--destructive-color);
+    color: var(--destructive-color);
+}
+.mw-ui-button.mw-ui-destructive:hover {
+    background-color: rgba(240, 62, 62, 0.1);
+}
+
+#result-area {
+    margin-top: 1.5em;
+    border: 1px dashed var(--accent-color);
+}
+
+#final-result-display {
+    font-family: Menlo, Monaco, 'Courier New', monospace;
+    font-size: 1.15em;
+    line-height: 1.7;
+    text-align: center;
+    white-space: pre-wrap;
+    color: var(--text-primary);
+    margin-bottom: 1em;
+}
+
+.full-width {
+    grid-column: 1 / -1; /* 让元素占据整行 */
+}
+
+#weapon-slots-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.weapon-slot {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 6px;
+    background-color: var(--bg-section);
+    border: 1px solid var(--border-color);
+}
+
+.weapon-slot label {
+    flex-shrink: 0;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.weapon-slot select {
+    flex: 3;
+}
+
+.weapon-slot input {
+    flex: 2;
+    text-align: center;
+    border-color: transparent;
+    box-shadow: none;
+}
+
+.result-highlight input {
+    font-weight: bold;
+    font-size: 1.2em;
+    color: var(--highlight-color);
+    text-align: center;
+    background-color: var(--bg-input-readonly);
+}
+
+/* ======================== */
+/*  标签页样式 (Tabber)    */
+/* ======================== */
+.tab-nav {
+    position: relative; /* 成为指示器的定位父级 */
+    display: flex;
+    background-color: var(--bg-section); /* 给导航栏一个整体背景 */
+    border-radius: 8px;
+    padding: 5px; /* 内边距给指示器留出空间 */
+    margin-bottom: 20px;
+}
+
+.tab-btn {
+    flex: 1; /* 让按钮平分宽度 */
+    padding: 10px 15px;
+    background-color: transparent; /* 按钮本身透明 */
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    position: relative;
+    z-index: 1; /* 确保按钮文字在指示器上方 */
+    transition: color 0.4s ease; /* 文字颜色变化也需要过渡 */
+}
+
+.tab-btn.active {
+    color: var(--text-primary);
+}
+
+.tab-indicator {
+    position: absolute;
+    top: 5px;
+    bottom: 5px;
+    height: calc(100% - 10px); /* 高度撑满 */
+    background-color: var(--accent-color);
+    border-radius: 6px; /* 指示器圆角 */
+    z-index: 0;
+    transition: all 0.4s ease-in-out;
+}
+
+.tab-pane { display: none; }
+.tab-pane.active { display: block; }
+
+/* ======================== */
+/*  提示框样式             */
+/* ======================== */
+.info-box {
+    background-color: rgba(77, 171, 247, 0.1);
+    border-left: 5px solid var(--accent-color);
+    color: var(--text-primary);
+    padding: 15px;
+    margin: 0 0 20px 0;
+    border-radius: 4px;
+}
+.info-box p {
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* --- 响应式调整 --- */
+@media (max-width: 600px) {
+    .section-body {
+        grid-template-columns: 1fr; /* 单列布局 */
+    }
+    .form-group {
+        grid-template-columns: 1fr; /* 标签和输入框垂直排列 */
+        gap: 5px;
+    }
+    label {
+        justify-self: start; /* 标签左对齐 */
+    }
+}
