@@ -94,6 +94,153 @@ h1 {
     text-decoration: underline;
 }
 
+/*--- 参数构成 - 弹出窗口样式 ---*/
+
+/* 信息图标 '?' 样式 */
+.info-icon {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    text-align: center;
+    background-color: var(--accent-color);
+    color: var(--bg-main); /* 使用主背景色作为文字颜色，对比度高 */
+    font-size: 13px;
+    font-weight: bold;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-left: 6px;
+    user-select: none;
+    vertical-align: middle;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.info-icon:hover {
+    background-color: var(--accent-color-hover);
+    transform: scale(1.1);
+}
+
+/* 弹出窗口容器 */
+.popover-container {
+    position: absolute; 
+    background-color: var(--bg-section); /* 使用区块背景色，保持一致 */
+    border: 1px solid var(--border-color);
+    border-radius: 6px; /* 与区块圆角保持一致 */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* 使用更深的阴影使其浮动感更强 */
+    z-index: 1000;
+    padding: 12px 15px;
+    min-width: 300px;
+    color: var(--text-primary);
+
+    display: block;
+    visibility: hidden; /* 用 visibility 来控制可见性 */
+    opacity: 0; /* 初始完全透明 */
+    transform: translateY(-10px); /* 初始位置向上偏移10px */
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s 0.2s; /* 定义过渡效果 */
+}
+
+.popover-container.visible {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0s; /* 出现时取消visibility的延迟 */
+}
+
+/* 创建小三角形 */
+.popover-container::before {
+    content: '';
+    position: absolute;
+    bottom: 100%; /* 定位到弹出窗口的顶部外侧 */
+    left: 20px;   /* 三角形距离弹出窗口左边的距离，可以调整 */
+    
+    /* 三角形的尺寸 */
+    width: 0;
+    height: 0;
+    
+    /* 使用边框戏法创建三角形 */
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid var(--bg-section); /* 三角形的颜色和背景一致 */
+
+    /* 确保三角形在阴影之下 */
+    z-index: 999;
+}
+
+.popover-container::after {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 19px; /* 比 :before 的 left 小 1px */
+
+    width: 0;
+    height: 0;
+    
+    border-left: 9px solid transparent;
+    border-right: 9px solid transparent;
+    border-bottom: 9px solid var(--border-color); /* 边框颜色 */
+    
+    z-index: 998; /* 在背景三角形的下面 */
+}
+
+/* 弹出窗口的头部 */
+.popover-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+}
+
+.popover-header h4 {
+    margin: 0;
+    font-size: 1.1em;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* 弹出窗口的关闭按钮 */
+.close-popover {
+    background: none;
+    border: none;
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 0 5px;
+    line-height: 1;
+    transition: color 0.2s ease;
+}
+.close-popover:hover {
+    color: var(--text-primary);
+}
+
+/* 弹出窗口内的表单组 */
+.form-group-popover {
+    margin-bottom: 10px;
+    display: grid;
+    grid-template-columns: 1fr auto; /* 标签和输入框并排 */
+    gap: 10px;
+    align-items: center;
+}
+.form-group-popover label {
+    font-size: 0.95em; /* 稍小一点的字体 */
+    color: var(--text-secondary);
+    white-space: nowrap;
+}
+
+/* 弹出窗口内的输入框，继承全局样式 */
+.form-group-popover input {
+    width: 100%;
+}
+
+/* 确保弹出窗口内的输入框也有 focus 效果 */
+.form-group-popover input:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px var(--accent-shadow);
+    outline: none;
+}
+
 /* --- Section & Fieldset 样式 --- */
 .calculator-section {
     border: 1px solid var(--border-color);
@@ -128,7 +275,7 @@ h1 {
 }
 
 label {
-    justify-self: start;
+    justify-self: center;
     color: var(--text-secondary);
     font-weight: 500;
 }

@@ -667,14 +667,86 @@ $(function() {
             UI_HANDLER.populateWeapons();
             UI_HANDLER.initTabber();
             this.setupTotalPowerSection();
+            this.initPopovers();
             this.loadData();
             this.bindEvents();
             this.updateBaseData(); // 初始加载时根据默认武器计算一次
         },
 
+        initPopovers: function() {
+            $('#power-calculator-app').on('click', '.info-icon', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+
+                const $icon = $(this);
+                const targetId = $icon.data('popover-target');
+                const $popover = $(targetId);
+
+                if (!$popover.length) return;
+
+                // 用 hasClass 判断
+                const isCurrentlyVisible = $popover.hasClass('visible');
+
+                // 用 removeClass 关闭所有其他popover
+                $('.popover-container').removeClass('visible');
+
+                if (!isCurrentlyVisible) {
+                    // 用 addClass 显示
+                    const iconOffset = $icon.offset();
+                    $popover.css({
+                        top: (iconOffset.top + $icon.outerHeight() + 5) + 'px',
+                        left: iconOffset.left + 'px',
+                    }).addClass('visible');
+                }
+            });
+
+            // 关闭按钮的逻辑也要修改
+            $('.close-popover').on('click', function() {
+                // 用 removeClass 关闭
+                $(this).closest('.popover-container').removeClass('visible');
+            });
+
+            // 构成项输入的逻辑保持不变
+            $('.constituent-input').on('input', (event) => {
+                const $popover = $(event.target).closest('.popover-container');
+                App.updateMainParamFromPopover($popover);
+            });
+
+            // 点击页面其他地方关闭的逻辑也要修改
+            $(document).on('click', function(e) {
+                if (!$(e.target).closest('.popover-container.visible, .info-icon').length) {
+                    // 用 removeClass 关闭
+                    $('.popover-container').removeClass('visible');
+                }
+            });
+            
+            // 初始化时确保没有 .visible 类
+            $('.popover-container').removeClass('visible');
+        },
+
+        // 辅助函数，用于从弹出窗口计算主参数值
+        updateMainParamFromPopover: function($popover) {
+            const mainInputId = $popover.data('main-input-id');
+            if (!mainInputId) return;
+
+            const $mainInput = $('#' + mainInputId);
+            let sum = 0;
+
+            // 遍历当前弹出窗口内所有的构成项输入框并求和
+            $popover.find('.constituent-input').each(function() {
+                sum += parseFloat($(this).val()) || 0;
+            });
+
+            // 更新主输入框的值，并触发 input 事件
+            $mainInput.val(sum.toFixed(4));
+            
+            // 手动触发input事件，让整个计算链条能接收到这个值的变化
+            $mainInput.trigger('input');
+        },
+
         bindEvents: function() {
             // 单武器计算器的事件
-            $('#tab-pane-single-weapon').on('change input', 'select, input[type="number"]:not([readonly])', (event) => {
+            $('#tab-pane-single-weapon').on('change input', 'select, input[type="number"]', (event) => {
                 if ($(event.target).is('#arms_name')) {
                     this.updateBaseData();
                 } else {
@@ -826,6 +898,9 @@ $(function() {
                         $(`#weapon-select-${i}`).val(loadedData[`weapon-select-${i}`]);
                     }
                 }
+            $('.popover-container').each((index, el) => {
+                this.updateMainParamFromPopover($(el));
+            });
                 console.log('成功从localStorage加载数据。');
             }
         },

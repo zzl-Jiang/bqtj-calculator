@@ -51,67 +51,67 @@
                     <legend class="calculator-legend">基础参数与武器选择</legend>
                     <div class="section-body">
                         <div class="form-group">
-                            <label for="arms_name">武器名称 (arms_name):</label>
+                            <label for="arms_name">武器名称:</label>
                             <select id="arms_name"></select>
                         </div>
                         <div class="form-group">
-                            <label for="arms_lv">武器等级 (arms_lv):</label>
+                            <label for="arms_lv">武器等级:</label>
                             <input type="number" id="arms_lv" value="99" min="1" max="99">
                         </div>
                         <div class="form-group">
-                            <label for="arms_type">武器类型 (arms_type):</label>
+                            <label for="arms_type">武器类型:</label>
                             <input type="text" id="arms_type" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="arms_color">武器颜色 (arms_color):</label>
+                            <label for="arms_color">武器颜色:</label>
                             <input type="text" id="arms_color" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="dps0">基础战力 (dps0):</label>
+                            <label for="dps0">基础战力:</label>
                             <input type="text" id="dps0" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="hurt_ratio0">基础伤害 (hurt_ratio0):</label>
+                            <label for="hurt_ratio0">基础伤害:</label>
                             <input type="text" id="hurt_ratio0" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="attack_gap0">基础攻击间隔 (attack_gap0):</label>
+                            <label for="attack_gap0">基础攻击间隔:</label>
                             <input type="text" id="attack_gap0" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="attack_speed0">基础射速 (attack_speed0):</label>
+                            <label for="attack_speed0">基础射速:</label>
                             <input type="text" id="attack_speed0" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="capacity0">基础弹容 (capacity0):</label>
+                            <label for="capacity0">基础弹容:</label>
                             <input type="text" id="capacity0" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="reload_gap0">基础装弹时间 (reload_gap0):</label>
+                            <label for="reload_gap0">基础装弹时间:</label>
                             <input type="text" id="reload_gap0" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="shake_angle0">基础抖动角 (shake_angle0):</label>
+                            <label for="shake_angle0">基础抖动角:</label>
                             <input type="text" id="shake_angle0" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="shoot_angle0">基础散射角 (shoot_angle0):</label>
+                            <label for="shoot_angle0">基础散射角:</label>
                             <input type="text" id="shoot_angle0" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="shoot_range0">基础射程 (shoot_range0):</label>
+                            <label for="shoot_range0">基础射程:</label>
                             <input type="text" id="shoot_range0" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="bullet_num">子弹数量 (bullet_num):</label>
+                            <label for="bullet_num">子弹数量:</label>
                             <input type="text" id="bullet_num" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="precision0">基础精准度 (precision0):</label>
+                            <label for="precision0">基础精准度:</label>
                             <input type="text" id="precision0" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="evo_lv">进阶等级 (evo_lv):</label>
+                            <label for="evo_lv">进阶等级:</label>
                             <input type="number" id="evo_lv" value="15" min="0">
                         </div>
                     </div>
@@ -124,55 +124,122 @@
                     <legend>战力加成乘区</legend>
                     <div class="section-body">
                         <div class="form-group">
-                            <label for="pet_dps">尸宠战力加成 (pet_dps):</label>
+                            <label for="pet_dps">尸宠战力加成:</label>
                             <input type="number" id="pet_dps" value="620250">
                         </div>
+                        <!-- 特零战力加成 -->
                         <div class="form-group">
-                            <label for="parts_dps_mul">特零战力加成 (parts_dps_mul):</label>
-                            <input type="number" id="parts_dps_mul" value="0.6" step="0.01">
+                            <label for="parts_dps_mul">
+                                特零战力加成:
+                                <span class="info-icon" data-popover-target="#popover-parts-dps-mul">?</span>
+                            </label>
+                            <input type="number" id="parts_dps_mul" value="0.6" step="0.0001" readonly>
+                        </div>
+                        <div id="popover-parts-dps-mul" class="popover-container" data-main-input-id="parts_dps_mul">
+                            <div class="popover-header">
+                                <h4>特零战力加成构成</h4>
+                                <button type="button" class="close-popover">×</button>
+                            </div>
+                            <div class="popover-body">
+                                <div class="form-group-popover">
+                                    <label for="parts_dps_mul_hunter">猎人技能器加成:</label>
+                                    <input type="number" id="parts_dps_mul_hunter" value="0.3" step="0.01" class="constituent-input">
+                                </div>
+                                <div class="form-group-popover">
+                                    <label for="parts_dps_mul_chip">腐蚀芯片加成:</label>
+                                    <input type="number" id="parts_dps_mul_chip" value="0.3" step="0.01" class="constituent-input">
+                                </div>
+                            </div>
                         </div>
                         <div class="form-group">
-                            <label for="ea0_dps">数值普战加成 (ea0_dps):</label>
+                            <label for="ea0_dps">数值普战加成:</label>
                             <input type="number" id="ea0_dps" value="48800">
                         </div>
                         <div class="form-group">
-                            <label for="ea_dps0">武器类型数值普战 (ea_dps0):</label>
+                            <label for="ea_dps0">武器类型数值普战:</label>
                             <input type="text" id="ea_dps0" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="ea0_dps_mul">百分比普战加成 (ea0_dps_mul):</label>
-                            <input type="number" id="ea0_dps_mul" value="7.19" step="0.01">
+                            <label for="ea0_dps_mul">
+                                百分比普战加成:
+                                <span class="info-icon" data-popover-target="#popover-ea0-dps-mul">?</span>
+                            </label>
+                            <input type="number" id="ea0_dps_mul" value="7.19" step="0.01" readonly>
+                        </div>
+                        <div id="popover-ea0-dps-mul" class="popover-container" data-main-input-id="ea0_dps_mul">
+                            <div class="popover-header">
+                                <h4>百分比普战加成构成</h4>
+                                <button type="button" class="close-popover">×</button>
+                            </div>
+                            <div class="popover-body">
+                                <div class="form-group-popover">
+                                    <label for="ea0_dps_mul_equip">装备加成:</label>
+                                    <input type="number" id="ea0_dps_mul_equip" value="2.8" step="0.01" class="constituent-input">
+                                </div>
+                                <div class="form-group-popover">
+                                    <label for="ea0_dps_mul_weapon">副手加成:</label>
+                                    <input type="number" id="ea0_dps_mul_weapon" value="0.47" step="0.01" class="constituent-input">
+                                </div>
+                                <div class="form-group-popover">
+                                    <label for="ea0_dps_mul_device">装置加成:</label>
+                                    <input type="number" id="ea0_dps_mul_device" value="0.90" step="0.01" class="constituent-input">
+                                </div>
+                                <div class="form-group-popover">
+                                    <label for="ea0_dps_mul_title">称号加成:</label>
+                                    <input type="number" id="ea0_dps_mul_title" value="1.00" step="0.01" class="constituent-input">
+                                </div>
+                                <div class="form-group-popover">
+                                    <label for="ea0_dps_mul_union">军队加成:</label>
+                                    <input type="number" id="ea0_dps_mul_union" value="0.59" step="0.01" class="constituent-input">
+                                </div>
+                                <div class="form-group-popover">
+                                    <label for="ea0_dps_mul_rank">军衔加成:</label>
+                                    <input type="number" id="ea0_dps_mul_rank" value="0.35" step="0.01" class="constituent-input">
+                                </div>
+                                <div class="form-group-popover">
+                                    <label for="ea0_dps_mul_battle">争霸加成:</label>
+                                    <input type="number" id="ea0_dps_mul_battle" value="0.76" step="0.01" class="constituent-input">
+                                </div>
+                                <div class="form-group-popover">
+                                    <label for="ea0_dps_mul_honor">荣誉加成:</label>
+                                    <input type="number" id="ea0_dps_mul_honor" value="0.14" step="0.01" class="constituent-input">
+                                </div>
+                                <div class="form-group-popover">
+                                    <label for="ea0_dps_mul_medal">勋章加成:</label>
+                                    <input type="number" id="ea0_dps_mul_medal" value="0.18" step="0.01" class="constituent-input">
+                                </div>
+                            </div>
                         </div>
                         <div class="form-group">
-                            <label for="ea_dps_mul0">武器类型百分比普战 (ea_dps_mul0):</label>
+                            <label for="ea_dps_mul0">武器类型百分比普战:</label>
                             <input type="text" id="ea_dps_mul0" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="vip_dps_mul">VIP加成 (vip_dps_mul):</label>
+                            <label for="vip_dps_mul">VIP加成:</label>
                             <input type="number" id="vip_dps_mul" value="0.7" step="0.01">
                         </div>
                         <div class="form-group">
-                            <label for="whole_dps_mul">全体战力加成 (whole_dps_mul):</label>
+                            <label for="whole_dps_mul">全体战力加成:</label>
                             <input type="number" id="whole_dps_mul" value="0.1505" step="0.0001">
                         </div>
                         <div class="form-group">
-                            <label for="more_dps_mul">队友战力加成 (more_dps_mul):</label>
+                            <label for="more_dps_mul">队友战力加成:</label>
                             <input type="number" id="more_dps_mul" value="0" step="0.01">
                         </div>
                         <div class="form-group">
-                            <label for="parts_dps_lv">伤害零件等级 (parts_dps_lv):</label>
+                            <label for="parts_dps_lv">伤害零件等级:</label>
                             <input type="number" id="parts_dps_lv" value="93" min="1">
                         </div>
                         <div class="form-group">
-                            <label for="parts_dps">伤害零件战力 (parts_dps):</label>
+                            <label for="parts_dps">伤害零件战力:</label>
                             <input type="text" id="parts_dps" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="dps1">计算后战力 (dps1):</label>
+                            <label for="dps1">计算后战力:</label>
                             <input type="text" id="dps1" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="hurt_add1">dps1转伤害 (hurt_add1):</label>
+                            <label for="hurt_add1">dps1转伤害:</label>
                             <input type="text" id="hurt_add1" readonly>
                         </div>
                     </div>
@@ -183,35 +250,54 @@
                     <legend>伤害加成乘区</legend>
                     <div class="section-body">
                         <div class="form-group">
-                            <label for="strengthen_lv">强化等级 (strengthen_lv):</label>
+                            <label for="strengthen_lv">强化等级:</label>
                             <input type="number" id="strengthen_lv" value="28" min="0">
                         </div>
                         <div class="form-group">
-                            <label for="strengthen_hurt_mul">强化伤害加成 (strengthen_hurt_mul):</label>
+                            <label for="strengthen_hurt_mul">强化伤害加成:</label>
                             <input type="text" id="strengthen_hurt_mul" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="ea0_hurt_mul">百分比普伤加成 (ea0_hurt_mul):</label>
+                            <label for="ea0_hurt_mul">
+                                百分比普伤加成:
+                                <span class="info-icon" data-popover-target="#popover-ea0-hurt-mul">?</span>
+                            </label>
                             <input type="number" id="ea0_hurt_mul" value="1.94" step="0.01">
                         </div>
+                        <div id="popover-ea0-hurt-mul" class="popover-container" data-main-input-id="ea0_hurt_mul">
+                            <div class="popover-header">
+                                <h4>百分比普伤加成构成</h4>
+                                <button type="button" class="close-popover">×</button>
+                            </div>
+                            <div class="popover-body">
+                                <div class="form-group-popover">
+                                    <label for="ea0_hurt_mul_equip">装备加成:</label>
+                                    <input type="number" id="ea0_hurt_mul_equip" value="1.74" step="0.01" class="constituent-input">
+                                </div>
+                                <div class="form-group-popover">
+                                    <label for="ea0_hurt_mul_medal">勋章加成:</label>
+                                    <input type="number" id="ea0_hurt_mul_medal" value="0.20" step="0.01" class="constituent-input">
+                                </div>
+                            </div>
+                        </div>
                         <div class="form-group">
-                            <label for="ea_hurt_mul0">武器类型百分比普伤 (ea_hurt_mul0):</label>
+                            <label for="ea_hurt_mul0">武器类型百分比普伤:</label>
                             <input type="text" id="ea_hurt_mul0" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="ea0_hurt">数值普伤加成 (ea0_hurt):</label>
+                            <label for="ea0_hurt">数值普伤加成:</label>
                             <input type="number" id="ea0_hurt" value="25118">
                         </div>
                         <div class="form-group">
-                            <label for="ea_hurt0">武器类型数值普伤 (ea_hurt0):</label>
+                            <label for="ea_hurt0">武器类型数值普伤:</label>
                             <input type="text" id="ea_hurt0" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="get_hurt_add">武器伤害转换系数 (get_hurt_add):</label>
+                            <label for="get_hurt_add">武器伤害转换系数:</label>
                             <input type="text" id="get_hurt_add" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="hurt1">计算后伤害 (hurt1):</label>
+                            <label for="hurt1">计算后伤害:</label>
                             <input type="text" id="hurt1" readonly>
                         </div>
                     </div>
@@ -222,27 +308,101 @@
                     <legend>神级加成乘区</legend>
                     <div class="section-body">
                         <div class="form-group">
-                            <label for="dps_all">神战加成 (dps_all):</label>
+                            <label for="dps_all">
+                                神战加成:
+                                <span class="info-icon" data-popover-target="#popover-dps-all">?</span>
+                            </label>
                             <input type="number" id="dps_all" value="5.43" step="0.01">
                         </div>
-                        <div class="form-group">
-                            <label for="hurt_all">神伤加成 (hurt_all):</label>
-                            <input type="number" id="hurt_all" value="2.01" step="0.01">
+                        <div id="popover-dps-all" class="popover-container" data-main-input-id="dps_all">
+                            <div class="popover-header">
+                                <h4>神战加成构成</h4>
+                                <button type="button" class="close-popover">×</button>
+                            </div>
+                            <div class="popover-body">
+                                <div class="form-group-popover">
+                                    <label for="dps_all_equip">装备加成:</label>
+                                    <input type="number" id="dps_all_equip" value="3.56" step="0.01" class="constituent-input">
+                                </div>
+                                <div class="form-group-popover">
+                                    <label for="dps_all_fashion">时装加成:</label>
+                                    <input type="number" id="dps_all_fashion" value="0.23" step="0.01" class="constituent-input">
+                                </div>
+                                <div class="form-group-popover">
+                                    <label for="dps_all_vehicle">载具加成:</label>
+                                    <input type="number" id="dps_all_vehicle" value="0.30" step="0.01" class="constituent-input">
+                                </div>
+                                <div class="form-group-popover">
+                                    <label for="dps_all_title">称号加成:</label>
+                                    <input type="number" id="dps_all_title" value="0" step="0.01" class="constituent-input">
+                                </div>
+                                <div class="form-group-popover">
+                                    <label for="dps_all_food">食物加成:</label>
+                                    <input type="number" id="dps_all_food" value="0.53" step="0.01" class="constituent-input">
+                                </div>
+                                <div class="form-group-popover">
+                                    <label for="dps_all_peak">巅峰加成:</label>
+                                    <input type="number" id="dps_all_peak" value="0.15" step="0.01" class="constituent-input">
+                                </div>
+                                <div class="form-group-popover">
+                                    <label for="dps_all_president">总统加成:</label>
+                                    <input type="number" id="dps_all_president" value="0.40" step="0.01" class="constituent-input" readonly>
+                                </div>
+                                <div class="form-group-popover">
+                                    <label for="dps_all_card">魂卡加成:</label>
+                                    <input type="number" id="dps_all_card" value="0.11" step="0.01" class="constituent-input">
+                                </div>
+                                <div class="form-group-popover">
+                                    <label for="dps_all_building">守望者加成:</label>
+                                    <input type="number" id="dps_all_building" value="0.15" step="0.01" class="constituent-input">
+                                </div>
+                            </div>
                         </div>
                         <div class="form-group">
-                            <label for="zodiac_hurt_add">生肖伤害加成 (zodiac_hurt_add):</label>
+                            <label for="hurt_all">
+                                神伤加成:
+                                <span class="info-icon" data-popover-target="#popover-hurt-all">?</span>
+                            </label>
+                            <input type="number" id="hurt_all" value="2.01" step="0.01">
+                        </div>
+                        <div id="popover-hurt-all" class="popover-container" data-main-input-id="hurt_all">
+                            <div class="popover-header">
+                                <h4>神伤加成构成</h4>
+                                <button type="button" class="close-popover">×</button>
+                            </div>
+                            <div class="popover-body">
+                                <div class="form-group-popover">
+                                    <label for="hurt_all_president">总统加成:</label>
+                                    <input type="number" id="hurt_all_president" value="0.40" step="0.01" class="constituent-input" readonly>
+                                </div>
+                                <div class="form-group-popover">
+                                    <label for="hurt_all_fashion">时装加成:</label>
+                                    <input type="number" id="hurt_all_fashion" value="0" step="0.01" class="constituent-input">
+                                </div>
+                                <div class="form-group-popover">
+                                    <label for="hurt_all_card">魂卡加成:</label>
+                                    <input type="number" id="hurt_all_card" value="0.11" step="0.01" class="constituent-input">
+                                </div>
+                                <div class="form-group-popover">
+                                    <label for="hurt_all_set">套装加成:</label>
+                                    <input type="number" id="hurt_all_set" value="1.50" step="0.01" class="constituent-input">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="zodiac_hurt_add">生肖伤害加成:</label>
                             <input type="number" id="zodiac_hurt_add" value="0" step="0.01">
                         </div>
                         <div class="form-group">
-                            <label for="evo_hurt_mul">进阶伤害加成 (evo_hurt_mul):</label>
+                            <label for="evo_hurt_mul">进阶伤害加成:</label>
                             <input type="text" id="evo_hurt_mul" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="red_hurt_mul">红武增幅器加成 (red_hurt_mul):</label>
+                            <label for="red_hurt_mul">红武增幅器加成:</label>
                             <input type="number" id="red_hurt_mul" value="0" step="0.01">
                         </div>
                         <div class="form-group">
-                            <label for="hurt_ratio">最终面板伤害 (hurt_ratio):</label>
+                            <label for="hurt_ratio">最终面板伤害:</label>
                             <input type="text" id="hurt_ratio" readonly>
                         </div>
                     </div>
@@ -253,39 +413,39 @@
                     <legend>弹容加成乘区</legend>
                     <div class="section-body">
                         <div class="form-group">
-                            <label for="parts_capacity_lv">弹容零件等级 (parts_capacity_lv):</label>
+                            <label for="parts_capacity_lv">弹容零件等级:</label>
                             <input type="number" id="parts_capacity_lv" value="93" min="1">
                         </div>
                         <div class="form-group">
-                            <label for="parts_capacity_mul">零件百分比弹容加成 (parts_capacity_mul):</label>
+                            <label for="parts_capacity_mul">零件百分比弹容加成:</label>
                             <input type="text" id="parts_capacity_mul" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="ea0_capacity_mul">百分比弹容加成 (ea0_capacity_mul):</label>
+                            <label for="ea0_capacity_mul">百分比弹容加成:</label>
                             <input type="number" id="ea0_capacity_mul" value="0.87" step="0.01">
                         </div>
                         <div class="form-group">
-                            <label for="ea_capacity_mul0">武器类型百分比弹容 (ea_capacity_mul0):</label>
+                            <label for="ea_capacity_mul0">武器类型百分比弹容:</label>
                             <input type="text" id="ea_capacity_mul0" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="ea0_capacity">数值弹容加成 (ea0_capacity):</label>
+                            <label for="ea0_capacity">数值弹容加成:</label>
                             <input type="number" id="ea0_capacity" value="48">
                         </div>
                         <div class="form-group">
-                            <label for="ea_capacity0">武器类型数值弹容 (ea_capacity0):</label>
+                            <label for="ea_capacity0">武器类型数值弹容:</label>
                             <input type="text" id="ea_capacity0" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="get_capacity_mul">武器弹容转换系数 (get_capacity_mul):</label>
+                            <label for="get_capacity_mul">武器弹容转换系数:</label>
                             <input type="text" id="get_capacity_mul" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="capacity_real">弹容实际值 (capacity_real):</label>
+                            <label for="capacity_real">弹容实际值:</label>
                             <input type="text" id="capacity_real" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="capacity">最终面板弹容 (capacity):</label>
+                            <label for="capacity">最终面板弹容:</label>
                             <input type="text" id="capacity" readonly>
                         </div>
                     </div>
@@ -296,27 +456,27 @@
                     <legend>射速加成乘区</legend>
                     <div class="section-body">
                         <div class="form-group">
-                            <label for="parts_attack_gap_lv">射速零件等级 (parts_attack_gap_lv):</label>
+                            <label for="parts_attack_gap_lv">射速零件等级:</label>
                             <input type="number" id="parts_attack_gap_lv" value="93" min="1">
                         </div>
                         <div class="form-group">
-                            <label for="parts_attack_gap_mul">零件射速加成 (parts_attack_gap_mul):</label>
+                            <label for="parts_attack_gap_mul">零件射速加成:</label>
                             <input type="text" id="parts_attack_gap_mul" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="ea0_attack_gap">射速加成 (ea0_attack_gap):</label>
+                            <label for="ea0_attack_gap">射速加成:</label>
                             <input type="number" id="ea0_attack_gap" value="0.06" step="0.01">
                         </div>
                         <div class="form-group">
-                            <label for="get_attack_gap_add">武器射速转换系数 (get_attack_gap_add):</label>
+                            <label for="get_attack_gap_add">武器射速转换系数:</label>
                             <input type="text" id="get_attack_gap_add" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="attack_gap">实际攻击间隔 (attack_gap):</label>
+                            <label for="attack_gap">实际攻击间隔:</label>
                             <input type="text" id="attack_gap" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="attack_speed">最终面板射速 (attack_speed):</label>
+                            <label for="attack_speed">最终面板射速:</label>
                             <input type="text" id="attack_speed" readonly>
                         </div>
                     </div>
@@ -327,27 +487,27 @@
                     <legend>装弹时间加成乘区</legend>
                     <div class="section-body">
                         <div class="form-group">
-                            <label for="parts_reload_lv">装弹零件等级 (parts_reload_lv):</label>
+                            <label for="parts_reload_lv">装弹零件等级:</label>
                             <input type="number" id="parts_reload_lv" value="93" min="1">
                         </div>
                         <div class="form-group">
-                            <label for="parts_reload_mul">零件装弹加成 (parts_reload_mul):</label>
+                            <label for="parts_reload_mul">零件装弹加成:</label>
                             <input type="text" id="parts_reload_mul" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="ea0_reload">装弹时间加成 (ea0_reload):</label>
+                            <label for="ea0_reload">装弹时间加成:</label>
                             <input type="number" id="ea0_reload" value="2.3" step="0.01">
                         </div>
                         <div class="form-group">
-                            <label for="ea_reload0">武器类型装弹加成 (ea_reload0):</label>
+                            <label for="ea_reload0">武器类型装弹加成:</label>
                             <input type="text" id="ea_reload0" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="get_reload_mul">武器装弹转换系数 (get_reload_mul):</label>
+                            <label for="get_reload_mul">武器装弹转换系数:</label>
                             <input type="text" id="get_reload_mul" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="reload_gap">最终面板装弹 (reload_gap):</label>
+                            <label for="reload_gap">最终面板装弹:</label>
                             <input type="text" id="reload_gap" readonly>
                         </div>
                     </div>
@@ -358,39 +518,39 @@
                     <legend>精准度与射程加成乘区</legend>
                     <div class="section-body">
                         <div class="form-group">
-                            <label for="parts_precision_lv">精准零件等级 (parts_precision_lv):</label>
+                            <label for="parts_precision_lv">精准零件等级:</label>
                             <input type="number" id="parts_precision_lv" value="93" min="1">
                         </div>
                         <div class="form-group">
-                            <label for="parts_shoot_range_lv">射程零件等级 (parts_shoot_range_lv):</label>
+                            <label for="parts_shoot_range_lv">射程零件等级:</label>
                             <input type="number" id="parts_shoot_range_lv" value="93" min="1">
                         </div>
                         <div class="form-group">
-                            <label for="parts_shake_angle">零件抖动角加成 (parts_shake_angle):</label>
+                            <label for="parts_shake_angle">零件抖动角加成:</label>
                             <input type="text" id="parts_shake_angle" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="parts_shoot_angle">零件散射角加成 (parts_shoot_angle):</label>
+                            <label for="parts_shoot_angle">零件散射角加成:</label>
                             <input type="text" id="parts_shoot_angle" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="parts_shoot_range">零件射程加成 (parts_shoot_range):</label>
+                            <label for="parts_shoot_range">零件射程加成:</label>
                             <input type="text" id="parts_shoot_range" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="get_angle_add_mul">武器角度转换系数 (get_angle_add_mul):</label>
+                            <label for="get_angle_add_mul">武器角度转换系数:</label>
                             <input type="text" id="get_angle_add_mul" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="precision_real">实际精准度 (precision_real):</label>
+                            <label for="precision_real">实际精准度:</label>
                             <input type="text" id="precision_real" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="precision">最终面板精准度 (precision):</label>
+                            <label for="precision">最终面板精准度:</label>
                             <input type="text" id="precision" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="shoot_range">最终面板射程 (shoot_range):</label>
+                            <label for="shoot_range">最终面板射程:</label>
                             <input type="text" id="shoot_range" readonly>
                         </div>
                     </div>
@@ -401,43 +561,43 @@
                     <legend>战力显示加成乘区</legend>
                     <div class="section-body">
                         <div class="form-group">
-                            <label for="element">元素属性值 (element):</label>
+                            <label for="element">元素属性值:</label>
                             <input type="number" id="element" value="55">
                         </div>
                         <div class="form-group">
-                            <label for="ele_add_dps">元素伤害加成 (ele_add_dps):</label>
+                            <label for="ele_add_dps">元素伤害加成:</label>
                             <input type="text" id="ele_add_dps" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="base_special_num">特殊属性数量 (base_special_num):</label>
+                            <label for="base_special_num">特殊属性数量:</label>
                             <input type="text" id="base_special_num" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="skill_num">普通技能数量 (skill_num):</label>
+                            <label for="skill_num">普通技能数量:</label>
                             <input type="text" id="skill_num" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="god_skill_num">神级技能数量 (god_skill_num):</label>
+                            <label for="god_skill_num">神级技能数量:</label>
                             <input type="text" id="god_skill_num" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="skill_special_mul">技能-特殊属性加成 (skill_special_mul):</label>
+                            <label for="skill_special_mul">技能-特殊属性加成:</label>
                             <input type="text" id="skill_special_mul" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="ui_dps_mul">武器UI加成 (ui_dps_mul):</label>
+                            <label for="ui_dps_mul">武器UI加成:</label>
                             <input type="text" id="ui_dps_mul" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="type_ui_dps_mul">武器类型UI加成 (type_ui_dps_mul):</label>
+                            <label for="type_ui_dps_mul">武器类型UI加成:</label>
                             <input type="text" id="type_ui_dps_mul" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="show_dps_mul">调表器加成 (show_dps_mul):</label>
+                            <label for="show_dps_mul">调表器加成:</label>
                             <input type="text" id="show_dps_mul" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="final_dps">最终面板战力 (final_dps):</label>
+                            <label for="final_dps">最终面板战力:</label>
                             <input type="text" id="final_dps" readonly>
                         </div>
                     </div>
@@ -512,7 +672,7 @@
                     <legend class="calculator-legend">人物总战力计算</legend>
                     <div class="section-body">
                         <div class="form-group">
-                            <label for="weapon_num">武器格数 (weapon_num):</label>
+                            <label for="weapon_num">武器格数:</label>
                             <select id="weapon_num">
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -523,7 +683,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="triple_crit">三暴倍率 (triple_crit):</label>
+                            <label for="triple_crit">三暴概率:</label>
                             <input type="number" id="triple_crit" value="0.14" step="0.01">
                         </div>
         
@@ -532,7 +692,7 @@
                         </div>
                         
                         <div class="form-group full-width result-highlight">
-                            <label for="total_dps">人物总战力 (total_dps):</label>
+                            <label for="total_dps">人物总战力:</label>
                             <input type="text" id="total_dps" readonly>
                         </div>
         
