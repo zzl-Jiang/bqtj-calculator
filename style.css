@@ -1,17 +1,17 @@
 /* 主样式文件：style.css */
 
 /* 1. 基础和变量 (必须最先导入) */
-@import url('css/_base.css');
+@import url('css/base.css');
 
 /* 2. 布局结构 */
-@import url('css/_layout.css');
+@import url('css/layout.css');
 
 /* 3. 可复用组件 */
-@import url('css/_forms.css');
-@import url('css/_buttons.css');
-@import url('css/_tabs.css');
-@import url('css/_popover.css');
-@import url('css/_info-banner.css');
+@import url('css/forms.css');
+@import url('css/buttons.css');
+@import url('css/tabs.css');
+@import url('css/popover.css');
+@import url('css/info-banner.css');
 
 /* 4. 页面特定/复杂组件样式 (最后导入) */
-@import url('css/_graphical.css');
+@import url('css/graphical.css');
