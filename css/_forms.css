@@ -1,0 +1,104 @@
+/* css/_forms.css */
+
+.form-group {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    align-items: center;
+    gap: 10px;
+}
+
+label {
+    justify-self: center;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid var(--border-color);
+    padding: 8px 12px;
+    background-color: var(--bg-input);
+    color: var(--text-primary);
+    border-radius: 4px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    font-size: 1em;
+    font-family: inherit;
+}
+
+input:focus,
+select:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px var(--accent-shadow);
+    outline: none;
+}
+
+input[readonly] {
+    background-color: var(--bg-input-readonly);
+    color: var(--text-secondary);
+    cursor: default;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+#weapon-slots-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.weapon-slot {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 6px;
+    background-color: var(--bg-section);
+    border: 1px solid var(--border-color);
+}
+
+.weapon-slot label {
+    flex-shrink: 0;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.weapon-slot select {
+    flex: 3;
+}
+
+.weapon-slot input {
+    flex: 2;
+    text-align: center;
+    border-color: transparent;
+    box-shadow: none;
+}
+
+.result-highlight input {
+    font-weight: bold;
+    font-size: 1.2em;
+    color: var(--highlight-color);
+    text-align: center;
+    background-color: var(--bg-input-readonly);
+}
+
+@media (max-width: 600px) {
+    .form-group {
+        grid-template-columns: 1fr;
+        gap: 5px;
+    }
+    label {
+        justify-self: start;
+    }
+}

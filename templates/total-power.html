@@ -1,0 +1,89 @@
+<!-- templates/total-power.html -->
+<div id="tab-pane-total-power" class="tab-pane">
+    <!-- 使用说明 -->
+    <div class="info-box">
+        <p><b>使用说明：</b><br>
+        1. 人物总战力计算所需的各项加成（如尸宠、特零、VIP、零件等）均来自于【单武器战力】标签页中的设置。<br>
+        2. 请先在【单武器战力】页配置好您的通用属性。<br>
+        3. 然后在本页选择武器格数和各槽位武器，并输入三暴倍率。<br>
+        4. 点击“一键计算人物总战力”即可得出结果。
+        </p>
+    </div>
+    <!-- 快捷参数调整 面板 -->
+    <fieldset class="calculator-section">
+        <legend class="calculator-legend">快捷参数调整</legend>
+        <div class="info-box">
+            <p><b>说明：</b>在此处修改常用参数后，点击下方“应用”按钮，可自动同步到所有详细的设置中。</p>
+        </div>
+        <div class="section-body">
+            <div class="form-group">
+                <label for="quick_vip_lv">VIP等级:</label>
+                <input type="number" id="quick_vip_lv" value="10">
+            </div>
+            <div class="form-group">
+                <label for="quick_president_lv">总统等级:</label>
+                <input type="number" id="quick_president_lv" value="10">
+            </div>
+            <div class="form-group">
+                <label for="quick_whole_dps">全体战力加成(%):</label>
+                <input type="number" id="quick_whole_dps" value="15.05" step="0.01">
+            </div>
+            <div class="form-group">
+                <label for="quick_shoot_speed">射速加成(%):</label>
+                <input type="number" id="quick_shoot_speed" value="6" step="0.01">
+            </div>
+            <div class="form-group">
+                <label for="quick_percent_dps_mul">百分比普战总加成:</label>
+                <input type="number" id="quick_percent_dps_mul" value="7.19" step="0.01" readonly>
+            </div>
+            <div class="form-group">
+                <label for="quick_god_dps_mul">神战总加成:</label>
+                <input type="number" id="quick_god_dps_mul" value="5.43" step="0.01" readonly>
+            </div>
+            <div class="form-group">
+                <label for="quick_percent_hurt_mul">百分比普伤总加成:</label>
+                <input type="number" id="quick_percent_hurt_mul" value="7.24" step="0.01" readonly>
+            </div>
+            <div class="form-group">
+                <label for="quick_god_hurt_mul">神伤总加成:</label>
+                <input type="number" id="quick_god_hurt_mul" value="2.01" step="0.01" readonly>
+            </div>
+        </div>
+        <div class="button-group">
+            <button id="btn-apply-quick-settings" class="mw-ui-button">应用快捷参数</button>
+        </div>
+    </fieldset>
+    <fieldset id="total-power-calculator" class="calculator-section">
+        <legend class="calculator-legend">人物总战力计算</legend>
+        <div class="section-body">
+            <div class="form-group">
+                <label for="weapon_num">武器格数:</label>
+                <select id="weapon_num">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6" selected>6</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="triple_crit">三暴概率:</label>
+                <input type="number" id="triple_crit" value="0.14" step="0.01">
+            </div>
+
+            <div id="weapon-slots-container" class="section-body full-width">
+                <!-- 武器槽位将由JS动态生成 -->
+            </div>
+            
+            <div class="form-group full-width result-highlight">
+                <label for="total_dps">人物总战力:</label>
+                <input type="text" id="total_dps" readonly>
+            </div>
+
+            <div class="button-group full-width">
+                <button id="btn-calculate-total-power" class="mw-ui-button mw-ui-progressive">一键计算人物总战力</button>
+            </div>
+        </div>
+    </fieldset>
+</div>

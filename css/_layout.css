@@ -1,0 +1,61 @@
+/* css/_layout.css */
+
+#power-calculator-app {
+    max-width: 900px;
+    margin: 2em auto;
+    font-size: 14px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-main);
+    padding: 1.5em;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.calculator-section {
+    border: 1px solid var(--border-color);
+    padding: 1.5em;
+    margin-bottom: 1.5em;
+    border-radius: 6px;
+    background-color: var(--bg-section);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.calculator-legend {
+    font-size: 1.25em;
+    font-weight: 600;
+    color: var(--text-primary);
+    padding: 0 0.5em;
+}
+
+.section-body {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 16px 24px;
+    align-items: center;
+    margin-top: 1em;
+}
+
+#result-area {
+    margin-top: 1.5em;
+    border: 1px dashed var(--accent-color);
+}
+
+#final-result-display {
+    font-family: Menlo, Monaco, 'Courier New', monospace;
+    font-size: 1.15em;
+    line-height: 1.7;
+    text-align: center;
+    white-space: pre-wrap;
+    color: var(--text-primary);
+    margin-bottom: 1em;
+}
+
+.full-width {
+    grid-column: 1 / -1;
+}
+
+@media (max-width: 600px) {
+    .section-body {
+        grid-template-columns: 1fr;
+    }
+}

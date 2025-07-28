@@ -1,0 +1,128 @@
+/* css/_popover.css */
+
+.info-icon {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    text-align: center;
+    background-color: var(--accent-color);
+    color: var(--bg-main);
+    font-size: 13px;
+    font-weight: bold;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-left: 6px;
+    user-select: none;
+    vertical-align: middle;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.info-icon:hover {
+    background-color: var(--accent-color-hover);
+    transform: scale(1.1);
+}
+
+.popover-container {
+    position: absolute; 
+    background-color: var(--bg-section);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    padding: 12px 15px;
+    min-width: 300px;
+    color: var(--text-primary);
+    display: block;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s 0.2s;
+}
+
+.popover-container.visible {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0s;
+}
+
+.popover-container::before {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 20px;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid var(--bg-section);
+    z-index: 999;
+}
+
+.popover-container::after {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 19px;
+    width: 0;
+    height: 0;
+    border-left: 9px solid transparent;
+    border-right: 9px solid transparent;
+    border-bottom: 9px solid var(--border-color);
+    z-index: 998;
+}
+
+.popover-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+}
+
+.popover-header h4 {
+    margin: 0;
+    font-size: 1.1em;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.close-popover {
+    background: none;
+    border: none;
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 0 5px;
+    line-height: 1;
+    transition: color 0.2s ease;
+}
+.close-popover:hover {
+    color: var(--text-primary);
+}
+
+.form-group-popover {
+    margin-bottom: 10px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+    align-items: center;
+}
+.form-group-popover label {
+    font-size: 0.95em;
+    color: var(--text-secondary);
+    white-space: nowrap;
+}
+
+.form-group-popover input {
+    width: 100%;
+}
+
+.form-group-popover input:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px var(--accent-shadow);
+    outline: none;
+}

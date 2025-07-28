@@ -1,0 +1,77 @@
+/* css/_buttons.css */
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    margin-top: 1.5em;
+    flex-wrap: wrap;
+}
+
+.mw-ui-button {
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-input);
+    color: var(--text-primary);
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+    transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+.mw-ui-button:hover {
+    border-color: #555;
+    background-color: #444;
+}
+
+.mw-ui-button:focus-visible {
+    box-shadow: 0 0 0 3px var(--accent-shadow);
+    outline: none;
+}
+
+.mw-ui-button.mw-ui-progressive {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    color: var(--bg-main);
+}
+.mw-ui-button.mw-ui-progressive:hover {
+    background-color: var(--accent-color-hover);
+}
+
+.mw-ui-button.mw-ui-destructive {
+    background-color: transparent;
+    border-color: var(--destructive-color);
+    color: var(--destructive-color);
+}
+.mw-ui-button.mw-ui-destructive:hover {
+    background-color: rgba(240, 62, 62, 0.1);
+}
+
+.mw-ui-button.is-applied {
+    opacity: 0.6;
+    cursor: default;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.title-action-btn {
+    display: inline-block;
+    background-color: var(--destructive-color);
+    color: #fff;
+    border-radius: 5px;
+    font-size: 0.9em;
+    font-weight: 600;
+    cursor: pointer;
+    user-select: none;
+    transition: filter 0.1s ease;
+}
+
+.title-action-btn:hover,
+.title-action-btn:focus-visible {
+    filter: brightness(1.3);
+}
+
+.title-action-btn:active {
+    filter:brightness(0.8);
+}

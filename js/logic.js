@@ -71,7 +71,6 @@ export const CALC_LOGIC = {
         }
         return v;
     },
-    // 将长三元运算符链改为更易读的 if/else if 结构
     getDpsValueByLv: (lv) => {
         if (lv > 87) return 1.5;
         if (lv >= 84) return 1.4;
@@ -166,6 +165,12 @@ export const CALC_LOGIC = {
         return 150;
     },
     calculateAll: function(inputs) {
+        // === 在函数最开始，对所有输入进行类型转换 ===
+        for (const key in inputs) {
+            if (typeof inputs[key] === 'string' && !isNaN(parseFloat(inputs[key]))) {
+                inputs[key] = parseFloat(inputs[key]);
+            }
+        }
         const results = {};
 
         const { 
@@ -246,8 +251,15 @@ export const CALC_LOGIC = {
 
         // --- 面板属性计算 (弹容, 射速, 装弹, 精准, 射程) ---
         let capacityReal = inputs.capacity0 * (1 + inputs.ea0_capacity_mul + inputs.ea_capacity_mul0 + results.parts_capacity_mul) + inputs.ea0_capacity * inputs.get_capacity_mul + inputs.ea_capacity0;
+        // console.log('ea0_capacity:', inputs.ea0_capacity);
+        // console.log('ea_capacity0:', inputs.ea_capacity0);
+        // console.log('parts_capacity_mul:', results.parts_capacity_mul);
+        // console.log('ea0_capacity_mul:', inputs.ea0_capacity_mul);
+        // console.log('ea_capacity_mul0:', inputs.ea_capacity_mul0);
         results.capacity_real = capacityReal;
         results.capacity = Math.ceil(capacityReal);
+        // console.log("计算后的弹容 (capacity_real):", capacityReal);
+        // console.log("计算后的弹容 (capacity):", results.capacity);
         
         let attackGap = (inputs.attack_gap0 * (1 + results.parts_attack_gap_mul * inputs.get_attack_gap_add)) / (1 + inputs.ea0_attack_gap);
         attackGap = Math.max(attackGap, 0.05);

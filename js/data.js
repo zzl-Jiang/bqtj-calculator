@@ -140,6 +140,83 @@ export const DATA_STORE = {
         }
     ],
     weaponsDataMap: {},
+
+    // 全局动态状态 (State)
+    state: {
+        // --- 基础参数 ---
+        arms_lv: 99,
+        evo_lv: 15,
+
+        // --- 战力加成 ---
+        pet_dps: 620250,
+        parts_dps_mul_hunter: 0.3,
+        parts_dps_mul_chip: 0.3,
+        ea0_dps: 48800,
+        ea0_dps_mul_equip: 2.8,
+        ea0_dps_mul_weapon: 0.47,
+        ea0_dps_mul_device: 0.90,
+        ea0_dps_mul_title: 1.00,
+        ea0_dps_mul_union: 0.59,
+        ea0_dps_mul_rank: 0.35,
+        ea0_dps_mul_battle: 0.76,
+        ea0_dps_mul_honor: 0.14,
+        ea0_dps_mul_medal: 0.18,
+        vip_dps_mul: 0.7,
+        whole_dps_mul: 0.1505,
+        more_dps_mul: 0,
+        parts_dps_lv: 93,
+
+        // --- 伤害加成 ---
+        strengthen_lv: 28,
+        ea0_hurt_mul_equip: 1.74,
+        ea0_hurt_mul_medal: 0.20,
+        ea0_hurt: 25118,
+        
+        // --- 神级加成 ---
+        dps_all_equip: 3.56,
+        dps_all_fashion: 0.23,
+        dps_all_vehicle: 0.30,
+        dps_all_title: 0,
+        dps_all_food: 0.53,
+        dps_all_peak: 0.15,
+        dps_all_president: 0.40,
+        dps_all_card: 0.11,
+        dps_all_building: 0.15,
+        hurt_all_president: 0.40,
+        hurt_all_fashion: 0,
+        hurt_all_card: 0.11,
+        hurt_all_set: 1.50,
+        zodiac_hurt_add: 0,
+        red_hurt_mul: 0,
+
+        // --- 弹容加成 ---
+        parts_capacity_lv: 93,
+        ea0_capacity_mul: 0.87,
+        ea0_capacity: 48,
+
+        // --- 射速加成 ---
+        parts_attack_gap_lv: 93,
+        ea0_attack_gap: 0.06,
+
+        // --- 装弹加成 ---
+        parts_reload_lv: 93,
+        ea0_reload: 2.3,
+
+        // --- 精准度与射程 ---
+        parts_precision_lv: 93,
+        parts_shoot_range_lv: 93,
+
+        // --- 战力显示 ---
+        element: 55,
+
+        // --- 人物总战力页参数 ---
+        quick_vip_lv: 10,
+        quick_president_lv: 10,
+        quick_whole_dps: 15.05,
+        quick_shoot_speed: 6,
+        triple_crit: 0.14
+    },
+    
     init: function() {
         this.weaponsData.sort((a, b) => a.cnName.localeCompare(b.cnName, 'zh-Hans-CN'));
         this.weaponsData.forEach(weapon => {

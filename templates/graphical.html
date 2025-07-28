@@ -1,0 +1,95 @@
+<!-- templates/graphical.html -->
+<div id="tab-pane-graphical" class="tab-pane active graphical">
+    <span class="graphical-info">
+        <strong>图形化界面说明：</strong>
+        <br>注意：图形化界面尚在优化，未实现交互逻辑，目前仅为静态展示。
+        <br><s>1. 该界面提供了角色信息和装备的可视化展示。
+        <br>2. 上方为角色信息和装备面板。
+        <br>3. 底部为武器和物品栏，支持点击切换操作。</s>
+    </span>
+    <div class="graphical-container hybrid-layout">
+
+        <!-- =========== 左侧：角色信息面板 =========== -->
+        <div class="char-info-panel">
+            <div class="stat-item">
+                <span class="stat-label">角色</span>
+                <span class="stat-value">小白</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">称号</span>
+                <span class="stat-value">
+                    超能英雄 <button class="title-action-btn">详情</a>
+                </span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">生命</span>
+                <span class="stat-value">576万</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">头部防御</span>
+                <span class="stat-value">565748</span>
+            </div>
+            <div class="stat-item xp-bar-container">
+                <span class="stat-label">经验</span>
+                <div class="stat-value xp-text">40638万/40638万</div>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">幸运值</span>
+                <span class="stat-value">46</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">虚天塔</span>
+                <span class="stat-value">85层</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">&nbsp;</span>
+                <span class="stat-value">&nbsp;</span>
+            </div>
+        </div>
+
+        <!-- =========== 右侧：角色模型与装备面板 =========== -->
+        <div class="main-content-area">
+            <!-- 头部信息栏 -->
+            <div class="char-header">
+                <div class="line-left1"></div>
+                <div class="line-left2"></div>
+                <div class="line-middle"></div>
+                <div class="line-right1"></div>
+                <div class="line-right2"></div>
+                <div class="fill-header"></div>
+                <span class="char-level">Lv.<span class="level-number">99</span></span>
+                <span class="char-power">战力 <span class="power-value">4549171万</span></span>
+                <span class="char-vip">VIP.10</span>
+            </div>
+
+            <!-- 主体内容区 (角色和装备) -->
+            <div class="char-body">
+                <div id="equipment-left" class="equipment-column"></div>
+                <div id="jewelry" class="jewelry-column"></div>
+                <div class="char-model-area">
+                    <div id="costume-slot-container"></div>
+                </div>
+                <div id="shell" class="shell-column"></div>
+                <div id="equipment-right" class="equipment-column"></div>
+            </div>
+
+            <!-- 底部物品栏 -->
+            <div id="footer-items-container" class="char-footer-items">
+                <!-- JS将在这里渲染头像、物品、芯片 -->
+            </div>
+        </div>
+
+        <!-- 底部武器面板 -->
+        <div id="arm-panel-footer" class="arm-panel">
+            <!-- 左侧 Capacity 容器 -->
+            <div id="capacity-panel" class="capacity-panel">
+                <!-- JS 将在这里渲染 Capacity 物品 -->
+            </div>
+            
+            <!-- 右侧 Arms 容器 -->
+            <div id="arms-panel" class="arms-panel">
+                <!-- JS 将在这里渲染 Arms 武器 -->
+            </div>
+        </div>
+    </div>
+</div>
