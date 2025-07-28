@@ -166,6 +166,7 @@ export const CALC_LOGIC = {
     },
     calculateAll: function(inputs) {
         // === 在函数最开始，对所有输入进行类型转换 ===
+        // console.log('inputs.parts_dps_mul:', inputs.parts_dps_mul);
         for (const key in inputs) {
             if (typeof inputs[key] === 'string' && !isNaN(parseFloat(inputs[key]))) {
                 inputs[key] = parseFloat(inputs[key]);
@@ -238,17 +239,34 @@ export const CALC_LOGIC = {
         results.hurt_ratio0 = getHurt(inputs.reload_gap0, inputs.capacity0, inputs.attack_gap0, inputs.bullet_num, 1, inputs.shake_angle0, inputs.shoot_angle0, inputs.shoot_range0, dps0_calculate);
         
         let dps1_base = dps0_calculate * (1 + inputs.parts_dps_mul) * (1 + inputs.ea0_dps_mul + inputs.ea_dps_mul0);
+        // console.log("dps0_calculate:", dps0_calculate);
+        // console.log("parts_dps_mul:", inputs.parts_dps_mul);
+        // console.log("ea0_dps_mul:", inputs.ea0_dps_mul);
+        // console.log("ea_dps_mul0:", inputs.ea_dps_mul0);
+        // console.log("dps1_base:", dps1_base);
         let dps1_add = (inputs.ea_dps0 + inputs.ea0_dps + results.parts_dps + inputs.pet_dps) * inputs.get_dps_mul * inputs.dps_mul;
+        // console.log("dps1_add:", dps1_add);
         let dps1 = (dps1_base + dps1_add) * (1 + inputs.vip_dps_mul) * (1 + inputs.whole_dps_mul) * (1 + inputs.more_dps_mul);
+        // console.log("dps1:", dps1);
         results.dps1 = dps1;
         results.hurt_add1 = getHurt(inputs.reload_gap0, inputs.capacity0, inputs.attack_gap0, inputs.bullet_num, 1, inputs.shake_angle0, inputs.shoot_angle0, inputs.shoot_range0, dps1) - results.hurt_ratio0;
-        
+        // console.log("hurt_add1:", results.hurt_add1);
         let hurt1 = results.hurt_ratio0 * (1 + inputs.ea0_hurt_mul + results.strengthen_hurt_mul + inputs.ea_hurt_mul0) + inputs.get_hurt_add * (inputs.ea0_hurt + inputs.ea_hurt0) + results.hurt_add1;
+        // console.log('results.hurt_ratio0:', results.hurt_ratio0);
+        // console.log("ea0_hurt_mul:", inputs.ea0_hurt_mul);
+        // console.log("strengthen_hurt_mul:", results.strengthen_hurt_mul);
+        // console.log("ea_hurt_mul0:", inputs.ea_hurt_mul0);
+        // console.log("get_hurt_add:", inputs.get_hurt_add);
         results.hurt1 = hurt1;
-
+        // console.log("hurt1:", hurt1);
         let hurtRatio = hurt1 * (1 + inputs.dps_all + inputs.hurt_all) * results.evo_hurt_mul * (1 + inputs.red_hurt_mul) * (1 + inputs.zodiac_hurt_add);
         results.hurt_ratio = hurtRatio;
-
+        // console.log('inputs.dps_all:', inputs.dps_all);
+        // console.log('inputs.hurt_all:', inputs.hurt_all);
+        // console.log('results.evo_hurt_mul:', results.evo_hurt_mul);
+        // console.log('inputs.red_hurt_mul:', inputs.red_hurt_mul);
+        // console.log('inputs.zodiac_hurt_add:', inputs.zodiac_hurt_add);
+        // console.log("hurt_ratio:", hurtRatio);
         // --- 面板属性计算 (弹容, 射速, 装弹, 精准, 射程) ---
         let capacityReal = inputs.capacity0 * (1 + inputs.ea0_capacity_mul + inputs.ea_capacity_mul0 + results.parts_capacity_mul) + inputs.ea0_capacity * inputs.get_capacity_mul + inputs.ea_capacity0;
         // console.log('ea0_capacity:', inputs.ea0_capacity);

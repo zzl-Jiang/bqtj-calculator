@@ -10,7 +10,7 @@ const graphicalItemsData = [
         color: 'purgold',
         name: '战神的蔑视', 
         level: 99, 
-        enhancementLevel: 25, 
+        enhancementLevel: 28, 
         iconUrl: '../images/equip/madpur_head.png', 
         isLocked: true 
     },
@@ -21,7 +21,7 @@ const graphicalItemsData = [
         color: 'purgold',
         name: '战神的戒严', 
         level: 99, 
-        enhancementLevel: 25, 
+        enhancementLevel: 28, 
         iconUrl: '../images/equip/madpur_coat.png', 
         isLocked: true 
     },
@@ -32,7 +32,7 @@ const graphicalItemsData = [
         color: 'purgold',
         name: '战神的降临', 
         level: 99, 
-        enhancementLevel: 25, 
+        enhancementLevel: 28, 
         iconUrl: '../images/equip/madpur_belt.png', 
         isLocked: true 
     },
@@ -43,7 +43,7 @@ const graphicalItemsData = [
         color: 'purgold',
         name: '战神的讨伐', 
         level: 99, 
-        enhancementLevel: 25, 
+        enhancementLevel: 28, 
         iconUrl: '../images/equip/madpur_pants.png', 
         isLocked: true 
     },
@@ -116,7 +116,7 @@ const graphicalItemsData = [
         color: 'yagold',
         name: '猩焰', 
         level: 99, 
-        enhancementLevel: 27, 
+        enhancementLevel: 28, 
         iconUrl: '../images/arms/redFire.png', 
         isLocked: true 
     },
@@ -127,7 +127,7 @@ const graphicalItemsData = [
         color: 'yagold',
         name: '银狐', 
         level: 99, 
-        enhancementLevel: 27, 
+        enhancementLevel: 28, 
         iconUrl: '../images/arms/pistolFox.png', 
         isLocked: true 
     },
@@ -138,7 +138,7 @@ const graphicalItemsData = [
         color: 'yagold',
         name: '铄金', 
         level: 99, 
-        enhancementLevel: 27, 
+        enhancementLevel: 28, 
         iconUrl: '../images/arms/meltFlamer.png', 
         isLocked: true 
     },
@@ -149,7 +149,7 @@ const graphicalItemsData = [
         color: 'yagold',
         name: '赤鼬', 
         level: 99, 
-        enhancementLevel: 27, 
+        enhancementLevel: 28, 
         iconUrl: '../images/arms/shotgunSkunk.png', 
         isLocked: true 
     },
@@ -160,7 +160,7 @@ const graphicalItemsData = [
         color: 'yagold',
         name: '金蝉', 
         level: 99,
-        enhancementLevel: 27, 
+        enhancementLevel: 28, 
         iconUrl: '../images/arms/sniperCicada.png', 
         isLocked: true 
     },
@@ -171,7 +171,7 @@ const graphicalItemsData = [
         color: 'yagold',
         name: '青蜂', 
         level: 99, 
-        enhancementLevel: 27, 
+        enhancementLevel: 28, 
         iconUrl: '../images/arms/rifleHornet.png', 
         isLocked: true 
     },

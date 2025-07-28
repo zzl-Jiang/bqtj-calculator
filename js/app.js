@@ -6,6 +6,7 @@ import { GRAPHICAL_UI_HANDLER } from './graphical_ui.js'; // 确保路径正确
 
 $(function() {
     const App = {
+        currentCalculationState: {}, // 用于存储当前计算状态，便于在标签页间共享
         // ======================================================
         // 1. 全局初始化
         // ======================================================
@@ -16,6 +17,8 @@ $(function() {
             this.initTabSystem();          // 初始化标签页切换逻辑
             this.initPopovers();           // 初始化全局的 Popover 逻辑
             
+            this.rebuildCurrentState(); // 重建当前状态，确保所有输入框都被正确初始化
+
             // 初始加载默认的标签页
             const initialTab = $('.tab-btn.active').data('tab') || 'graphical';
             this.loadTabContent(initialTab);
@@ -114,34 +117,63 @@ $(function() {
         },
 
         setupSingleWeaponTab: function() {
-            // console.log("单武器战力标签页设置...");
-
             UI_HANDLER.populateWeapons();
-            // console.log("populateWeapons 调用完成");
+            
+            this.rebuildCurrentState();
+            UI_HANDLER.updateForm(this.currentCalculationState);
 
-            // 绑定此标签页的专属事件
             const $pane = $('#tab-pane-single-weapon');
-            // console.log("获取 $pane 成功");
+            
+            // 清除旧的绑定
+            $pane.off('input change');
 
-            $pane.on('change input', 'select, input[type="number"]', (e) => {
-                if ($(e.target).is('#arms_name')) {
-                    this.updateBaseData();
+            // 绑定 input 事件，只做最轻量级的后台状态更新
+            $pane.on('input', 'input[type="number"]', (e) => {
+                const $target = $(e.target);
+                const key = $target.attr('id');
+                const value = $target.val(); // 获取原始字符串值
+
+                // 直接用原始字符串更新 state，不进行强制类型转换
+                // 这样 state 中就会有 "0." 这样的中间值
+                this.currentCalculationState[key] = value; 
+            });
+
+            // 绑定 change 事件，用于最终的计算和渲染
+            // 'change' 事件会在 <input> 失去焦点且值已改变，或 <select> 选择新值时触发
+            $pane.on('change', 'select, input[type="number"]', (e) => {
+                const $target = $(e.target);
+                const key = $target.attr('id');
+                let value = $target.val();
+
+                // 在这里进行最终的验证和类型转换
+                const numValue = parseFloat(value);
+                if (!isNaN(numValue) && isFinite(value) && value.trim() !== '') {
+                    value = numValue;
+                } else if (value.trim() === '') {
+                    // 如果用户清空了输入框，可以视为 0
+                    value = 0;
+                    // 更新UI，把空字符串变成 "0"
+                    $target.val(value); 
                 } else {
-                    this.runSingleWeaponCalculation();
+                    // 如果输入了 "abc" 这样的非法字符，可以回退到之前的值
+                    // 为了简单起见，先假设用户不会恶意输入，后续有需要再加
                 }
-            });
-            // console.log("change/input 事件绑定完成");
 
-            $pane.on('click', '#btn-calculate-all', () => {
-                // 当按钮被点击时，这里的代码应该被执行
-                // console.log("#btn-calculate-all 被点击");
-                this.runSingleWeaponCalculation(true); // 调用计算并显示结果
-            });
-            // console.log("#btn-calculate-all 的 click 事件绑定完成");
+                // 用清理过的数据更新 state
+                this.currentCalculationState[key] = value;
 
-            // 初始加载时，根据当前选中的武器更新一次
-            this.updateBaseData();
-            // console.log("updateBaseData 调用完成");
+                // 如果是切换武器，需要重建整个 state
+                if (key === 'arms_name') {
+                    this.rebuildCurrentState();
+                    // 注意：切换武器后，不需要手动更新UI，因为后续的计算会刷新整个UI
+                }
+                
+                // 只有在 change 事件后，才触发完整的计算和UI重绘
+                this.runSingleWeaponCalculation();
+            });
+
+            // 初始加载时运行一次计算
+            this.runSingleWeaponCalculation();
         },
 
         setupTotalPowerTab: function() {
@@ -181,11 +213,17 @@ $(function() {
         bindGlobalEvents: function() {
             const appContainer = $('#power-calculator-app');
             
-            // 在调用 save 时，将全局状态对象传进去
             appContainer.on('click', '#btn-save-data', () => {
-                // 在保存前，确保最新的UI输入已经同步到state
-                const currentUIInputs = UI_HANDLER.getAllInputs();
-                Object.assign(DATA_STORE.state, currentUIInputs);
+                const stateKeys = Object.keys(DATA_STORE.state);
+                const dataToSave = {};
+
+                for (const key of stateKeys) {
+                    if (this.currentCalculationState.hasOwnProperty(key)) {
+                        dataToSave[key] = this.currentCalculationState[key];
+                    }
+                }
+
+                Object.assign(DATA_STORE.state, dataToSave); // 更新全局状态
                 
                 STORAGE_HANDLER.save(DATA_STORE.state); 
             });
@@ -304,40 +342,93 @@ $(function() {
             }, 1000);
         },
         
-        updateBaseData: function() {
-            const weaponName = $('#arms_name').val();
-            const weaponData = DATA_STORE.weaponsDataMap[weaponName];
-            if (weaponData) {
-                UI_HANDLER.updateForm(weaponData);
+        rebuildCurrentState: function() {
+            const baseState = { ...DATA_STORE.state}; // 获取全局状态的基础副本
+
+            let weaponName = (this.currentCalculationState && this.currentCalculationState.arms_name) || 
+                DATA_STORE.state.arms_name || $('#arms_name').val(); // 获取当前武器名称
+            // 如果没有指定武器名称，尝试从全局状态或默认值中获取
+            if (!weaponName && DATA_STORE.weaponsData && DATA_STORE.weaponsData.length > 0) {
+                // 使用武器列表中的第一个武器作为默认武器
+                weaponName = DATA_STORE.weaponsData[0].cnName;
+                console.log(`未找到当前武器，已自动设置为默认武器: ${weaponName}`);
             }
-            this.runSingleWeaponCalculation();
+
+            const weaponData = weaponName ? DATA_STORE.weaponsDataMap[weaponName] : {}; // 获取武器的基础数据
+
+            this.currentCalculationState = Object.assign({}, baseState, weaponData); // 合并全局状态和武器数据
+            if (weaponName) {
+                this.currentCalculationState.arms_name = weaponName; // 确保武器名称被正确设置
+            }
         },
         
         runSingleWeaponCalculation: function(showResults = false) {
-            // 从 UI 获取最新的输入值，并同步更新到全局 state
-            const currentUIInputs = UI_HANDLER.getAllInputs();
-            Object.assign(DATA_STORE.state, currentUIInputs);
+            if (!this.currentCalculationState || !this.currentCalculationState.arms_name) {
+                console.error("计算失败：未提供武器名称或计算输入。");
+                return;
+            }
 
-            // 获取当前选定武器的基础数据
-            const weaponName = DATA_STORE.state.arms_name || $('#arms_name').val();
-            const weaponBaseData = DATA_STORE.weaponsDataMap[weaponName] || {};
-            
-            // 合并全局状态和武器专属数据作为计算输入
-            const calculationInputs = { ...DATA_STORE.state, ...weaponBaseData };
-            
-            const results = CALC_LOGIC.calculateAll(calculationInputs);
-            
-            // 将计算结果更新到UI
-            UI_HANDLER.updateForm(results);
-            
-            // 如果总战力页面已加载，则更新其摘要
-            if ($('#quick_percent_dps_mul').length) {
-                this.updateQuickSettingsSummary();
+            const processedInputs = this.preprocessInputs(this.currentCalculationState);
+
+            const result = CALC_LOGIC.calculateAll(processedInputs);
+            const finalUIData = Object.assign({}, processedInputs, result);
+            UI_HANDLER.updateForm(finalUIData); // 更新表单以显示计算结果
+
+            if ($('quik_percent_dps_mul').length) {
+                this.updateQuickSettingsSummary(); // 更新快捷设置摘要
             }
 
             if (showResults) {
-                UI_HANDLER.showFinalResults(results);
+                UI_HANDLER.showFinalResults(result); // 显示最终结果
             }
+        },
+
+        /**
+         * 预处理器，在计算前确保所有父属性都是最新的
+         * @param {object} inputs - 原始的 currentCalculationState
+         * @returns {object} - 一个新的、所有父属性都已更新的对象
+         */
+        preprocessInputs: function(inputs) {
+            // 创建一个副本，避免修改原始的 currentCalculationState
+            const processed = { ...inputs };
+
+            // 计算 parts_dps_mul
+            processed.parts_dps_mul = (parseFloat(processed.parts_dps_mul_hunter) || 0) + 
+                                    (parseFloat(processed.parts_dps_mul_chip) || 0);
+
+            // 计算 ea0_dps_mul
+            processed.ea0_dps_mul = (parseFloat(processed.ea0_dps_mul_equip) || 0) +
+                                    (parseFloat(processed.ea0_dps_mul_weapon) || 0) +
+                                    (parseFloat(processed.ea0_dps_mul_device) || 0) +
+                                    (parseFloat(processed.ea0_dps_mul_title) || 0) +
+                                    (parseFloat(processed.ea0_dps_mul_union) || 0) +
+                                    (parseFloat(processed.ea0_dps_mul_rank) || 0) +
+                                    (parseFloat(processed.ea0_dps_mul_battle) || 0) +
+                                    (parseFloat(processed.ea0_dps_mul_honor) || 0) +
+                                    (parseFloat(processed.ea0_dps_mul_medal) || 0);
+            
+            // 计算 ea0_hurt_mul
+            processed.ea0_hurt_mul = (parseFloat(processed.ea0_hurt_mul_equip) || 0) +
+                                    (parseFloat(processed.ea0_hurt_mul_medal) || 0);
+
+            // 计算 dps_all
+            processed.dps_all = (parseFloat(processed.dps_all_equip) || 0) +
+                                (parseFloat(processed.dps_all_fashion) || 0) +
+                                (parseFloat(processed.dps_all_vehicle) || 0) +
+                                (parseFloat(processed.dps_all_title) || 0) +
+                                (parseFloat(processed.dps_all_food ) || 0) +
+                                (parseFloat(processed.dps_all_peak) || 0) +
+                                (parseFloat(processed.dps_all_president) || 0) +
+                                (parseFloat(processed.dps_all_card) || 0) +
+                                (parseFloat(processed.dps_all_building) || 0);
+            
+            // 计算 hurt_all
+            processed.hurt_all = (parseFloat(processed.hurt_all_equip) || 0) +
+                                (parseFloat(processed.hurt_all_fashion) || 0) +
+                                (parseFloat(processed.hurt_all_card) || 0) +
+                                (parseFloat(processed.hurt_all_set) || 0);
+
+            return processed;
         },
 
         runTotalPowerCalculation: function() {
