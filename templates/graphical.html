@@ -52,7 +52,7 @@
             <!-- 头部信息栏 -->
             <div class="char-header">
                 <div class="line-left1"></div>
-                <div class="line-left2"></div>
+                <div class="line-left2"></div> 
                 <div class="line-middle"></div>
                 <div class="line-right1"></div>
                 <div class="line-right2"></div>
@@ -91,5 +91,36 @@
                 <!-- JS 将在这里渲染 Arms 武器 -->
             </div>
         </div>
+    </div>
+</div>
+
+<!-- 武器切换模态框 -->
+<div id="weapon-switch-modal" class="modal-overlay" style="display: none;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <!-- 标题可以动态改变 -->
+            <h2 id="modal-title">切换武器</h2> 
+            <button id="close-weapon-modal" class="close-button">×</button>
+        </div>
+        
+        <!--  模态框内的标签页系统 -->
+        <div class="modal-tabs">
+            <button class="modal-tab-btn active" data-tab="switch">切换武器</button>
+            <button class="modal-tab-btn" data-tab="adjust">调整参数</button>
+        </div>
+
+        <div class="modal-body">
+            <!-- 标签页内容将动态插入到这里 -->
+            <div id="modal-tab-content-switch" class="modal-tab-pane active">
+                <!-- “切换武器”的内容（之前的 weapon-inventory-panel） -->
+                <div id="weapon-inventory-panel" class="inventory-grid">
+                    <!-- 背包里的武器将动态插入到这里 -->
+                </div>
+            </div>
+            <div id="modal-tab-content-adjust" class="modal-tab-pane">
+                <!-- “调整参数”的内容将动态插入到这里 -->
+            </div>
+        </div>
+
     </div>
 </div>

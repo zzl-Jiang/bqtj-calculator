@@ -42,6 +42,24 @@ export const STORAGE_HANDLER = {
         }
     },
 
+    saveItem: function(key, data) {
+        try {
+            localStorage.setItem(key, JSON.stringify(data));
+        } catch (e) {
+            console.error('保存特定项目到localStorage失败:', e);
+        }
+    },
+
+    loadItem: function(key) {
+        try {
+            const data = localStorage.getItem(key);
+            return data ? JSON.parse(data) : null;
+        } catch (e) {
+            console.error('从localStorage加载特定项目失败:', e);
+            return null;
+        }
+    },
+
     /**
      * 清除 localStorage 中保存的数据。
      */

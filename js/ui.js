@@ -25,18 +25,24 @@ export const UI_HANDLER = {
     },
 
 
-    // 在 populateWeapons 中缓存选项，供全局使用
-    populateWeapons: function() {
-        const $select = $('#arms_name');
-        if (!$select.length) {
-            console.error("在 populateWeapons 中未找到 #arms_name");
-            return;
-        }
-        // 直接使用缓存好的HTML
-        $select.html(this._weaponOptionsHTML);
-        // 设置一个默认的“请选择”项
-        $select.prepend('<option value="" selected disabled>---选择武器---</option>');
-        $select.val(''); // 确保默认选中“请选择”
+    /**
+     * 为一个或多个 <select> 元素填充武器选项
+     * @param {jQuery} [$targetSelects] - (可选) 指定要填充的select元素。如果未提供，则填充 id="arms_name" 的元素。
+     */
+    populateWeapons: function($targetSelects) {
+        const $selects = $targetSelects || $('#arms_name');
+
+        if (!$selects.length) return;
+
+        // 先清空，防止重复填充
+        $selects.empty();
+
+        // 添加一个默认的“请选择”选项
+        $selects.append('<option value="">-- 请选择武器 --</option>');
+
+        DATA_STORE.weaponsData.forEach(weapon => {
+            $selects.append(`<option value="${weapon.cnName}">${weapon.cnName}</option>`);
+        });
     },
 
     createWeaponSlots: function(num) {

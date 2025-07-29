@@ -193,6 +193,7 @@ export const CALC_LOGIC = {
 
         // --- 进阶与颜色相关计算 ---
         let evoHurtMul = 0;
+        console.log('武器名称:', inputs.arms_name);
         if (YEAR_WEAPON_NAMES.includes(inputs.arms_name)) {
             evoHurtMul = (YEAR_HURT_MUL_ARR[inputs.evo_lv] || 0) / 100;
         } else if (DARKGOLD_WEAPON_NAMES.includes(inputs.arms_name)) {
@@ -201,8 +202,11 @@ export const CALC_LOGIC = {
             evoHurtMul = (ROCKETCATE_HURT_MUL_ARR[inputs.evo_lv] || 0) / 100;
         } else {
             evoHurtMul = (HURT_MUL_ARR[inputs.evo_lv] || 0) / 100;
+            // console.log('普通武器进阶系数计算结果:', evoHurtMul);
         }
         results.evo_hurt_mul = evoHurtMul;
+        console.log('evo_lv:', inputs.evo_lv);
+        console.log('evo_hurt_mul:', evoHurtMul);
 
         let lvIndex = inputs.evo_lv;
         if (YEAR_WEAPON_NAMES.includes(inputs.arms_name)) lvIndex = inputs.evo_lv === 0 ? 9 : 13;
