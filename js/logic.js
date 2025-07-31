@@ -43,6 +43,8 @@ export const CALC_LOGIC = {
         return 5.8;
     },
     getMulByLv: (armsLv, partLv) => {
+        if (partLv == 0) return 0;
+        if (partLv > armsLv) { partLv = armsLv };
         const dpsArms = CALC_LOGIC.getDpsByLv(armsLv);
         const dpsPart = CALC_LOGIC.getDpsByLv(partLv);
         return dpsArms > 0 ? (1 - (1 - dpsPart / dpsArms) * 0.4) : 1;
@@ -221,6 +223,12 @@ export const CALC_LOGIC = {
 
         // --- 零件属性计算 ---
         results.parts_dps = getDpsByLv(inputs.parts_dps_lv) * getDpsValueByLv(inputs.parts_dps_lv);
+        console.log('伤害零件等级:', inputs.parts_dps_lv);
+        console.log('弹容零件等级:', inputs.parts_capacity_lv);
+        console.log('攻速零件等级:', inputs.parts_attack_gap_lv);
+        console.log('装弹零件等级:', inputs.parts_reload_lv);
+        console.log('精准零件等级:', inputs.parts_precision_lv);
+        console.log('射程零件等级:', inputs.parts_shoot_range_lv);
         results.parts_capacity_mul = getCapacityValueByLv(inputs.parts_capacity_lv) * getMulByLv(armsLv, inputs.parts_capacity_lv);
         results.parts_attack_gap_mul = getAttackGapValueByLv(inputs.parts_attack_gap_lv) * getMulByLv(armsLv, inputs.parts_attack_gap_lv);
         results.parts_reload_mul = getReloadValueByLv(inputs.parts_reload_lv) * getMulByLv(armsLv, inputs.parts_reload_lv);

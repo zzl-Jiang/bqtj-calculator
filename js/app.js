@@ -17,7 +17,6 @@ $(function() {
 
             UI_HANDLER.init();          // 初始化 UI 模块
             this.loadData();               // 从localStorage加载数据（如果有）
-            this.syncAllInitialWeaponData(); 
             this.bindGlobalEvents();       // 绑定全局事件（非标签页特定）
             this.initTabSystem();          // 初始化标签页切换逻辑
             this.initPopovers();           // 初始化全局的 Popover 逻辑
@@ -358,33 +357,16 @@ $(function() {
             // 监听来自图形化UI的数据变更事件
             $(document).on('graphicalDataChanged', (event, data) => {
                 console.log('App捕获到 graphicalDataChanged 事件:', data);
-                
-                const changedItems = new Set();
-                if (data.type === 'paramUpdate') {
-                    changedItems.add(data.item);
-                } else if (data.type === 'swap') {
-                    data.swappedItems.forEach(itemId => {
-                        const item = GRAPHICAL_UI_HANDLER.getItemById(itemId);
-                        if (item) changedItems.add(item);
-                    });
-                }
-                changedItems.forEach(item => {
-                    if (item) {
-                        if (item.type === 'weapon') {
-                            this.syncSingleWeaponToDataStore(item);
-                        }
-                    }
-                });
 
-                const currentWeaponName = this.currentCalculationState.arms_name;
-                const currentWeaponChanged = Array.from(changedItems).some(item => {
-                    if (item) item.name === currentWeaponName});
-                if (currentWeaponChanged && $('#tab-pane-single-weapon').is(':visible')) {
-                    this.rebuildCurrentState();
+                // 重新运行总战力计算来反映数据的变化
+                this.runTotalPowerCalculation(); 
+
+                // 如果单武器页可见，且修改的是当前武器，也需要刷新
+                const currentWeaponNameOnPage = $('#arms_name').val();
+                if (data.item && data.item.name === currentWeaponNameOnPage && $('#tab-pane-single-weapon').is(':visible')) {
+                    this.rebuildCurrentState(); // 重建 state 以获取最新的武器数据
                     this.runSingleWeaponCalculation();
                 }
-
-                this.runTotalPowerCalculation(); 
             });
         },
 
@@ -667,53 +649,6 @@ $(function() {
                 alert('已清除数据，页面将刷新以恢复默认值。');
                 location.reload();
             }
-        },
-
-        /**
-         * 将单个武器对象的数据同步到 DATA_STORE
-         * @param {object} graphicalWeaponData - 来自 graphical_ui.js 的武器数据对象
-         */
-        syncSingleWeaponToDataStore: function(graphicalWeaponData) {
-            if (!graphicalWeaponData || !graphicalWeaponData.name) return;
-
-            const weaponName = graphicalWeaponData.name;
-            const weaponInDataStore = DATA_STORE.weaponsDataMap[weaponName];
-
-            if (!weaponInDataStore) {
-                console.warn(`同步失败：在 DATA_STORE 中找不到武器 [${weaponName}]`);
-                return;
-            }
-
-            console.log(`正在将 [${weaponName}] 的图形化数据同步到 DATA_STORE...`);
-
-            // 定义字段映射关系
-            const syncMap = {
-                level: 'arms_lv',
-                enhancementLevel: 'strengthen_lv',
-                evoLevel: 'evo_lv' // 假设你添加了 evoLevel
-                // 在这里添加所有需要同步的字段
-            };
-
-            for (const [graphicalKey, dataStoreKey] of Object.entries(syncMap)) {
-                if (graphicalWeaponData[graphicalKey] !== undefined) {
-                    const newValue = graphicalWeaponData[graphicalKey];
-                    // 检查值是否真的改变了，避免不必要的更新
-                    if (weaponInDataStore[dataStoreKey] !== newValue) {
-                        console.log(`  - 属性 [${dataStoreKey}] 从 ${weaponInDataStore[dataStoreKey]} 更新为 ${newValue}`);
-                        weaponInDataStore[dataStoreKey] = newValue;
-                    }
-                }
-            }
-        },
-
-        /**
-         * 初始化时，批量同步所有在图形化UI中定义的武器
-         */
-        syncAllInitialWeaponData: function() {
-            const allGraphicalWeapons = GRAPHICAL_UI_HANDLER.getAllWeaponData();
-            allGraphicalWeapons.forEach(graphicalWeapon => {
-                this.syncSingleWeaponToDataStore(graphicalWeapon); 
-            });
         },
 
         /**

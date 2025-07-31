@@ -3,9 +3,8 @@
 .graphical-container.hybrid-layout {
     display: grid;
     grid-template-areas:
-        "info main"
-        "footer footer";
-    grid-template-columns: 200px 260px;
+        "main"
+        "footer";
     gap: 5px;
     background-color: #1a1a1a;
     border: 3px solid #333;
@@ -18,6 +17,8 @@
     background-color: #0d1117;
     display: flex;
     flex-direction: column;
+    justify-self: center;
+    width: 260px;
     gap: 5px;
     border-radius: 6px;
     border: 1px solid #444;
@@ -209,10 +210,6 @@
 
 .arm-panel {
     grid-area: footer;
-    display: grid;
-    grid-template-columns: 150px 1fr 1fr;
-    align-items: start;
-    gap: 10px;
     border-top: 1px solid #444;
     padding-top: 10px;
 }
@@ -221,9 +218,6 @@
     min-height: 50px;
     width: 150px;
     height: auto;
-}
-.capacity-panel{
-    display: flex;
 }
 .arms-panel {
     display: grid;
@@ -242,42 +236,6 @@
     height: 50px;
 }
 
-.char-info-panel {
-    grid-area: info;
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
-}
-.stat-item { 
-    display: grid; 
-    grid-template-columns: 53px auto; 
-    align-items: center; 
-    padding: 1px; 
-    border-radius: 4px; 
-    font-size: 12px; 
-}
-.stat-label { 
-    color: #c9d1d9; 
-    background-color: #0d1117; 
-    text-align: center; 
-    border: 1px solid #30363d; 
-    border-top-left-radius: 7px; 
-    border-bottom-left-radius: 7px; 
-    padding: 1px 0; 
-}
-.stat-value { 
-    display: flex; 
-    color: #f0f6fc; 
-    font-weight: bold; 
-    margin-left: 5px; 
-    background-color: #0d1117;
-    border: 1px solid #30363d; 
-    border-top-right-radius: 7px; 
-    border-bottom-right-radius: 7px; 
-    padding: 1px 0; 
-    padding-left: 3px; 
-    justify-content: space-between; }
-.stat-value.xp-text { background-color: #133617; }
 
 .char-footer-items {
     display: grid;
@@ -386,6 +344,7 @@
 
 .modal-tab-pane.active {
     display: block; /* 只有激活的才显示 */
+    width: 100%; /* 填充空间避免留白 */
 }
 
 .inventory-grid {
@@ -395,10 +354,12 @@
 }
 
 /* “调整参数”页面的表单样式 */
-.param-adjust-form {
+.param-adjust-form,
+.param-parts-form {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    max-width: 80%;
 }
 
 .form-group {
@@ -408,7 +369,7 @@
 }
 
 .form-group label {
-    flex-basis: 120px; /* 标签宽度对齐 */
+    flex-basis: 150px; /* 标签宽度对齐 */
     color: #ccc;
 }
 

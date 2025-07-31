@@ -36,9 +36,9 @@ select:focus {
 }
 
 input[readonly] {
-    background-color: var(--bg-input-readonly);
-    color: var(--text-secondary);
-    cursor: default;
+    background-color: var(--bg-input-readonly) !important;
+    color: var(--text-secondary) !important;
+    cursor: not-allowed;
 }
 
 input::-webkit-outer-spin-button,

@@ -9,44 +9,6 @@
     </span>
     <div class="graphical-container hybrid-layout">
 
-        <!-- =========== 左侧：角色信息面板 =========== -->
-        <div class="char-info-panel">
-            <div class="stat-item">
-                <span class="stat-label">角色</span>
-                <span class="stat-value">小白</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-label">称号</span>
-                <span class="stat-value">
-                    超能英雄 <button class="title-action-btn">详情</a>
-                </span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-label">生命</span>
-                <span class="stat-value">576万</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-label">头部防御</span>
-                <span class="stat-value">565748</span>
-            </div>
-            <div class="stat-item xp-bar-container">
-                <span class="stat-label">经验</span>
-                <div class="stat-value xp-text">40638万/40638万</div>
-            </div>
-            <div class="stat-item">
-                <span class="stat-label">幸运值</span>
-                <span class="stat-value">46</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-label">虚天塔</span>
-                <span class="stat-value">85层</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-label">&nbsp;</span>
-                <span class="stat-value">&nbsp;</span>
-            </div>
-        </div>
-
         <!-- =========== 右侧：角色模型与装备面板 =========== -->
         <div class="main-content-area">
             <!-- 头部信息栏 -->
@@ -81,10 +43,6 @@
 
         <!-- 底部武器面板 -->
         <div id="arm-panel-footer" class="arm-panel">
-            <!-- 左侧 Capacity 容器 -->
-            <div id="capacity-panel" class="capacity-panel">
-                <!-- JS 将在这里渲染 Capacity 物品 -->
-            </div>
             
             <!-- 右侧 Arms 容器 -->
             <div id="arms-panel" class="arms-panel">
@@ -107,6 +65,7 @@
         <div class="modal-tabs">
             <button class="modal-tab-btn active" data-tab="switch">切换武器</button>
             <button class="modal-tab-btn" data-tab="adjust">调整参数</button>
+            <button class="modal-tab-btn" data-tab="parts">调整零件</button>
         </div>
 
         <div class="modal-body">
@@ -119,6 +78,9 @@
             </div>
             <div id="modal-tab-content-adjust" class="modal-tab-pane">
                 <!-- “调整参数”的内容将动态插入到这里 -->
+            </div>
+            <div id="modal-tab-content-parts" class="modal-tab-pane">
+                <!-- “调整零件”的内容将动态插入到这里 -->
             </div>
         </div>
 
