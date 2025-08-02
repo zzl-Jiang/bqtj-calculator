@@ -7,10 +7,8 @@ const graphicalItemsData = [
         id: 'equip-head',
         type: 'equipment', 
         slotType: 'equip-right',
-        color: 'purgold',
         name: '战神的蔑视', 
-        level: 99, 
-        enhancementLevel: 28, 
+        baseName: '狂人头盔',
         iconUrl: '../images/equip/madpur_head.png', 
         isLocked: true 
     },
@@ -18,10 +16,8 @@ const graphicalItemsData = [
         id: 'equip-coat',
         type: 'equipment', 
         slotType: 'equip-left',
-        color: 'purgold',
         name: '战神的戒严', 
-        level: 99, 
-        enhancementLevel: 28, 
+        baseName: '狂人战衣',
         iconUrl: '../images/equip/madpur_coat.png', 
         isLocked: true 
     },
@@ -29,10 +25,8 @@ const graphicalItemsData = [
         id: 'equip-belt', 
         type: 'equipment', 
         slotType: 'equip-right',
-        color: 'purgold',
         name: '战神的降临', 
-        level: 99, 
-        enhancementLevel: 28, 
+        baseName: '狂人腰带',
         iconUrl: '../images/equip/madpur_belt.png', 
         isLocked: true 
     },
@@ -40,10 +34,8 @@ const graphicalItemsData = [
         id: 'equip-pants', 
         type: 'equipment', 
         slotType: 'equip-left',
-        color: 'purgold',
         name: '战神的讨伐', 
-        level: 99, 
-        enhancementLevel: 28, 
+        baseName: '狂人战裤',
         iconUrl: '../images/equip/madpur_pants.png', 
         isLocked: true 
     },
@@ -110,8 +102,8 @@ const graphicalItemsData = [
     },
     // 武器
     { 
-        id: 'weapon-1', 
-        type: 'weapon', 
+        id: 'arm-1', 
+        type: 'arms', 
         slotType: 'arms',
         name: '猩焰', 
         iconUrl: '../images/arms/redFire.png', 
@@ -120,16 +112,16 @@ const graphicalItemsData = [
         isLocked: true 
     },
     { 
-        id: 'weapon-2', 
-        type: 'weapon', 
+        id: 'arm-2', 
+        type: 'arms', 
         slotType: 'arms',
         name: '银狐', 
         iconUrl: '../images/arms/pistolFox.png', 
         isLocked: true 
     },
     { 
-        id: 'weapon-3', 
-        type: 'weapon', 
+        id: 'arm-3', 
+        type: 'arms', 
         slotType: 'arms',
         name: '铄金', 
         iconUrl: '../images/arms/meltFlamer.png', 
@@ -137,32 +129,32 @@ const graphicalItemsData = [
         isLocked: true 
     },
     { 
-        id: 'weapon-4', 
-        type: 'weapon', 
+        id: 'arm-4', 
+        type: 'arms', 
         slotType: 'arms',
         name: '赤鼬', 
         iconUrl: '../images/arms/shotgunSkunk.png', 
         isLocked: true 
     },
     { 
-        id: 'weapon-5', 
-        type: 'weapon', 
+        id: 'arm-5', 
+        type: 'arms', 
         slotType: 'arms',
         name: '金蝉', 
         iconUrl: '../images/arms/sniperCicada.png', 
         isLocked: true 
     },
     { 
-        id: 'weapon-6', 
-        type: 'weapon',
+        id: 'arm-6', 
+        type: 'arms',
         slotType: 'arms',
         name: '青蜂', 
         iconUrl: '../images/arms/rifleHornet.png', 
         isLocked: true 
     },
     { 
-        id: 'weapon-7', 
-        type: 'weapon',
+        id: 'arm-7', 
+        type: 'arms',
         slotType: 'arms_bag',
         name: '卡特巨炮', 
         iconUrl: '../images/arms/rocketCate.png', 
@@ -170,8 +162,8 @@ const graphicalItemsData = [
         isLocked: true 
     },
     {
-        id: 'weapon-8', 
-        type: 'weapon',
+        id: 'arm-8', 
+        type: 'arms',
         slotType: 'arms_bag',
         name: '极源', 
         iconUrl: '../images/arms/extremeGun.png', 
@@ -179,8 +171,8 @@ const graphicalItemsData = [
         isLocked: true 
     },
     {
-        id: 'weapon-9', 
-        type: 'weapon',
+        id: 'arm-9', 
+        type: 'arms',
         slotType: 'arms_bag',
         name: '隼武', 
         iconUrl: '../images/arms/falconGun.png', 
@@ -188,8 +180,8 @@ const graphicalItemsData = [
         isLocked: true 
     },
     {
-        id: 'weapon-10', 
-        type: 'weapon',
+        id: 'arm-10', 
+        type: 'arms',
         slotType: 'arms_bag',
         name: '光锥', 
         iconUrl: '../images/arms/lightCone.png', 
@@ -197,16 +189,16 @@ const graphicalItemsData = [
         isLocked: true 
     },
     {
-        id: 'weapon-11', 
-        type: 'weapon',
+        id: 'arm-11', 
+        type: 'arms',
         slotType: 'arms_bag',
         name: '辰龙', 
         iconUrl: '../images/arms/yearDragon.png', 
         isLocked: true 
     },
     {
-        id: 'weapon-12', 
-        type: 'weapon',
+        id: 'arm-12', 
+        type: 'arms',
         slotType: 'arms_bag',
         name: '未羊', 
         iconUrl: '../images/arms/yearSheep.png', 
@@ -214,8 +206,8 @@ const graphicalItemsData = [
         isLocked: true 
     },
     {
-        id: 'weapon-13', 
-        type: 'weapon',
+        id: 'arm-13', 
+        type: 'arms',
         slotType: 'arms_bag',
         name: '寅虎', 
         iconUrl: '../images/arms/yearTiger.png', 
@@ -264,6 +256,27 @@ const YEAR_EVO_LEVEL_OPTIONS = [
     { value: 1, text: '无双I' },
 ];
 
+const DARKGOLD_EQUIP_EVO_OPTIONS = [
+    { value: 0, text: 'I' },
+    { value: 1, text: 'II' },
+    { value: 2, text: 'III' },
+    { value: 3, text: 'IV' },
+    { value: 4, text: '闪耀I' },
+    { value: 5, text: '闪耀II' },
+    { value: 6, text: '闪耀III' },
+    { value: 7, text: '闪耀IV' },
+    { value: 8, text: '超凡I' },
+    { value: 9, text: '超凡II' },
+    { value: 10, text: '超凡III' },
+    { value: 11, text: '超凡IV' },
+    { value: 12, text: '超凡V' },
+    { value: 13, text: '超凡VI' },
+    { value: 14, text: '超凡VII' },
+    { value: 15, text: '超凡VIII' },
+    { value: 16, text: '无双I' },
+    { value: 17, text: '无双II' },
+];
+
 export const GRAPHICAL_UI_HANDLER = {
     cache: {}, // 用于缓存DOM元素
     currentlyClickedSlotId: null, // 用于存储当前被点击的装备槽物品ID
@@ -284,10 +297,10 @@ export const GRAPHICAL_UI_HANDLER = {
         this.cache.armsPanel = $('#arms-panel');
 
         // 缓存模态框相关元素
-        this.cache.weaponSwitchModal = $('#weapon-switch-modal');
+        this.cache.armSwitchModal = $('#arm-switch-modal');
         this.cache.modalTitle = $('#modal-title');
-        this.cache.weaponInventoryPanel = $('#weapon-inventory-panel');
-        this.cache.closeWeaponModalBtn = $('#close-weapon-modal');
+        this.cache.armInventoryPanel = $('#arm-inventory-panel');
+        this.cache.closeArmModalBtn = $('#close-arm-modal');
         this.cache.modalTabs = $('.modal-tabs');
         this.cache.modalTabPanes = {
             'switch': $('#modal-tab-content-switch'),
@@ -327,29 +340,42 @@ export const GRAPHICAL_UI_HANDLER = {
      * 绑定所有事件
      */
     bindEvents: function() {
-        // 给已装备的武器槽绑定点击事件，用于打开模态框
-        this.cache.armsPanel.on('click', '.arm-slot', (e) => {
+        // 定义一个包含所有可交互物品槽 class 的选择器字符串
+        const allItemSlotsSelector = '.arm-slot, .equip-slot, .jewelry-slot, .shell-slot';
+
+        // 使用事件委托，将点击事件绑定在顶层容器上
+        $('#tab-pane-graphical').on('click', allItemSlotsSelector, (e) => {
             const clickedSlot = e.currentTarget;
             const itemId = $(clickedSlot).data('item-id');
-            this.openWeaponModal(itemId);
+
+            // 检查物品是否有 isCostume 属性，如果是，则不打开模态框
+            const itemData = this.getItemById(itemId);
+            if (itemData && itemData.isCostume) {
+                console.log("点击了时装切换框，不执行任何操作。");
+                return;
+            }
+            
+            if (itemId) { // 确保点击的槽位有物品
+                this.openItemModal(itemId);
+            }
         });
 
         // 给模态框的关闭按钮绑定事件
-        this.cache.closeWeaponModalBtn.on('click', () => {
-            this.closeWeaponModal();
+        this.cache.closeArmModalBtn.on('click', () => {
+            this.closeItemModal();
         });
 
         // 点击模态框背景也可以关闭
-        this.cache.weaponSwitchModal.on('click', (e) => {
-            if (e.target === this.cache.weaponSwitchModal[0]) {
-                this.closeWeaponModal();
+        this.cache.armSwitchModal.on('click', (e) => {
+            if (e.target === this.cache.armSwitchModal[0]) {
+                this.closeItemModal();
             }
         });
 
         // 背包武器点击事件 (只在“切换武器”标签页内生效)
-        this.cache.weaponInventoryPanel.on('click', '.arm-slot', (e) => {
+        this.cache.armInventoryPanel.on('click', '.arm-slot', (e) => {
             const inventoryItemId = $(e.currentTarget).data('item-id');
-            this.swapWeapons(this.currentlyClickedSlotId, inventoryItemId);
+            this.swapItems(this.currentlyClickedSlotId, inventoryItemId);
         });
 
         // 为模态框内的标签页按钮绑定点击事件
@@ -391,40 +417,57 @@ export const GRAPHICAL_UI_HANDLER = {
         const uiItemData = graphicalItemsData.find(item => item.id === itemId);
         if (!uiItemData) return null;
 
-        // 如果不是武器，直接返回UI数据
-        if (uiItemData.type !== 'weapon') {
-            return uiItemData;
+        let mergedData = {};
+
+        if (uiItemData.type === 'arms') {
+            // 如果是武器，从 DATA_STORE 获取业务数据
+            const businessData = DATA_STORE.weaponsDataMap[uiItemData.name];
+            if (!businessData) {
+                console.warn(`在DATA_STORE中找不到武器 [${uiItemData.name}] 的业务数据`);
+                return uiItemData; // 即使找不到，也返回基础数据，避免崩溃
+            }
+
+            // 合并数据：将业务数据合并到UI数据上
+            // 为了不修改原始数据，创建一个新对象，还需要将 DATA_STORE 的字段名转换为 UI 期望的字段名
+            mergedData = {
+                ...uiItemData, // 基础UI属性 (id, iconUrl, slotType...)
+                level: businessData.arms_lv,
+                enhancementLevel: businessData.strengthen_lv,
+                evoLevel: businessData.evo_lv,
+                element: businessData.element,
+                color: businessData.color,
+                // 零件等级
+                parts_dps_lv: businessData.parts_dps_lv,
+                parts_capacity_lv: businessData.parts_capacity_lv,
+                parts_attack_gap_lv: businessData.parts_attack_gap_lv,
+                parts_reload_lv: businessData.parts_reload_lv,
+                parts_precision_lv: businessData.parts_precision_lv,
+                parts_shoot_range_lv: businessData.parts_shoot_range_lv,
+                // 特零加成
+                parts_dps_mul_hunter: businessData.parts_dps_mul_hunter,
+                parts_dps_mul_chip: businessData.parts_dps_mul_chip,
+            };
+
+            // 动态计算颜色
+            mergedData.color = this.updateArmColor(mergedData); 
         }
+        else if (uiItemData.type === 'equipment') {
+            const businessData = DATA_STORE.equipDataMap[uiItemData.baseName]
+            if (!businessData) {
+                console.warn(`在DATA_STORE中找不到装备 [${uiItemData.name}] 的业务数据`);
+                return uiItemData; // 即使找不到，也返回基础数据，避免崩溃
+            }
+            
+            mergedData = {
+                ...uiItemData, // 基础UI属性 (id, iconUrl, slotType...)
+                level: businessData.equip_lv,
+                enhancementLevel: businessData.strengthen_lv,
+                evoLevel: businessData.evo_lv,
+                color: businessData.color,
+            };
 
-        // 如果是武器，从 DATA_STORE 获取业务数据
-        const businessData = DATA_STORE.weaponsDataMap[uiItemData.name];
-        if (!businessData) {
-            console.warn(`在DATA_STORE中找不到武器 [${uiItemData.name}] 的业务数据`);
-            return uiItemData; // 即使找不到，也返回基础数据，避免崩溃
+            mergedData.color = this.updateEquipColor(mergedData);
         }
-
-        // 合并数据：将业务数据合并到UI数据上
-        // 为了不修改原始数据，创建一个新对象，还需要将 DATA_STORE 的字段名转换为 UI 期望的字段名
-        const mergedData = {
-            ...uiItemData, // 基础UI属性 (id, iconUrl, slotType...)
-            level: businessData.arms_lv,
-            enhancementLevel: businessData.strengthen_lv,
-            evoLevel: businessData.evo_lv,
-            color: businessData.color,
-            // 零件等级
-            parts_dps_lv: businessData.parts_dps_lv,
-            parts_capacity_lv: businessData.parts_capacity_lv,
-            parts_attack_gap_lv: businessData.parts_attack_gap_lv,
-            parts_reload_lv: businessData.parts_reload_lv,
-            parts_precision_lv: businessData.parts_precision_lv,
-            parts_shoot_range_lv: businessData.parts_shoot_range_lv,
-            // 特零加成
-            parts_dps_mul_hunter: businessData.parts_dps_mul_hunter,
-            parts_dps_mul_chip: businessData.parts_dps_mul_chip,
-        };
-
-        // 动态计算颜色
-        mergedData.color = this.updateArmColor(mergedData); 
 
         return mergedData;
     },
@@ -433,27 +476,27 @@ export const GRAPHICAL_UI_HANDLER = {
      * 打开武器切换模态框
      * @param {string} itemId - 被点击的装备槽中的物品ID
      */
-    openWeaponModal: function(itemId) {
+    openItemModal: function(itemId) {
         this.currentlyClickedSlotId = itemId; // 记录是从哪个槽点开的
         const itemData = this.getItemDataByName(this.getItemById(itemId).name);
 
         if (!itemData) return;
 
         // 清空并重新渲染背包面板
-        this.cache.weaponInventoryPanel.empty();
+        this.cache.armInventoryPanel.empty();
 
         this.cache.modalTitle.text(`正在编辑: ${itemData.name}`);
         this.switchModalTab('switch');
         
         // 显示模态框
-        this.cache.weaponSwitchModal.fadeIn(200);
+        this.cache.armSwitchModal.fadeIn(200);
     },
 
     /**
      * 关闭武器切换模态框
      */
-    closeWeaponModal: function() {
-        this.cache.weaponSwitchModal.fadeOut(200);
+    closeItemModal: function() {
+        this.cache.armSwitchModal.fadeOut(200);
         this.currentlyClickedSlotId = null; // 清理状态
     },
 
@@ -462,7 +505,7 @@ export const GRAPHICAL_UI_HANDLER = {
      * @param {string} equippedItemId - 装备槽中的物品ID
      * @param {string} inventoryItemId - 背包中被点击的物品ID
      */
-    swapWeapons: function(equippedItemId, inventoryItemId) {
+    swapItems: function(equippedItemId, inventoryItemId) {
         console.log(`准备交换: 装备槽[${equippedItemId}] <-> 背包[${inventoryItemId}]`);
 
         // 在 graphicalItemsData 数组中找到这两个物品的索引
@@ -484,7 +527,7 @@ export const GRAPHICAL_UI_HANDLER = {
         console.log("交换后数据:", graphicalItemsData);
 
         // 交换完成后，关闭模态框
-        this.closeWeaponModal();
+        this.closeItemModal();
 
         // 重新渲染所有UI来反映数据的变化！
         this.renderAllItems();
@@ -521,37 +564,68 @@ export const GRAPHICAL_UI_HANDLER = {
         const itemData = this.getMergedItemById(this.currentlyClickedSlotId);
         if (!itemData) return;
         
+        const isArm = itemData.type === 'arms';
+        const isEquipment = itemData.type === 'equipment';
+
+        // “切换”标签页：武器和装备可以切换
+        if (isArm || isEquipment) {
+            this.cache.modalTabs.find('[data-tab="switch"]').show();
+        } else {
+            this.cache.modalTabs.find('[data-tab="switch"]').hide();
+        }
+        
+        // “零件”标签页：只有武器有
+        if (isArm) {
+            this.cache.modalTabs.find('[data-tab="parts"]').show();
+        } else {
+            this.cache.modalTabs.find('[data-tab="parts"]').hide();
+        }
+
+        // 根据标签页和物品类型加载内容
         switch(tabName) {
             case 'switch':
-                this.renderInventoryForSwitching();
+                // 传递物品类型，让渲染函数知道要找哪种背包
+                this.renderInventoryForSwitching(itemData.type);
                 break;
             case 'adjust':
+                // 传递完整的物品数据，让表单生成函数知道要生成哪种表单
                 this.renderAdjustParamsForm(itemData);
                 break;
             case 'parts':
-                this.renderPartsParamsForm(itemData);
+                 // 再次确认是武器才渲染
+                if (isArm) {
+                    this.renderPartsParamsForm(itemData);
+                }
                 break;
         }
     },
 
     /**
-     * 渲染“切换武器”标签页的内容 (从 openWeaponModal 中提取)
+     * 渲染“切换”标签页的内容
+     * @param {string} itemType - 当前编辑的物品类型 ('arms', 'equipment' 等)
      */
-    renderInventoryForSwitching: function() {
-        this.cache.weaponInventoryPanel.empty();
-        // 从 graphicalItemsData 中筛选出背包武器的“数据桩”(stub)
-        graphicalItemsData
-            .filter(itemStub => itemStub.slotType === 'arms_bag')
-            
-            // 将每个“数据桩”通过 getMergedItemById 映射为完整的、合并后的数据对象
-            .map(itemStub => this.getMergedItemById(itemStub.id))
+    renderInventoryForSwitching: function(itemType) {
+        this.cache.armInventoryPanel.empty();
 
-            // 遍历完整的武器数据对象数组，进行渲染
+        // 根据物品类型决定背包的 slotType
+        let bagSlotType = '';
+        if (itemType === 'arms') {
+            bagSlotType = 'arms_bag';
+        } else if (itemType === 'equipment') {
+            bagSlotType = 'equip_bag';
+        } else {
+            // 其他类型暂时不支持切换
+            return;
+        }
+
+        graphicalItemsData
+            // 使用动态的 bagSlotType 进行筛选
+            .filter(itemStub => itemStub.slotType === bagSlotType)
+            .map(itemStub => this.getMergedItemById(itemStub.id))
             .forEach(fullItemData => {
                 if (fullItemData) {
-                    // fullItemData 包含了 evoLevel, color 等所有必需的属性
                     const itemHtml = this.renderItemSlot(fullItemData);
-                    this.cache.weaponInventoryPanel.append(itemHtml);
+                    this.cache.armInventoryPanel.append(itemHtml);
                 }
             });
         this.scaleImages();
@@ -569,6 +643,7 @@ export const GRAPHICAL_UI_HANDLER = {
         if (itemData.name === '卡特巨炮') evo_options = CATE_EVO_LEVEL_OPTIONS;
         else if (DATA_STORE.DARKGOLD_WEAPON_NAMES.includes(itemData.name)) evo_options = DARKGOLD_EVO_LEVEL_OPTIONS;
         else if (DATA_STORE.YEAR_WEAPON_NAMES.includes(itemData.name)) evo_options = YEAR_EVO_LEVEL_OPTIONS;
+        else if (itemData.type === 'equipment') evo_options = DARKGOLD_EQUIP_EVO_OPTIONS;
 
         // 动态生成进阶等级的 <option> 标签
         const evoLevelOptionsHtml = evo_options.map(option => {
@@ -577,28 +652,41 @@ export const GRAPHICAL_UI_HANDLER = {
             return `<option value="${option.value}" ${isSelected}>${option.text} (+${option.value})</option>`;
         }).join('');
 
-        const formHtml = `
-            <div class="param-adjust-form">
-                <div class="form-group">
-                    <span>注：零件生效等级不得超过武器等级。</span>
-                </div>
-                <div class="form-group">
-                    <label for="param-level">等级 (Level):</label>
-                    <input type="number" id="param-level" name="level" value="${itemData.level || ''}">
-                </div>
-                <div class="form-group">
-                    <label for="param-enhancement">强化等级 (Enhancement):</label>
-                    <input type="number" id="param-enhancement" name="enhancementLevel" value="${itemData.enhancementLevel || ''}">
-                </div>
-                <div class="form-group">
-                    <label for="param-evo-level">进阶等级 (EvoLevel):</label>
-                    <select id="param-evo-level" name="evoLevel">
-                        ${evoLevelOptionsHtml}
-                    </select>
-                </div>
-                <!-- 在这里添加更多调整的参数 -->
-            </div>
-        `;
+        let formHtml = '';
+        switch (itemData.type) {
+            case 'equipment':
+            case 'arms':
+                if (itemData.slotType !== 'footer-item') {
+                    formHtml = `
+                        <div class="param-adjust-form">
+                            <div class="form-group">
+                                <label for="param-level">等级 (Level):</label>
+                                <input type="number" id="param-level" name="level" value="${itemData.level || ''}">
+                            </div>
+                            <div class="form-group">
+                                <label for="param-enhancement">强化等级 (Enhancement):</label>
+                                <input type="number" id="param-enhancement" name="enhancementLevel" value="${itemData.enhancementLevel || ''}">
+                            </div>
+                            <div class="form-group">
+                                <label for="param-element">元素附加 (Element):</label>
+                                <input type="number" id="param-element" name="element" value="${itemData.element || ''}">
+                            </div>
+                            <div class="form-group">
+                                <label for="param-evo-level">进阶等级 (EvoLevel):</label>
+                                <select id="param-evo-level" name="evoLevel">
+                                    ${evoLevelOptionsHtml}
+                                </select>
+                            </div>
+                        </div>
+                    `;
+                }
+                break;
+            case 'jewelry':
+            case 'shell':
+            default:
+                formHtml = `<div class="param-adjust-form"><p>该类型物品暂无可调整的参数。</p></div>`;
+                break;
+        }
         
         formContainer.html(formHtml);
     },
@@ -682,34 +770,13 @@ export const GRAPHICAL_UI_HANDLER = {
     updateItemParameter: function(itemId, paramName, newValue) {
         // 获取物品的UI数据，主要是为了拿到 name
         const uiItemData = this.getItemById(itemId); // getItemById 现在只获取UI数据
-        if (!uiItemData || uiItemData.type !== 'weapon') return;
-
-        // 在 DATA_STORE 中找到对应的武器对象
-        const weaponInDataStore = DATA_STORE.weaponsDataMap[uiItemData.name];
-        if (!weaponInDataStore) {
-            console.error(`更新失败: 在DATA_STORE中找不到武器 [${uiItemData.name}]`);
-            return;
-        }
-
-        // 建立UI参数名到DATA_STORE键名的映射
-        const paramMap = {
-            level: 'arms_lv',
-            enhancementLevel: 'strengthen_lv',
-            evoLevel: 'evo_lv',
-            parts_dps_lv: 'parts_dps_lv',
-            parts_capacity_lv: 'parts_capacity_lv',
-            parts_attack_gap_lv: 'parts_attack_gap_lv',
-            parts_reload_lv: 'parts_reload_lv',
-            parts_precision_lv: 'parts_precision_lv',
-            parts_shoot_range_lv: 'parts_shoot_range_lv',
-            parts_dps_mul_hunter: 'parts_dps_mul_hunter',
-            parts_dps_mul_chip: 'parts_dps_mul_chip',
-        };
+        if (!uiItemData) return;
 
         const rules = [
             { test: 'level',            limits: { min: 1, max: 99, step: 1 } },
             { test: 'evoLevel',         limits: { min: 1, max: 15, step: 1 } },
             { test: 'enhancementLevel', limits: { min: 0, max: 30, step: 1 } },
+            { test: 'element',          limits: { min: 0, max: 55, step: 1 } },
             { test: /^parts_.*_lv$/,    limits: { min: 0, max: 93, step: 3 } },
             { test: /^parts_dps_mul_/,  limits: { min: 0, max: 0.3, step: 0.01 } },
         ];
@@ -758,6 +825,42 @@ export const GRAPHICAL_UI_HANDLER = {
             return new_value;
         }
 
+        let itemInDataStore = {};
+        let paramMap = {};
+
+        if (uiItemData.type === 'arms') {
+            itemInDataStore = DATA_STORE.weaponsDataMap[uiItemData.name];
+
+            paramMap = {
+                level: 'arms_lv',
+                enhancementLevel: 'strengthen_lv',
+                element: 'element',
+                evoLevel: 'evo_lv',
+                parts_dps_lv: 'parts_dps_lv',
+                parts_capacity_lv: 'parts_capacity_lv',
+                parts_attack_gap_lv: 'parts_attack_gap_lv',
+                parts_reload_lv: 'parts_reload_lv',
+                parts_precision_lv: 'parts_precision_lv',
+                parts_shoot_range_lv: 'parts_shoot_range_lv',
+                parts_dps_mul_hunter: 'parts_dps_mul_hunter',
+                parts_dps_mul_chip: 'parts_dps_mul_chip',
+            };
+        }
+        else if (uiItemData.type === 'equipment') {
+            itemInDataStore = DATA_STORE.equipDataMap[uiItemData.baseName]
+
+            paramMap = {
+                level: 'equip_lv',
+                enhancementLevel: 'strengthen_lv',
+                evoLevel: 'evo_lv',
+            };
+        }
+
+        if (!itemInDataStore) {
+            console.error(`更新失败: 在DATA_STORE中找不到对象 [${uiItemData.name}]`);
+            return;
+        }
+
         const dataStoreKey = paramMap[paramName];
         if (!dataStoreKey) {
             console.warn(`未知参数 [${paramName}]，无法同步到 DATA_STORE`);
@@ -767,7 +870,7 @@ export const GRAPHICAL_UI_HANDLER = {
         newValue = getClampedValue(paramName, newValue);
         
         console.log(`正在更新 [${itemId}] 的参数 [${paramName}] 为:`, newValue);
-        weaponInDataStore[dataStoreKey] = newValue;
+        itemInDataStore[dataStoreKey] = newValue;
 
         // 参数修改后，需要重新渲染UI以反映变化
         // 这里可以只渲染被修改的那个槽位，也可以为了简单先重绘所有
@@ -788,7 +891,7 @@ export const GRAPHICAL_UI_HANDLER = {
      */
     updateArmColor: function(itemData) {
         // 只对武器进行处理
-        if (itemData.type !== 'weapon') return;
+        if (itemData.type !== 'arms') return;
 
         let evoLevel = itemData.evoLevel || 0; // 暂存变量，方便对不同体系武器进行颜色判定
 
@@ -800,11 +903,36 @@ export const GRAPHICAL_UI_HANDLER = {
         else if (evoLevel >= 13) newColor = 'purgold';
         else if (evoLevel >= 9) newColor = 'darkgold';
 
-        const weaponInDataStore = DATA_STORE.weaponsDataMap[itemData.name];
+        const armInDataStore = DATA_STORE.weaponsDataMap[itemData.name];
         // 只有当数据源中存在该武器，并且计算出的新颜色与旧颜色不同时，才更新
-        if (weaponInDataStore && weaponInDataStore.color !== newColor) {
+        if (armInDataStore && armInDataStore.color !== newColor) {
             console.log(`武器 [${itemData.name}] 的颜色因 evoLevel 变化而更新为: ${newColor}`);
-            weaponInDataStore.color = newColor; // 将新颜色写回数据源！
+            armInDataStore.color = newColor; // 将新颜色写回数据源！
+        }
+
+        return newColor;
+    },
+
+    /**
+     * 根据装备evoLevel和baseName更新其颜色属性
+     * @param {object} itemData - 要更新的物品对象
+     */
+    updateEquipColor: function(itemData) {
+        if (itemData.type !== 'equipment') return;
+
+        let evoLevel = itemData.evoLevel || 0;
+
+        let newColor = 'black';
+        if (itemData.baseName.startsWith('狂人')) {
+            if (evoLevel < 16) newColor = 'darkgold';
+            else newColor = 'purgold';
+        };
+
+        const equipInDataStore = DATA_STORE.equipDataMap[itemData.baseName];
+        // 只有当数据源中存在该装备，并且计算出的新颜色与旧颜色不同时，才更新
+        if (equipInDataStore && equipInDataStore.color !== newColor) {
+            console.log(`武器 [${itemData.name}] 的颜色因 evoLevel 变化而更新为: ${newColor}`);
+            equipInDataStore.color = newColor; // 将新颜色写回数据源！
         }
 
         return newColor;
@@ -915,7 +1043,7 @@ export const GRAPHICAL_UI_HANDLER = {
             item.color = 'white'; // 默认颜色为白色
         }
         let backType = 'equip';
-        if (item.type === 'weapon') {
+        if (item.type === 'arms') {
             backType = 'arm';
         }
         const backHtml = `<img src="../images/icons/back/${backType}_${item.color}.png" 
@@ -936,7 +1064,7 @@ export const GRAPHICAL_UI_HANDLER = {
             case 'shell':
                 slotClass = 'shell-slot';
                 break;
-            case 'weapon':
+            case 'arms':
                 slotClass = 'arm-slot';
                 break;
         }
@@ -989,10 +1117,10 @@ export const GRAPHICAL_UI_HANDLER = {
 
     /**
      * 提供一个获取所有图形化武器数据的接口
-     * @returns {object[]} - 所有类型为 'weapon' 的物品对象数组
+     * @returns {object[]} - 所有类型为 'arms' 的物品对象数组
      */
     getAllWeaponData: function() {
-        return graphicalItemsData.filter(item => item.type === 'weapon');
+        return graphicalItemsData.filter(item => item.type === 'arms');
     },
 
     /**

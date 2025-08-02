@@ -297,7 +297,7 @@
 }
 
 /* 复用的 .item-slot 和 .arm-slot 样式 */
-#weapon-inventory-panel .item-slot {
+#arm-inventory-panel .item-slot {
     cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     aspect-ratio: auto;
@@ -306,7 +306,7 @@
     height: auto;
 }
 
-#weapon-inventory-panel .item-slot:hover {
+#arm-inventory-panel .item-slot:hover {
     transform: scale(1.05);
     box-shadow: 0 0 15px rgba(255, 223, 71, 0.7);
 }

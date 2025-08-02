@@ -500,11 +500,71 @@ $(function() {
             }
 
             const weaponData = weaponName ? DATA_STORE.weaponsDataMap[weaponName] : {}; // 获取武器的基础数据
+            const equipData = this.createFlatEquipTable(DATA_STORE.equipData);
+            // console.log("平铺后的装备属性表:", equipData);
 
-            this.currentCalculationState = Object.assign({}, baseState, weaponData); // 合并全局状态和武器数据
+            const dynamicEquipBonuses = {};
+            DATA_STORE.equipData.forEach(equip => {
+                const level = equip.equip_lv;
+                if (equip.equip_type === 'head') {
+                }
+                if (equip.equip_type === 'coat') {
+                    dynamicEquipBonuses.ea0_dps_coat = CALC_LOGIC.getEquipBonusByLevel('dps', level);
+                    dynamicEquipBonuses.ea0_dps_mul_equip_coat = CALC_LOGIC.getEquipBonusByLevel('dpsMul', level);
+                    dynamicEquipBonuses.ea0_hurt_coat = CALC_LOGIC.getEquipBonusByLevel('hurt', level);
+                    dynamicEquipBonuses.ea0_hurt_mul_equip_coat = CALC_LOGIC.getEquipBonusByLevel('hurtMul', level);
+                }
+                if (equip.equip_type === 'pants') {
+                    dynamicEquipBonuses.ea0_dps_pants = CALC_LOGIC.getEquipBonusByLevel('dps', level);
+                    dynamicEquipBonuses.ea0_dps_mul_equip_pants = CALC_LOGIC.getEquipBonusByLevel('dpsMul', level);
+                    dynamicEquipBonuses.ea0_hurt_pants = CALC_LOGIC.getEquipBonusByLevel('hurt', level);
+                    dynamicEquipBonuses.ea0_hurt_mul_equip_pants = CALC_LOGIC.getEquipBonusByLevel('hurtMul', level);
+                    dynamicEquipBonuses.ea0_dps_mul_equip_strengthen = CALC_LOGIC.getStrengthenBonusByLevel('addMul', equip.strengthen_lv);
+                    console.log("强化加成：", dynamicEquipBonuses.ea0_dps_mul_equip_strengthen);
+                }
+                if (equip.equip_type === 'belt') {
+                }
+            });
+
+            this.currentCalculationState = Object.assign({}, baseState, weaponData, equipData, dynamicEquipBonuses);
             if (weaponName) {
                 this.currentCalculationState.arms_name = weaponName; // 确保武器名称被正确设置
             }
+        },
+
+        /**
+         * 将 equipData 数组平铺成一个包含所有独特属性的单一对象。
+         * @param {Array<object>} equipDataArray - 包含装备对象的数组。
+         * @returns {object} - 一个平铺后的属性对象。
+         */
+        createFlatEquipTable(equipDataArray) {
+            // 定义要忽略的通用属性键
+            const excludedKeys = new Set([
+                'cnName',
+                'evo_lv',
+                'color',
+                'strengthen_lv',
+                'equip_lv',
+                'equip_type',
+                'baseName'
+            ]);
+
+            // 创建一个空对象来存储结果
+            const flatTable = {};
+
+            // 遍历 equipData 数组
+            for (const equipItem of equipDataArray) {
+                // 遍历当前装备对象的每个属性 (使用 Object.entries 获取 [key, value] 对)
+                for (const [key, value] of Object.entries(equipItem)) {
+                    // 如果 key 不在忽略列表中
+                    if (!excludedKeys.has(key)) {
+                        // 将这个键值对添加到结果对象中
+                        flatTable[key] = value;
+                    }
+                }
+            }
+
+            return flatTable;
         },
         
         runSingleWeaponCalculation: function(showResults = false) {
@@ -532,12 +592,21 @@ $(function() {
 
         computedPropertiesConfig: {
             'parts_dps_mul': ['parts_dps_mul_hunter', 'parts_dps_mul_chip'],
+            'ea0_dps_mul_equip': ['ea0_dps_mul_equip_coat', 'ea0_dps_mul_equip_pants', 'ea0_dps_mul_equip_strengthen'],
+            'ea0_hurt_mul_equip': ['ea0_hurt_mul_equip_coat', 'ea0_hurt_mul_equip_pants'],
             'ea0_dps_mul': ['ea0_dps_mul_equip', 'ea0_dps_mul_weapon', 'ea0_dps_mul_device', 'ea0_dps_mul_title',
                 'ea0_dps_mul_union', 'ea0_dps_mul_rank', 'ea0_dps_mul_battle', 'ea0_dps_mul_honor', 'ea0_dps_mul_medal'],
             'ea0_hurt_mul': ['ea0_hurt_mul_equip', 'ea0_hurt_mul_medal'],
+            'dps_all_equip': ['dps_all_equip_head', 'dps_all_equip_coat', 'dps_all_equip_belt', 'dps_all_equip_pants'],
             'dps_all': ['dps_all_equip', 'dps_all_fashion', 'dps_all_vehicle', 'dps_all_title', 'dps_all_food',
                 'dps_all_peak', 'dps_all_president', 'dps_all_card', 'dps_all_building'],
-            'hurt_all': ['hurt_all_president', 'hurt_all_fashion', 'hurt_all_card', 'hurt_all_set']
+            'hurt_all': ['hurt_all_president', 'hurt_all_fashion', 'hurt_all_card', 'hurt_all_set'],
+            'ea0_dps': ['ea0_dps_coat', 'ea0_dps_pants'],
+            'ea0_hurt': ['ea0_hurt_coat', 'ea0_hurt_pants'],
+            'ea0_capacity_mul': ['ea0_capacity_mul_belt'],
+            'ea0_reload_equip': ['ea0_reload_belt'],
+            'ea0_reload': ['ea0_reload_equip', 'ea0_reload_medal'],
+            'ea0_capacity': ['ea0_capacity_belt'],
         },
 
         preprocessInputs: function(inputs) {
@@ -548,7 +617,7 @@ $(function() {
                 childKeys.forEach(childKey => {
                     sum += parseFloat(processed[childKey]) || 0;
                 });
-                processed[parentKey] = sum;
+                processed[parentKey] = parseFloat(sum.toFixed(4));
             }
 
             return processed;
@@ -558,7 +627,7 @@ $(function() {
             console.log("正在执行总战力计算...");
 
             const equippedWeapons = GRAPHICAL_UI_HANDLER.getEquippedWeapons();
-            const weaponNum = equippedWeapons.length;
+            const weaponNum = equippedWeapons.length; 
 
             if (weaponNum === 0) {
                 $('#total_dps').val(0);

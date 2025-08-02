@@ -1,6 +1,63 @@
 import { DATA_STORE } from "./data.js";
 
 export const CALC_LOGIC = {
+    /**
+     * 根据属性名称和等级，从装备成长表中获取对应的加成值。
+     * @param {string} propertyName - 要查询的属性名称 (例如 'dps', 'hurtMul', 'capacity')。
+     * @param {number} level - 装备的等级 (从1开始)。
+     * @returns {number} - 查找到的加成数值，如果找不到则返回 0。
+     */
+    getEquipBonusByLevel: function(propertyName, level) {
+        const table = DATA_STORE.EQUIP_RANGE_TABLE;
+
+        if (!table || !table.hasOwnProperty(propertyName) || !Array.isArray(table[propertyName])) {
+            console.warn(`[getEquipBonusByLevel] 属性 "${propertyName}" 在装备成长表中不存在或格式不正确。`);
+            return 0;
+        }
+
+        const bonusArray = table[propertyName];
+        
+        if (bonusArray.length === 0) {
+            return 0;
+        }
+
+        let index = Math.round(level);
+
+        if (index < 0) {
+            index = 0
+        }
+        if (index >= bonusArray.length) {
+            index = bonusArray.length - 1;
+        }
+
+        return bonusArray[index] || 0;
+    },
+    /**
+     * 根据属性名称和强化等级，从物品强化表中获取对应的加成值。
+     * @param {string} propertyName - 要查询的属性名称 (例如 'successRate', 'addMul')。
+     * @param {number} level - 物品的强化等级 (从1开始)。
+     * @returns {number} - 查找到的加成数值，如果找不到则返回 0。
+     */
+    getStrengthenBonusByLevel: function(propertyName, level) {
+        const table = DATA_STORE.ITEM_STRENGTHEN_TABLE;
+        if (!table || !table.hasOwnProperty(propertyName) || !Array.isArray(table[propertyName])) {
+            console.warn(`[getStrengthenBonusByLevel] 属性 "${propertyName}" 在物品强化表中不存在或格式不正确。`);
+            return 0;
+        }
+
+        const bonusArray = table[propertyName];
+        if (bonusArray.length === 0) {
+            return 0;
+        }
+        let index = Math.round(level) - 1;
+        if (index < 0) {
+            index = 0;
+        }
+        if (index >= bonusArray.length) {
+            index = bonusArray.length - 1;
+        }
+        return bonusArray[index] || 0;
+    },
     getDpsByLv: (lv) => {
         if (lv >= 51 && lv <= 104) return lv * lv * 15 - 28000;
         if (lv >= 1 && lv < 51) return lv * lv * 4 + 20;

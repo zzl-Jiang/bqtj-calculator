@@ -1,3 +1,50 @@
+/**
+ * 将 xmltodict 生成的JSON数据，转换为扁平的属性成长表。
+ * @param {object} sourceJson - 从python转换来的JSON对象。
+ * @returns {object} - 格式化后的JS对象，如 { dps: [5, 7, ...], dpsMul: [0.02, 0.02, ...] }
+ */
+function transformPropertyJson(sourceJson) {
+    const propertyTable = {};
+
+    if (!sourceJson || !sourceJson.data || !Array.isArray(sourceJson.data.pro)) {
+        console.error("输入的JSON格式不正确，缺少 data.pro 数组。");
+        return propertyTable;
+    }
+
+    // 遍历 pro 数组中的每一个属性对象
+    for (const prop of sourceJson.data.pro) {
+        const name = prop["@name"];
+        const textContent = prop["#text"];
+
+        // 如果没有属性名，或者没有数据，就跳过
+        if (!name || typeof textContent !== 'string') {
+            // 对于没有#text的属性（如dpsAll），创建一个空数组
+            if (name) {
+                propertyTable[name] = [];
+            }
+            continue;
+        }
+
+        // 处理 #text 字符串
+        const values = textContent.trim().split(/\s+/).filter(v => v);
+
+        // 将字符串数组转换为数值数组
+        const processedValues = values.map(val => {
+            if (val.includes('%')) {
+                return parseFloat(val.replace('%', '')) / 100;
+            }
+            return parseFloat(val);
+        });
+
+        propertyTable[name] = processedValues;
+    }
+
+    return propertyTable;
+}
+
+import equipRangeJson from '../json/equipRange.js'
+import itemStrengthenJson from '../json/itemsStrengthen.js'
+
 export const DATA_STORE = {
     YEAR_WEAPON_NAMES: ["辰龙", "未羊", "寅虎"],
     DARKGOLD_WEAPON_NAMES: ["隼武", "极源"],
@@ -16,6 +63,9 @@ export const DATA_STORE = {
     
     WEAPON_TYPE_NUM_ADD: [1.2, 1.4, 1.6, 1.8, 2, 2.2],
     WEAPON_NUM_ADD: [1, 0.9, 0.8, 0.75, 0.7, 0.7],
+
+    EQUIP_RANGE_TABLE: transformPropertyJson(equipRangeJson),
+    ITEM_STRENGTHEN_TABLE: transformPropertyJson(itemStrengthenJson),
     
     weaponsData: [
         { 
@@ -27,7 +77,7 @@ export const DATA_STORE = {
             "get_capacity_mul": 1, "get_attack_gap_add": 1, "get_reload_mul": 1, "get_angle_add_mul": 1,
             "parts_dps_mul_hunter": 0.3, "parts_dps_mul_chip": 0.3, "strengthen_lv": 28,"parts_dps_lv": 93, 
             "parts_capacity_lv": 93, "parts_attack_gap_lv": 93, "parts_reload_lv": 93, "parts_precision_lv": 0, 
-            "parts_shoot_range_lv": 0, "color": "yagold",
+            "parts_shoot_range_lv": 0, "color": "yagold", "element": 55,
         },
         { 
             "cnName": "银狐", "arms_lv": 99, "arms_type": "pistol", "attack_gap0": 0.25, "capacity0": 19, "reload_gap0": 1.5, 
@@ -38,7 +88,7 @@ export const DATA_STORE = {
             "get_capacity_mul": 2, "get_attack_gap_add": 1, "get_reload_mul": 1, "get_angle_add_mul": 1, 
             "parts_dps_mul_hunter": 0.3, "parts_dps_mul_chip": 0.3, "strengthen_lv": 28, "parts_dps_lv": 93, 
             "parts_capacity_lv": 93, "parts_attack_gap_lv": 93, "parts_reload_lv": 93, "parts_precision_lv": 93, 
-            "parts_shoot_range_lv": 93, "color": "yagold",
+            "parts_shoot_range_lv": 93, "color": "yagold", "element": 55,
         },
         { 
             "cnName": "青蜂", "arms_lv": 99, "arms_type": "rifle", "attack_gap0": 0.1, "capacity0": 35, "reload_gap0": 4, 
@@ -49,7 +99,7 @@ export const DATA_STORE = {
             "get_capacity_mul": 4, "get_attack_gap_add": 0.7, "get_reload_mul": 1, "get_angle_add_mul": 1,
             "parts_dps_mul_hunter": 0.3, "parts_dps_mul_chip": 0.3, "strengthen_lv": 28, "parts_dps_lv": 93, 
             "parts_capacity_lv": 93, "parts_attack_gap_lv": 93, "parts_reload_lv": 93, "parts_precision_lv": 93, 
-            "parts_shoot_range_lv": 93, "color": "yagold",
+            "parts_shoot_range_lv": 93, "color": "yagold", "element": 55,
         },
         { 
             "cnName": "金蝉", "arms_lv": 99, "arms_type": "sniper", "attack_gap0": 1.2, "capacity0": 6, "reload_gap0": 4, 
@@ -60,7 +110,7 @@ export const DATA_STORE = {
             "get_capacity_mul": 1, "get_attack_gap_add": 1, "get_reload_mul": 1, "get_angle_add_mul": 1,
             "parts_dps_mul_hunter": 0.3, "parts_dps_mul_chip": 0.3, "strengthen_lv": 28, "parts_dps_lv": 93, 
             "parts_capacity_lv": 93, "parts_attack_gap_lv": 93, "parts_reload_lv": 93, "parts_precision_lv": 93, 
-            "parts_shoot_range_lv": 93, "color": "yagold",
+            "parts_shoot_range_lv": 93, "color": "yagold", "element": 55,
         },
         { 
             "cnName": "铄金", "arms_lv": 99, "arms_type": "flamer", "attack_gap0": 0.07, "capacity0": 70, "reload_gap0": 3, 
@@ -71,7 +121,7 @@ export const DATA_STORE = {
             "get_capacity_mul": 7, "get_attack_gap_add": 0.5, "get_reload_mul": 1, "get_angle_add_mul": 1,
             "parts_dps_mul_hunter": 0.3, "parts_dps_mul_chip": 0.3, "strengthen_lv": 28, "parts_dps_lv": 93, 
             "parts_capacity_lv": 93, "parts_attack_gap_lv": 93, "parts_reload_lv": 93, "parts_precision_lv": 93, 
-            "parts_shoot_range_lv": 0, "color": "yagold",
+            "parts_shoot_range_lv": 0, "color": "yagold", "element": 55,
         },
         { 
             "cnName": "赤鼬", "arms_lv": 99, "arms_type": "shotgun", "attack_gap0": 0.95, "capacity0": 6, "reload_gap0": 2.5, 
@@ -82,7 +132,7 @@ export const DATA_STORE = {
             "get_capacity_mul": 1, "get_attack_gap_add": 1, "get_reload_mul": 1, "get_angle_add_mul": 0.3,
             "parts_dps_mul_hunter": 0.3, "parts_dps_mul_chip": 0.3, "strengthen_lv": 28, "parts_dps_lv": 93, 
             "parts_capacity_lv": 93, "parts_attack_gap_lv": 93, "parts_reload_lv": 93, "parts_precision_lv": 93, 
-            "parts_shoot_range_lv": 93, "color": "yagold",
+            "parts_shoot_range_lv": 93, "color": "yagold", "element": 55,
         },
         { 
             "cnName": "光锥", "arms_lv": 99, "arms_type": "laser", "attack_gap0": 0.7, "capacity0": 8, "reload_gap0": 2, 
@@ -93,7 +143,7 @@ export const DATA_STORE = {
             "get_capacity_mul": 0.2, "get_attack_gap_add": 0, "get_reload_mul": 1, "get_angle_add_mul": 1,
             "parts_dps_mul_hunter": 0.3, "parts_dps_mul_chip": 0.3, "strengthen_lv": 28, "parts_dps_lv": 93, 
             "parts_capacity_lv": 93, "parts_attack_gap_lv": 0, "parts_reload_lv": 93, "parts_precision_lv": 0, 
-            "parts_shoot_range_lv": 93, "color": "purgold",
+            "parts_shoot_range_lv": 93, "color": "purgold", "element": 55,
         },
         { 
             "cnName": "辰龙", "arms_lv": 99, "arms_type": "lightning", "attack_gap0": 1.2, "capacity0": 8, "reload_gap0": 2, 
@@ -104,7 +154,7 @@ export const DATA_STORE = {
             "get_capacity_mul": 0.2, "get_attack_gap_add": 1, "get_reload_mul": 1, "get_angle_add_mul": 1,
             "parts_dps_mul_hunter": 0.3, "parts_dps_mul_chip": 0.3, "strengthen_lv": 28, "parts_dps_lv": 93, 
             "parts_capacity_lv": 93, "parts_attack_gap_lv": 93, "parts_reload_lv": 93, "parts_precision_lv": 93, 
-            "parts_shoot_range_lv": 93, "color": "purgold",
+            "parts_shoot_range_lv": 93, "color": "purgold", "element": 55,
         },
         { 
             "cnName": "未羊", "arms_lv": 99, "arms_type": "wavegun", "attack_gap0": 1, "capacity0": 6, "reload_gap0": 3, 
@@ -115,7 +165,7 @@ export const DATA_STORE = {
             "get_capacity_mul": 0.2, "get_attack_gap_add": 1, "get_reload_mul": 1, "get_angle_add_mul": 1,
             "parts_dps_mul_hunter": 0.3, "parts_dps_mul_chip": 0.3, "strengthen_lv": 28, "parts_dps_lv": 93, 
             "parts_capacity_lv": 93, "parts_attack_gap_lv": 93, "parts_reload_lv": 93, "parts_precision_lv": 0, 
-            "parts_shoot_range_lv": 93, "color": "purgold",
+            "parts_shoot_range_lv": 93, "color": "purgold", "element": 55,
         },
         { 
             "cnName": "寅虎", "arms_lv": 99, "arms_type": "cutter", "attack_gap0": 0.8, "capacity0": 8, "reload_gap0": 2, 
@@ -126,7 +176,7 @@ export const DATA_STORE = {
             "get_capacity_mul": 0.2, "get_attack_gap_add": 1, "get_reload_mul": 1, "get_angle_add_mul": 1,
             "parts_dps_mul_hunter": 0.3, "parts_dps_mul_chip": 0.3, "strengthen_lv": 28, "parts_dps_lv": 93, 
             "parts_capacity_lv": 93, "parts_attack_gap_lv": 93, "parts_reload_lv": 93, "parts_precision_lv": 93, 
-            "parts_shoot_range_lv": 0, "color": "purgold",
+            "parts_shoot_range_lv": 0, "color": "purgold", "element": 55,
         },
         { 
             "cnName": "卡特巨炮", "arms_lv": 99, "arms_type": "rocket", "attack_gap0": 1.4, "capacity0": 7, "reload_gap0": 3, 
@@ -137,7 +187,7 @@ export const DATA_STORE = {
             "get_capacity_mul": 1, "get_attack_gap_add": 1, "get_reload_mul": 1, "get_angle_add_mul": 1,
             "parts_dps_mul_hunter": 0.3, "parts_dps_mul_chip": 0.3, "strengthen_lv": 28, "parts_dps_lv": 93, 
             "parts_capacity_lv": 93, "parts_attack_gap_lv": 93, "parts_reload_lv": 93, "parts_precision_lv": 93, 
-            "parts_shoot_range_lv": 0, "color": "purgold",
+            "parts_shoot_range_lv": 0, "color": "purgold", "element": 55,
         },
         { 
             "cnName": "隼武", "arms_lv": 99, "arms_type": "energy", "attack_gap0": 0.7, "capacity0": 15, "reload_gap0": 1, 
@@ -148,7 +198,7 @@ export const DATA_STORE = {
             "get_capacity_mul": 1, "get_attack_gap_add": 1, "get_reload_mul": 1, "get_angle_add_mul": 1,
             "parts_dps_mul_hunter": 0.3, "parts_dps_mul_chip": 0.3, "strengthen_lv": 28, "parts_dps_lv": 93, 
             "parts_capacity_lv": 93, "parts_attack_gap_lv": 93, "parts_reload_lv": 93, "parts_precision_lv": 93, 
-            "parts_shoot_range_lv": 0, "color": "purgold",
+            "parts_shoot_range_lv": 0, "color": "purgold", "element": 55,
         },
         { 
             "cnName": "极源", "arms_lv": 99, "arms_type": "lightning", "attack_gap0": 0.8, "capacity0": 13, "reload_gap0": 2, 
@@ -159,7 +209,7 @@ export const DATA_STORE = {
             "get_capacity_mul": 0.2, "get_attack_gap_add": 1, "get_reload_mul": 1, "get_angle_add_mul": 1,
             "parts_dps_mul_hunter": 0.3, "parts_dps_mul_chip": 0.3, "strengthen_lv": 28, "parts_dps_lv": 93, 
             "parts_capacity_lv": 93, "parts_attack_gap_lv": 93, "parts_reload_lv": 93, "parts_precision_lv": 93, 
-            "parts_shoot_range_lv": 0, "color": "purgold",
+            "parts_shoot_range_lv": 0, "color": "purgold", "element": 55,
         },
         { 
             "cnName": "处女座", "arms_lv": 99, "arms_type": "blink", "attack_gap0": 0.5, "capacity0": 15, "reload_gap0": 1, 
@@ -170,7 +220,7 @@ export const DATA_STORE = {
             "get_capacity_mul": 1, "get_attack_gap_add": 1, "get_reload_mul": 1, "get_angle_add_mul": 1,
             "parts_dps_mul_hunter": 0.3, "parts_dps_mul_chip": 0.3, "strengthen_lv": 28, "parts_dps_lv": 93, 
             "parts_capacity_lv": 93, "parts_attack_gap_lv": 93, "parts_reload_lv": 93, "parts_precision_lv": 0, 
-            "parts_shoot_range_lv": 0, "color": "purgold",
+            "parts_shoot_range_lv": 0, "color": "purgold", "element": 55,
         },
         { 
             "cnName": "天秤座", "arms_lv": 99, "arms_type": "rocket", "attack_gap0": 0.8, "capacity0": 10, "reload_gap0": 2, 
@@ -181,10 +231,35 @@ export const DATA_STORE = {
             "get_capacity_mul": 1, "get_attack_gap_add": 1, "get_reload_mul": 1, "get_angle_add_mul": 1,
             "parts_dps_mul_hunter": 0.3, "parts_dps_mul_chip": 0.3, "strengthen_lv": 28, "parts_dps_lv": 93, 
             "parts_capacity_lv": 93, "parts_attack_gap_lv": 93, "parts_reload_lv": 93, "parts_precision_lv": 93, 
-            "parts_shoot_range_lv": 0, "color": "darkgold",
+            "parts_shoot_range_lv": 0, "color": "darkgold", "element": 55,
         }
     ],
+
+    equipData: [
+        {
+            cnName: "战神的蔑视",
+            dps_all_equip_head: 0.87,
+            evo_lv: 17, color: "purgold", strengthen_lv: 28, equip_lv: 99, equip_type: "head", baseName: "狂人头盔",
+        },
+        {
+            cnName: "战神的戒严", ea0_dps_coat: 24400, ea0_dps_mul_equip_coat: 0.87, ea0_hurt_mul_equip_coat: 0.87, 
+            dps_all_equip_coat: 0.89, ea0_hurt_coat: 12559,
+            evo_lv: 17, color: "purgold", strengthen_lv: 28, equip_lv: 99, equip_type: "coat", baseName: "狂人战衣",
+        },
+        {
+            cnName: "战神的讨伐", ea0_dps_pants: 24400, ea0_dps_mul_equip_pants: 0.87, ea0_hurt_mul_equip_pants: 0.87, 
+            dps_all_equip_pants: 0.89, ea0_dps_mul_equip_strengthen: 1.06, ea0_hurt_pants: 12559,
+            evo_lv: 17, color: "purgold", strengthen_lv: 28, equip_lv: 99, equip_type: "pants", baseName: "狂人战裤",
+        },
+        {
+            cnName: "战神的降临", ea0_capacity_belt: 48, ea0_capacity_mul_belt: 0.87, 
+            ea0_reload_belt: 2.08, dps_all_equip_belt: 0.91,
+            evo_lv: 17, color: "purgold", strengthen_lv: 28, equip_lv: 99, equip_type: "belt", baseName: "狂人腰带",
+        },
+    ],
+
     weaponsDataMap: {},
+    equipDataMap: {},
 
     // 全局动态状态 (State)
     state: {
@@ -239,10 +314,9 @@ export const DATA_STORE = {
         ea0_attack_gap: 0.06,
 
         // --- 装弹加成 ---
-        ea0_reload: 2.3,
-
-        // --- 战力显示 ---
-        element: 55,
+        ea0_reload: 2.37,
+        ea0_reload_equip: 2.08,
+        ea0_reload_medal: 0.28,
 
         // --- 人物总战力页参数 ---
         quick_vip_lv: 10,
@@ -253,10 +327,17 @@ export const DATA_STORE = {
     },
 
     init: function() {
+        console.log("装备属性成长表已通过JSON模块导入并转换:", this.EQUIP_RANGE_TABLE);
+        console.log("物品强化属性表已通过JSON模块导入并转换:", this.ITEM_STRENGTHEN_TABLE)
         this.weaponsData.sort((a, b) => a.cnName.localeCompare(b.cnName, 'zh-Hans-CN'));
         this.weaponsData.forEach(weapon => {
             weapon.attack_speed0 = weapon.attack_gap0 > 0 ? (1 / weapon.attack_gap0) : 0;
             this.weaponsDataMap[weapon.cnName] = weapon;
+        });
+
+        // 处理装备数据
+        this.equipData.forEach(equip => {
+            this.equipDataMap[equip.baseName] = equip;
         });
     }
 };
