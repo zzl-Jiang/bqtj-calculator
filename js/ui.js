@@ -15,7 +15,6 @@ export const UI_HANDLER = {
         console.log("UI_HANDLER 初始化，正在缓存武器选项...");
         
         let optionsHTML = '';
-        // 假设 DATA_STORE 此时已经有数据
         DATA_STORE.weaponsData.forEach(weapon => {
             optionsHTML += `<option value="${weapon.cnName}">${weapon.cnName}</option>`;
         });

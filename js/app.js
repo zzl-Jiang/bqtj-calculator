@@ -627,7 +627,7 @@ $(function() {
             console.log("正在执行总战力计算...");
 
             const equippedWeapons = GRAPHICAL_UI_HANDLER.getEquippedWeapons();
-            const weaponNum = equippedWeapons.length; 
+            const weaponNum = equippedWeapons.length;
 
             if (weaponNum === 0) {
                 $('#total_dps').val(0);
@@ -637,50 +637,77 @@ $(function() {
                 return;
             }
 
+            // 准备全局计算参数
+            this.rebuildCurrentState();
+            const globalState = this.preprocessInputs(this.currentCalculationState);
+            console.log('总战力计算使用的全局参数:', globalState);
+
+            // 第一遍计算
+            // 计算每把武器的基础战力（不含任何调表器加成），以便排序。
+            const weaponBasePowers = equippedWeapons.map(weapon => {
+                const weaponBaseData = DATA_STORE.weaponsDataMap[weapon.name];
+                if (!weaponBaseData) {
+                    return { name: weapon.name, basePower: 0 }; // 处理数据缺失
+                }
+                
+                let singleWeaponState = { ...globalState, ...weaponBaseData };
+                singleWeaponState.arms_name = singleWeaponState.cnName;
+                
+                // 强制将调表器设为0
+                singleWeaponState.show_dps_mul = 0; 
+                
+                const result = CALC_LOGIC.calculateAll(singleWeaponState);
+                return {
+                    name: weapon.name,
+                    basePower: result.final_dps || 0
+                };
+            });
+
+            // 排序并找出战力最高的两把武器的名称
+            weaponBasePowers.sort((a, b) => b.basePower - a.basePower);
+            const topTwoWeaponNames = weaponBasePowers.slice(0, 2).map(w => w.name);
+            console.log("战力最高的两把武器:", topTwoWeaponNames);
+
+            // 第二遍计算
+            // 再次遍历，这次应用调表器加成并计算最终的个体战力。
             let individualPowers = [];
             let selectedWeaponTypes = new Set();
 
-            // 确保我们拥有最新的全局参数
-            this.rebuildCurrentState(); 
-            const globalState = this.preprocessInputs(this.currentCalculationState);
-            console.log('currentCalculationState:', this.currentCalculationState);
-            console.log('总战力计算使用的全局参数:', globalState);
-
-
             equippedWeapons.forEach((weapon, index) => {
                 const weaponName = weapon.name;
-
-                if (!weaponName) {
-                    console.error(`装备槽 ${index + 1} 的武器没有名称。`);
-                    return; // 跳过这个无效的武器
-                }
-
                 const weaponBaseData = DATA_STORE.weaponsDataMap[weaponName];
+
                 if (!weaponBaseData) {
                     console.error(`无法找到武器 [${weaponName}] 的基础数据`);
-                    // 如果 total-power 标签页可见，更新对应的输入框
                     if ($(`#weapon-power-${index + 1}`).length) {
                         $(`#weapon-power-${index + 1}`).val('错误');
                     }
-                    return; // 跳过这个武器
+                    return;
                 }
-                // 合并全局状态和当前武器的专属数据进行计算
-                let singleWeaponState = Object.assign({}, globalState, weaponBaseData);
-                singleWeaponState.arms_name = singleWeaponState.cnName; 
-                
+
+                let singleWeaponState = { ...globalState, ...weaponBaseData };
+                singleWeaponState.arms_name = singleWeaponState.cnName;
+
+                // 根据是否为前两名，动态设置调表器加成
+                if (topTwoWeaponNames.includes(weaponName)) {
+                    singleWeaponState.show_dps_mul = 0.05;
+                    console.log(`为武器 [${weaponName}] 应用 0.05 调表器加成。`);
+                } else {
+                    singleWeaponState.show_dps_mul = 0;
+                }
+
                 const result = CALC_LOGIC.calculateAll(singleWeaponState);
                 const singlePower = result.final_dps || 0;
 
                 individualPowers.push(singlePower);
                 selectedWeaponTypes.add(weaponBaseData.arms_type);
 
-                // 如果 total-power 标签页可见，则更新其UI上的单个武器战力值
                 if ($(`#weapon-power-${index + 1}`).length) {
                     $(`#weapon-power-${index + 1}`).val(singlePower.toFixed(0));
                 }
             });
-
-            // 使用内存中的战力数组计算总战力
+            
+            // 汇总计算总战力
             const tripleCrit = parseFloat(globalState.triple_crit) || 0;
             const uniqueWeaponTypeNum = selectedWeaponTypes.size;
             
@@ -691,13 +718,15 @@ $(function() {
                 uniqueWeaponTypeNum
             );
 
-            // 更新最终的总战力到UI
+            // 更新UI
             this.latestTotalPower = totalDps;
             if ($('#total_dps').length) {
                 $('#total_dps').val(totalDps.toFixed(0));
             }
+            // 触发全局事件，通知图形化UI更新战力显示
             $(document).trigger('totalPowerUpdated', { totalPower: this.latestTotalPower });
-            console.log('战力组成:', individualPowers);
+
+            console.log('最终战力组成:', individualPowers);
             console.log("总战力计算完成:", totalDps);
         },
 

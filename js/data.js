@@ -49,6 +49,7 @@ export const DATA_STORE = {
     YEAR_WEAPON_NAMES: ["辰龙", "未羊", "寅虎"],
     DARKGOLD_WEAPON_NAMES: ["隼武", "极源"],
     ROCKETCATE_NAMES: ["卡特巨炮"],
+    CONS_NAMES: ["处女座", "天秤座", "狮子座", "巨蟹座"],
     
     HURT_MUL_ARR: [
         90, 100, 110, 145, 155, 165, 180, 195, 
@@ -59,6 +60,9 @@ export const DATA_STORE = {
     ROCKETCATE_HURT_MUL_ARR: [
         90, 100, 110, 145, 155, 165, 180, 195, 
         195, 195, 195, 195, 195, 210, 220, 230
+    ],
+    CONS_HURT_MUL_ARR: [
+        100, 125
     ],
     
     WEAPON_TYPE_NUM_ADD: [1.2, 1.4, 1.6, 1.8, 2, 2.2],
@@ -82,7 +86,7 @@ export const DATA_STORE = {
         { 
             "cnName": "银狐", "arms_lv": 99, "arms_type": "pistol", "attack_gap0": 0.25, "capacity0": 19, "reload_gap0": 1.5, 
             "shoot_angle0": 0, "shake_angle0": 1, "shoot_range0": 600, "bullet_num": 1, "get_dps_mul": 1.3, 
-            "dps_mul": 1.6, "ui_dps_mul": 1.4, "show_dps_mul": 0.05, "base_special_num": 4, "skill_num": 2, 
+            "dps_mul": 1.6, "ui_dps_mul": 1.4, "show_dps_mul": 0, "base_special_num": 4, "skill_num": 2, 
             "god_skill_num": 3, "evo_lv": 15, "ea_dps_mul0": 0.11, "ea_dps0": 0, "ea_hurt_mul0": 0, 
             "ea_hurt0": 0, "ea_capacity_mul0": 0, "ea_capacity0": 0, "ea_reload0": 0, "get_hurt_add": 1, 
             "get_capacity_mul": 2, "get_attack_gap_add": 1, "get_reload_mul": 1, "get_angle_add_mul": 1, 
@@ -160,7 +164,7 @@ export const DATA_STORE = {
             "cnName": "未羊", "arms_lv": 99, "arms_type": "wavegun", "attack_gap0": 1, "capacity0": 6, "reload_gap0": 3, 
             "shoot_angle0": 0, "shake_angle0": 0, "shoot_range0": 1080, "bullet_num": 1, "get_dps_mul": 1.3, 
             "dps_mul": 1.9, "ui_dps_mul": 2.3, "show_dps_mul": 0, "base_special_num": 3, "skill_num": 1, 
-            "god_skill_num": 1, "evo_lv": 1, "ea_dps_mul0": 0.85, "ea_dps0": 0, "ea_hurt_mul0": 0, 
+            "god_skill_num": 1, "evo_lv": 1, "ea_dps_mul0": 0.05, "ea_dps0": 0, "ea_hurt_mul0": 0, 
             "ea_hurt0": 0, "ea_capacity_mul0": 0, "ea_capacity0": 0, "ea_reload0": 0, "get_hurt_add": 5, 
             "get_capacity_mul": 0.2, "get_attack_gap_add": 1, "get_reload_mul": 1, "get_angle_add_mul": 1,
             "parts_dps_mul_hunter": 0.3, "parts_dps_mul_chip": 0.3, "strengthen_lv": 28, "parts_dps_lv": 93, 
@@ -232,6 +236,28 @@ export const DATA_STORE = {
             "parts_dps_mul_hunter": 0.3, "parts_dps_mul_chip": 0.3, "strengthen_lv": 28, "parts_dps_lv": 93, 
             "parts_capacity_lv": 93, "parts_attack_gap_lv": 93, "parts_reload_lv": 93, "parts_precision_lv": 93, 
             "parts_shoot_range_lv": 0, "color": "darkgold", "element": 55,
+        },
+        { 
+            "cnName": "狮子座", "arms_lv": 99, "arms_type": "wavegun", "attack_gap0": 0.45, "capacity0": 17, "reload_gap0": 1.3, 
+            "shoot_angle0": 0, "shake_angle0": 0, "shoot_range0": 1100, "bullet_num": 1, "get_dps_mul": 1.3, 
+            "dps_mul": 51, "ui_dps_mul": 4.98, "show_dps_mul": 0.05, "base_special_num": 2, "skill_num": 2, 
+            "god_skill_num": 1, "evo_lv": 15, "ea_dps_mul0": 0.05, "ea_dps0": 0, "ea_hurt_mul0": 0, 
+            "ea_hurt0": 0, "ea_capacity_mul0": 0, "ea_capacity0": 0, "ea_reload0": 0, "get_hurt_add": 5, 
+            "get_capacity_mul": 0.2, "get_attack_gap_add": 1, "get_reload_mul": 1, "get_angle_add_mul": 1,
+            "parts_dps_mul_hunter": 0.3, "parts_dps_mul_chip": 0.3, "strengthen_lv": 28,"parts_dps_lv": 93, 
+            "parts_capacity_lv": 93, "parts_attack_gap_lv": 93, "parts_reload_lv": 93, "parts_precision_lv": 0, 
+            "parts_shoot_range_lv": 93, "color": "yagold", "element": 55
+        },
+        { 
+            "cnName": "野黑激", "arms_lv": 99, "arms_type": "laser", "attack_gap0": 0.3, "capacity0": 6, "reload_gap0": 2.5, 
+            "shoot_angle0": 0, "shake_angle0": 0, "shoot_range0": 950, "bullet_num": 1, "get_dps_mul": 1.3, 
+            "dps_mul": 0.9, "ui_dps_mul": 2.1, "show_dps_mul": 0.05, "base_special_num": 4, "skill_num": 2, 
+            "god_skill_num": 3, "evo_lv": 1, "ea_dps_mul0": 0, "ea_dps0": 0, "ea_hurt_mul0": 0, 
+            "ea_hurt0": 0, "ea_capacity_mul0": 0, "ea_capacity0": 0, "ea_reload0": 0, "get_hurt_add": 0.3, 
+            "get_capacity_mul": 0.2, "get_attack_gap_add": 0, "get_reload_mul": 1, "get_angle_add_mul": 1,
+            "parts_dps_mul_hunter": 0.3, "parts_dps_mul_chip": 0.3, "strengthen_lv": 28, "parts_dps_lv": 93, 
+            "parts_capacity_lv": 93, "parts_attack_gap_lv": 0, "parts_reload_lv": 93, "parts_precision_lv": 0, 
+            "parts_shoot_range_lv": 93, "color": "black", "element": 55,
         }
     ],
 
@@ -267,18 +293,18 @@ export const DATA_STORE = {
         pet_dps: 620250,
         parts_dps_mul: 0.6,
         ea0_dps: 48800,
-        ea0_dps_mul: 7.19,
+        ea0_dps_mul: 7.23,
         ea0_dps_mul_equip: 2.8,
-        ea0_dps_mul_weapon: 0.47,
+        ea0_dps_mul_weapon: 0.50,
         ea0_dps_mul_device: 0.90,
         ea0_dps_mul_title: 1.00,
-        ea0_dps_mul_union: 0.59,
+        ea0_dps_mul_union: 0.60,
         ea0_dps_mul_rank: 0.35,
         ea0_dps_mul_battle: 0.76,
         ea0_dps_mul_honor: 0.14,
         ea0_dps_mul_medal: 0.18,
         vip_dps_mul: 0.7,
-        whole_dps_mul: 0.1505,
+        whole_dps_mul: 0.2110,
         more_dps_mul: 0,
 
         // --- 伤害加成 ---
@@ -321,7 +347,7 @@ export const DATA_STORE = {
         // --- 人物总战力页参数 ---
         quick_vip_lv: 10,
         quick_president_lv: 10,
-        quick_whole_dps: 15.05,
+        quick_whole_dps: 21.1,
         quick_shoot_speed: 6,
         triple_crit: 0.14
     },

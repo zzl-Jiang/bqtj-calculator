@@ -122,7 +122,7 @@ const graphicalItemsData = [
     { 
         id: 'arm-3', 
         type: 'arms', 
-        slotType: 'arms',
+        slotType: 'arms_bag',
         name: '铄金', 
         iconUrl: '../images/arms/meltFlamer.png', 
         lock_parts_shoot_range_lv: true,
@@ -139,7 +139,7 @@ const graphicalItemsData = [
     { 
         id: 'arm-5', 
         type: 'arms', 
-        slotType: 'arms',
+        slotType: 'arms_bag',
         name: '金蝉', 
         iconUrl: '../images/arms/sniperCicada.png', 
         isLocked: true 
@@ -212,6 +212,25 @@ const graphicalItemsData = [
         name: '寅虎', 
         iconUrl: '../images/arms/yearTiger.png', 
         lock_parts_shoot_range_lv: true,
+        isLocked: true 
+    },
+    {
+        id: 'arm-14', 
+        type: 'arms',
+        slotType: 'arms',
+        name: '狮子座', 
+        iconUrl: '../images/arms/consLeo.png', 
+        lock_parts_precision_lv: true,
+        isLocked: true 
+    },
+    {
+        id: 'arm-15', 
+        type: 'arms',
+        slotType: 'arms',
+        name: '野黑激', 
+        iconUrl: '../images/arms/laser1.png', 
+        lock_parts_attack_gap_lv: true,
+        lock_parts_precision_lv: true,
         isLocked: true 
     }
 ];

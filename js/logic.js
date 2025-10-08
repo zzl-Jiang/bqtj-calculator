@@ -240,13 +240,14 @@ export const CALC_LOGIC = {
             getHurt, getPrecision 
         } = this;
         const { 
-            YEAR_WEAPON_NAMES, DARKGOLD_WEAPON_NAMES, ROCKETCATE_NAMES, 
+            YEAR_WEAPON_NAMES, DARKGOLD_WEAPON_NAMES, ROCKETCATE_NAMES, CONS_NAMES, 
             YEAR_HURT_MUL_ARR, DARKGOLD_HURT_MUL_ARR, 
-            ROCKETCATE_HURT_MUL_ARR, HURT_MUL_ARR 
+            ROCKETCATE_HURT_MUL_ARR, HURT_MUL_ARR, CONS_HURT_MUL_ARR
         } = DATA_STORE;
 
         // --- 基础属性计算 ---
         let armsLv = Math.max(1, Math.min(99, inputs.arms_lv));
+        if (inputs.arms_name == "野黑激") armsLv -= 4;
         results.dps0 = getDpsByLv(armsLv + 5);
         results.strengthen_hurt_mul = getHurtmulByStrengthenlv(inputs.strengthen_lv);
 
@@ -259,6 +260,10 @@ export const CALC_LOGIC = {
             evoHurtMul = (DARKGOLD_HURT_MUL_ARR[inputs.evo_lv] || 0) / 100;
         } else if (ROCKETCATE_NAMES.includes(inputs.arms_name)) {
             evoHurtMul = (ROCKETCATE_HURT_MUL_ARR[inputs.evo_lv] || 0) / 100;
+        } else if (CONS_NAMES.includes(inputs.arms_name)) {
+            evoHurtMul = (CONS_HURT_MUL_ARR[0]) / 100;
+        } else if (inputs.arms_name == "野黑激") {
+            evoHurtMul = 11 / 2.3 / 2;
         } else {
             evoHurtMul = (HURT_MUL_ARR[inputs.evo_lv] || 0) / 100;
             // console.log('普通武器进阶系数计算结果:', evoHurtMul);
@@ -297,7 +302,7 @@ export const CALC_LOGIC = {
         // --- 技能与元素计算 ---
         let godSkillNum = inputs.god_skill_num;
         // 特殊规则：非无双、生肖、天秤座的神技数量要-1计算
-        if (results.arms_color !== "purgold" && results.arms_color !== "yagold" && !YEAR_WEAPON_NAMES.includes(inputs.arms_name) && inputs.arms_name !== "天秤座") {
+        if (inputs.arms_name != "野黑激" && (results.arms_color !== "purgold" && results.arms_color !== "yagold" && !YEAR_WEAPON_NAMES.includes(inputs.arms_name) && inputs.arms_name !== "天秤座")) {
             if (godSkillNum > 0) godSkillNum -= 1;
         }
         results.skill_special_mul = 1 + (inputs.base_special_num + inputs.skill_num) * 0.15 + godSkillNum * 0.2;
@@ -305,6 +310,7 @@ export const CALC_LOGIC = {
 
         // --- 战力与伤害核心计算 (dps1, hurt1, hurt_ratio) ---
         let dps0_calculate = results.dps0 * inputs.get_dps_mul * inputs.dps_mul;
+        if (inputs.arms_name == "野黑激") dps0_calculate = results.dps0 * inputs.dps_mul;
         results.hurt_ratio0 = getHurt(inputs.reload_gap0, inputs.capacity0, inputs.attack_gap0, inputs.bullet_num, 1, inputs.shake_angle0, inputs.shoot_angle0, inputs.shoot_range0, dps0_calculate);
         
         let dps1_base = dps0_calculate * (1 + inputs.parts_dps_mul) * (1 + inputs.ea0_dps_mul + inputs.ea_dps_mul0);
