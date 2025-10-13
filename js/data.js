@@ -314,7 +314,7 @@ export const DATA_STORE = {
         ea0_hurt: 25118,
         
         // --- 神级加成 ---
-        dps_all: 5.43,
+        dps_all: 5.49,
         hurt_all: 2.01,
         dps_all_equip: 3.62,
         dps_all_fashion: 0.23,
