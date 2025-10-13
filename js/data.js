@@ -316,7 +316,7 @@ export const DATA_STORE = {
         // --- 神级加成 ---
         dps_all: 5.43,
         hurt_all: 2.01,
-        dps_all_equip: 3.56,
+        dps_all_equip: 3.62,
         dps_all_fashion: 0.23,
         dps_all_vehicle: 0.30,
         dps_all_title: 0,
