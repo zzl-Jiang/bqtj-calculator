@@ -3,47 +3,9 @@
  * @param {object} sourceJson - 从python转换来的JSON对象。
  * @returns {object} - 格式化后的JS对象，如 { dps: [5, 7, ...], dpsMul: [0.02, 0.02, ...] }
  */
-function transformPropertyJson(sourceJson) {
-    const propertyTable = {};
 
-    if (!sourceJson || !sourceJson.data || !Array.isArray(sourceJson.data.pro)) {
-        console.error("输入的JSON格式不正确，缺少 data.pro 数组。");
-        return propertyTable;
-    }
-
-    // 遍历 pro 数组中的每一个属性对象
-    for (const prop of sourceJson.data.pro) {
-        const name = prop["@name"];
-        const textContent = prop["#text"];
-
-        // 如果没有属性名，或者没有数据，就跳过
-        if (!name || typeof textContent !== 'string') {
-            // 对于没有#text的属性（如dpsAll），创建一个空数组
-            if (name) {
-                propertyTable[name] = [];
-            }
-            continue;
-        }
-
-        // 处理 #text 字符串
-        const values = textContent.trim().split(/\s+/).filter(v => v);
-
-        // 将字符串数组转换为数值数组
-        const processedValues = values.map(val => {
-            if (val.includes('%')) {
-                return parseFloat(val.replace('%', '')) / 100;
-            }
-            return parseFloat(val);
-        });
-
-        propertyTable[name] = processedValues;
-    }
-
-    return propertyTable;
-}
-
-import equipRangeJson from '../json/equipRange.js'
-import itemStrengthenJson from '../json/itemsStrengthen.js'
+import equipRangeProcessed from '../json/equipRange_processed.js'
+import itemStrengthenProcessed from '../json/itemsStrengthen_processed.js'
 
 export const DATA_STORE = {
     YEAR_WEAPON_NAMES: ["辰龙", "未羊", "寅虎"],
@@ -68,8 +30,9 @@ export const DATA_STORE = {
     WEAPON_TYPE_NUM_ADD: [1.2, 1.4, 1.6, 1.8, 2, 2.2],
     WEAPON_NUM_ADD: [1, 0.9, 0.8, 0.75, 0.7, 0.7],
 
-    EQUIP_RANGE_TABLE: transformPropertyJson(equipRangeJson),
-    ITEM_STRENGTHEN_TABLE: transformPropertyJson(itemStrengthenJson),
+
+    EQUIP_RANGE_TABLE:  equipRangeProcessed,
+    ITEM_STRENGTHEN_TABLE: itemStrengthenProcessed,
     
     weaponsData: [
         { 
