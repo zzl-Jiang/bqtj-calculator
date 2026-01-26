@@ -118,10 +118,10 @@ export const UI_HANDLER = {
 最终面板战力: ${results.final_dps.toFixed(0)}
 伤害: ${results.hurt_ratio.toFixed(0)}
 弹容: ${results.capacity}
-射速: ${results.attack_speed.toFixed(2)}
-装弹时间: ${results.reload_gap.toFixed(2)}s
+射速: ${results.attack_speed.toFixed(4)}
+装弹时间: ${results.reload_gap.toFixed(4)}s
 精准度: ${results.precision.toFixed(4)}
-射程: ${results.shoot_range.toFixed(0)}
+射程: ${results.shoot_range.toFixed(2)}
         `.trim();
         $resultDisplay.text(resultText).hide().fadeIn(300);
     }

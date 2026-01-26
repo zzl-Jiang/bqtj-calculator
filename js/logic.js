@@ -335,7 +335,7 @@ export const CALC_LOGIC = {
         results.hurt1 = hurt1;
         // console.log("hurt1:", hurt1);
         let hurtRatio = hurt1 * (1 + inputs.dps_all + inputs.hurt_all) * results.evo_hurt_mul * (1 + inputs.red_hurt_mul) * (1 + inputs.zodiac_hurt_add);
-        results.hurt_ratio = hurtRatio;
+        results.hurt_ratio = hurtRatio * inputs.extraMul;
         // console.log('inputs.dps_all:', inputs.dps_all);
         // console.log('inputs.hurt_all:', inputs.hurt_all);
         // console.log('results.evo_hurt_mul:', results.evo_hurt_mul);
