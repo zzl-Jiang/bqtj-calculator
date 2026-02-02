@@ -72,13 +72,22 @@ const graphicalItemsData = [
         iconUrl: '../images/fashion/xiaoAi.png',
         isLocked: true
     },
+    // { 
+    //     id: 'footer-weapon', 
+    //     type: 'equipment', 
+    //     slotType: 'footer-item', 
+    //     name: '副手', 
+    //     level: 4, 
+    //     iconUrl: '../images/weapon/sickle.png', 
+    //     isLocked: true 
+    // },
     { 
         id: 'footer-weapon', 
         type: 'equipment', 
         slotType: 'footer-item', 
         name: '副手', 
-        level: 4, 
-        iconUrl: '../images/weapon/sickle.png', 
+        level: 5, 
+        iconUrl: '../images/weapon/sprintSword.png', 
         isLocked: true 
     },
     { 
@@ -139,7 +148,7 @@ const graphicalItemsData = [
     { 
         id: 'arm-5', 
         type: 'arms', 
-        slotType: 'arms_bag',
+        slotType: 'arms',
         name: '金蝉', 
         iconUrl: '../images/arms/sniperCicada.png', 
         isLocked: true 
@@ -147,7 +156,7 @@ const graphicalItemsData = [
     { 
         id: 'arm-6', 
         type: 'arms',
-        slotType: 'arms',
+        slotType: 'arms_bag',
         name: '青蜂', 
         iconUrl: '../images/arms/rifleHornet.png', 
         isLocked: true 
@@ -226,10 +235,30 @@ const graphicalItemsData = [
     {
         id: 'arm-15', 
         type: 'arms',
-        slotType: 'arms',
+        slotType: 'arms_bag',
         name: '野黑激', 
         iconUrl: '../images/arms/laser1.png', 
         lock_parts_attack_gap_lv: true,
+        lock_parts_precision_lv: true,
+        isLocked: true 
+    },
+    {
+        id: 'arm-16', 
+        type: 'arms',
+        slotType: 'arms_bag',
+        name: '处女座', 
+        iconUrl: '../images/arms/consVirgo.png', 
+        lock_parts_shoot_range_lv: true,
+        lock_parts_precision_lv: true,
+        isLocked: true 
+    },
+    {
+        id: 'arm-17', 
+        type: 'arms',
+        slotType: 'arms',
+        name: '射手座', 
+        iconUrl: '../images/arms/consArcher.png', 
+        lock_parts_shoot_range_lv: true,
         lock_parts_precision_lv: true,
         isLocked: true 
     }
@@ -796,7 +825,7 @@ export const GRAPHICAL_UI_HANDLER = {
             { test: 'evoLevel',         limits: { min: 1, max: 15, step: 1 } },
             { test: 'enhancementLevel', limits: { min: 0, max: 30, step: 1 } },
             { test: 'element',          limits: { min: 0, max: 55, step: 1 } },
-            { test: /^parts_.*_lv$/,    limits: { min: 0, max: 93, step: 3 } },
+            { test: /^parts_.*_lv$/,    limits: { min: 0, max: 96, step: 3 } },
             { test: /^parts_dps_mul_/,  limits: { min: 0, max: 0.3, step: 0.01 } },
         ];
 

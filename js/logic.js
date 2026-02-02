@@ -70,7 +70,7 @@ export const CALC_LOGIC = {
         return val1 * val2 * val3;
     },
     getVipBonusByLv: function(lv) {
-        const vipBonuses = [0, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.5, 0.6, 0.7]; // VIP 0-10
+        const vipBonuses = [0, 0.1, 0.18, 0.26, 0.34, 0.42, 0.5, 0.55, 0.6, 0.65, 0.7]; // VIP 0-10
         if (lv >= 0 && lv < vipBonuses.length) {
             return vipBonuses[lv];
         }
@@ -109,7 +109,7 @@ export const CALC_LOGIC = {
     getUiDpsMul: (color, type, name, evoLv) => {
         let v = 1.0;
         if (type === "crossbow") {
-            v = 2.6;
+            v = 1.6;
         } else if (["flamer", "howitzer", "wavegun", "laser", "lightning", "weather", "cutter"].includes(type)) {
             v = 2.0;
         }
@@ -261,8 +261,9 @@ export const CALC_LOGIC = {
         } else if (ROCKETCATE_NAMES.includes(inputs.arms_name)) {
             evoHurtMul = (ROCKETCATE_HURT_MUL_ARR[inputs.evo_lv] || 0) / 100;
         } else if (CONS_NAMES.includes(inputs.arms_name)) {
-            evoHurtMul = (CONS_HURT_MUL_ARR[0]) / 100;
-        } else if (inputs.arms_name == "野黑激") {
+            if (inputs.arms_name === "处女座") evoHurtMul = 3.4;
+            else evoHurtMul = (CONS_HURT_MUL_ARR[0]) / 100;
+        } else if (inputs.arms_name === "野黑激") {
             evoHurtMul = 11 / 2.3 / 2;
         } else {
             evoHurtMul = (HURT_MUL_ARR[inputs.evo_lv] || 0) / 100;
