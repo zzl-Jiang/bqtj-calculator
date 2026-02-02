@@ -323,6 +323,7 @@ const DARKGOLD_EQUIP_EVO_OPTIONS = [
     { value: 15, text: '超凡VIII' },
     { value: 16, text: '无双I' },
     { value: 17, text: '无双II' },
+    { value: 18, text: '氩星' },
 ];
 
 export const GRAPHICAL_UI_HANDLER = {
@@ -971,7 +972,8 @@ export const GRAPHICAL_UI_HANDLER = {
         let newColor = 'black';
         if (itemData.baseName.startsWith('狂人')) {
             if (evoLevel < 16) newColor = 'darkgold';
-            else newColor = 'purgold';
+            else if (evoLevel < 18) newColor = 'purgold';
+            else newColor = 'yagold';
         };
 
         const equipInDataStore = DATA_STORE.equipDataMap[itemData.baseName];

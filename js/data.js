@@ -276,7 +276,7 @@ export const DATA_STORE = {
         {
             cnName: "战神的蔑视",
             dps_all_equip_head: 0.87,
-            evo_lv: 17, color: "purgold", strengthen_lv: 28, equip_lv: 99, equip_type: "head", baseName: "狂人头盔",
+            evo_lv: 18, color: "yagold", strengthen_lv: 28, equip_lv: 99, equip_type: "head", baseName: "狂人头盔",
         },
         {
             cnName: "战神的戒严", ea0_dps_coat: 24400, ea0_dps_mul_equip_coat: 0.87, ea0_hurt_mul_equip_coat: 0.87, 
@@ -286,7 +286,7 @@ export const DATA_STORE = {
         {
             cnName: "战神的讨伐", ea0_dps_pants: 24400, ea0_dps_mul_equip_pants: 0.87, ea0_hurt_mul_equip_pants: 0.87, 
             dps_all_equip_pants: 0.95, ea0_dps_mul_equip_strengthen: 1.06, ea0_hurt_pants: 12559,
-            evo_lv: 17, color: "purgold", strengthen_lv: 28, equip_lv: 99, equip_type: "pants", baseName: "狂人战裤",
+            evo_lv: 18, color: "yagold", strengthen_lv: 28, equip_lv: 99, equip_type: "pants", baseName: "狂人战裤",
         },
         {
             cnName: "战神的降临", ea0_capacity_belt: 48, ea0_capacity_mul_belt: 0.87, 
