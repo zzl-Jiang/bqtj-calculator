@@ -110,7 +110,7 @@ $(function() {
                     this.setupTotalPowerTab();
                     break;
                 case 'graphical':
-                    GRAPHICAL_UI_HANDLER.init({ totalPower: this.latestTotalPower });
+                    GRAPHICAL_UI_HANDLER.init({ totalPower: this.latestTotalPower, vipLevel: DATA_STORE.state.vip_lv });
                     break;
             }
 
@@ -459,6 +459,7 @@ $(function() {
             // 进行计算
             const detailedUpdates = {};
             detailedUpdates.vip_dps_mul = CALC_LOGIC.getVipBonusByLv(quickVipLv);
+            DATA_STORE.state.vip_lv = quickVipLv; 
             
             // 计算总统加成和全体战力加成
             const presidentBonus = CALC_LOGIC.getPresidentBonusByLv(quickPresidentLv);
@@ -724,7 +725,7 @@ $(function() {
                 $('#total_dps').val(totalDps.toFixed(0));
             }
             // 触发全局事件，通知图形化UI更新战力显示
-            $(document).trigger('totalPowerUpdated', { totalPower: this.latestTotalPower });
+            $(document).trigger('totalPowerUpdated', { totalPower: this.latestTotalPower, vipLevel: DATA_STORE.state.vip_lv });
 
             console.log('最终战力组成:', individualPowers);
             console.log("总战力计算完成:", totalDps);

@@ -364,9 +364,7 @@ export const GRAPHICAL_UI_HANDLER = {
         // 渲染所有物品
         this.renderAllItems();
         this.bindEvents(); // 将所有事件绑定集中到一个函数中
-        if (initialData.totalPower !== undefined) {
-            this.update({ totalPower: initialData.totalPower });
-        }
+        this.update(initialData); 
 
         $(document).on('totalPowerUpdated', (event, data) => {
             // 当事件被触发时，这个回调函数会自动执行
@@ -1204,7 +1202,16 @@ export const GRAPHICAL_UI_HANDLER = {
             // 同样使用实时查询
             $('.char-level').text(`Lv.${data.charLevel}`);
         }
-        
+
+        // 更新 VIP 等级
+        if (data.vipLevel !== undefined) {
+            const $vipElement = $('.char-vip');
+            if ($vipElement.length) {
+                $vipElement.text(`VIP.${data.vipLevel}`);
+                console.log(`图形化界面：VIP等级已更新为 ${data.vipLevel}`);
+            }
+        }
+            
         // 这里的逻辑可以根据需要扩展
         function formatPowerNumber(num, decimals = 2) {
             if (typeof num !== 'number' || isNaN(num)) {
