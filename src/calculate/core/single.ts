@@ -171,7 +171,7 @@ export function calcWeaponPower(armsName: string, b0: Bonus): WeaponPowerResult 
 // 单武器调试入口
 // ============================================================
 
-export const ARMSNAMEARR: string[] = ["consArcher", "consLeo", "lightCone", "redFire", "shotgunSkunk", "pistolFox"];
+export const ARMSNAMEARR: string[] = ["consArcher", "consLeo", "lightCone", "redFire", "shotgunSkunk", "pistolFox", "consScorpio"];
 
 /** 存最终战力的 */
 export let dpsAllArr: number[] = [];

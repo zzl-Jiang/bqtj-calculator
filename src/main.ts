@@ -65,19 +65,10 @@ try {
   const loading = document.getElementById("loading-msg");
   const wrapper = document.querySelector(".table-wrapper")!;
 
-  // 表一：不带天蝎
-  const list1 = ARMSNAMEARR.filter((n) => n !== "consScorpio");
-  console.time("战力表（不带天蝎）");
-  const grid1 = generatePowerGrid(list1);
-  console.timeEnd("战力表（不带天蝎）");
-  wrapper.appendChild(buildTable("爆枪突击 v36.50 极限战力表（不带天蝎）", grid1));
-
-  // 表二：带天蝎
-  const list2 = ["consScorpio", ...ARMSNAMEARR];
-  console.time("战力表（带天蝎）");
-  const grid2 = generatePowerGrid(list2);
-  console.timeEnd("战力表（带天蝎）");
-  wrapper.appendChild(buildTable("爆枪突击 v36.50 极限战力表（带天蝎）", grid2));
+  console.time("战力表");
+  const grid = generatePowerGrid(ARMSNAMEARR);
+  console.timeEnd("战力表");
+  wrapper.appendChild(buildTable("爆枪突击 v36.60 极限战力表", grid));
 
   loading?.remove();
 } catch (e) {
