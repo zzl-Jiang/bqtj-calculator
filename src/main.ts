@@ -68,7 +68,7 @@ try {
   console.time("战力表");
   const grid = generatePowerGrid(ARMSNAMEARR);
   console.timeEnd("战力表");
-  wrapper.appendChild(buildTable("爆枪突击 v36.60 极限战力表", grid));
+  wrapper.appendChild(buildTable("爆枪突击 v36.71 极限战力表", grid));
 
   loading?.remove();
 } catch (e) {

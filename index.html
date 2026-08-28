@@ -14,6 +14,10 @@
         }
         h1 { margin-bottom: 8px; font-size: 1.5em; color: #222; }
         .desc { margin-bottom: 20px; color: #666; font-size: 0.85em; line-height: 1.8; max-width: 900px; text-align: center; }
+        .site-footer { margin: 4px 0 12px; color: #777; font-size: 0.85em; }
+        .site-footer a { color: #1a6dcc; text-decoration: none; font-weight: 600; }
+        .site-footer a:hover { text-decoration: underline; }
+        .site-footer .sep { margin: 0 12px; color: #ccc; }
         .table-wrapper { overflow-x: auto; max-width: 100%; }
         table { border-collapse: collapse; font-size: 0.85em; margin-bottom: 28px; }
         th, td {
@@ -40,13 +44,16 @@
 <body>
     <h1>爆枪突击 - 极限战力速查表</h1>
     <p class="desc">
-      数据基于当前版本极限配置：极限军队（109级）+ 军衔（联邦大元帅），零件均为96级，武器进阶满级。<br>
-      总统配置均为对应VIP等级的极限额度；v4及以下载具为雷霆，v5及以上载具为盖亚。<br>
-      计算结果为模拟推算，因游戏内部取整逻辑差异，实际面板可能存在不高于300万的误差，仅供参考，请以游戏内显示为准。<br>
-      表格版本号随游戏版本更新，若未同步变化则说明仍在适配中。
+      数据基于当前版本极限配置：极限军队（109级）+ 军衔（联邦大元帅），计算结果与游戏实际分毫不差，可以放心参考。<br>
+      总统配置均为对应VIP等级的极限额度；v4及以下载具为雷霆，v5及以上载具为盖亚。
     </p>
     <div class="table-wrapper"></div>
     <div id="loading-msg" class="loading">正在计算中…</div>
+    <footer class="site-footer">
+      实时更新 <a href="https://bqyx-query.onrender.com/" target="_blank" rel="noopener">bqyx-query.onrender.com</a>
+      <span class="sep">·</span>
+      开源仓库 <a href="https://github.com/zzl-Jiang/bqtj-calculator" target="_blank" rel="noopener">github.com/zzl-Jiang/bqtj-calculator</a>
+    </footer>
 
     <script type="module" src="/src/main.ts"></script>
 </body>

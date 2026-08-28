@@ -48,9 +48,13 @@ export function calcWeaponPower(armsName: string, b0: Bonus): WeaponPowerResult 
   // 获取基础战力
   const dps_bv: number = getBaseDPS(lv_c);
   // 获取实际（计算用）基础战力
-  const dps_br: number = getRealBaseDPS(dps_bv, d0.color, d0.dpsMul);
+  const dps_br0: number = getRealBaseDPS(dps_bv, d0.color, d0.dpsMul);
   // 计算基础伤害
-  const hurt_b: number = ArmsDataCreator.getHurt(d0, dps_br);
+  const hurt_b: number = Math.ceil(ArmsDataCreator.getHurt(d0, dps_br0));
+  const dps_br: number = Math.ceil(ArmsDataCreator.countDps(
+    hurt_b, ArmsDataCreator.getPrecision(d0), d0.bulletNum, d0.shootNum, d0.attackGap, d0.reloadGap, d0.capacity));
+
+  // console.log(`dps修正前:${dps_br0},修正后:${dps_br}`);
 
   /** 乘区二：战力加成 */
   // 先计算零件加成，这个还挺麻烦的
@@ -138,7 +142,7 @@ export function calcWeaponPower(armsName: string, b0: Bonus): WeaponPowerResult 
   /** 乘区九：战力显示加成 */
   // 第一步：核心 DPS
   const dps_core: number = ArmsDataCreator.countDps(
-    hurt_3, pre_3, d0.bulletNum ?? 1, d0.shootNum ?? 1, ag_3, rg_3, ca_3,
+    hurt_3, pre_3, d0.bulletNum ?? 1, d0.shootNum ?? 1, ag_3, rg_3, Math.ceil(ca_3),
   ) / dps_mul_bl; // 注意这里的除数其实可以在 uiDpsMul 中乘回来，意义不明
 
   // 第二步：特性乘数 C_feature
@@ -153,7 +157,7 @@ export function calcWeaponPower(armsName: string, b0: Bonus): WeaponPowerResult 
 
   // 武器类型/颜色/进阶等级 UI 乘数
   const C_type_ui: number = ArmsType.getUIDpsMul(d0.armsType, 'yagold', evoLv, d0);
-  console.log("类型ui:", C_type_ui);
+  // console.log("类型ui:", C_type_ui);
   // 元素战力转换乘数
   const C_ele_display: number = 1 + b0.getElementHurtMul() * 0.3;
 
@@ -177,28 +181,10 @@ export const ARMSNAMEARR: string[] = ["consArcher", "consLeo", "lightCone", "red
 export let dpsAllArr: number[] = [];
 
 for (const armsName of ARMSNAMEARR) {
-  // 获取武器定义数据
-  const d0: ArmsDefine = armsDefineService.getDefine(armsName);
-
   // 该武器所有加成数据
   const b0: Bonus = new Bonus();
 
-  const lv_part_acc: number = getPartLevel(LV_PART, d0, 'acc');
-  const lv_part_range: number = getPartLevel(LV_PART, d0, 'range');
-  const lv_part_ag: number = getPartLevel(LV_PART, d0, 'ag');
-  console.log(`零件等级 — 伤害:${LV_PART} 弹容:${LV_PART} 装弹:${LV_PART} 精准:${lv_part_acc} 射程:${lv_part_range} 射速:${lv_part_ag}`);
-
   const r = calcWeaponPower(armsName, b0);
-
-  // ---- 面板属性输出 ----
-  console.log(`\n━━━━ ${armsName} (${d0.cnName}) ━━━━`);
-  console.log(`  最终面板战力  ${r.dps_final.toLocaleString("zh-CN")}`);
-  console.log(`  伤害          ${Math.round(r.hurt_3).toLocaleString("zh-CN")}`);
-  console.log(`  弹容          ${Math.ceil(r.ca_3)}`);
-  console.log(`  射速          ${(1 / r.ag_3).toFixed(4)}`);
-  console.log(`  装弹时间      ${r.rg_3.toFixed(4)}s`);
-  console.log(`  精准度        ${r.pre_3.toFixed(4)}`);
-  console.log(`  射程          ${(r.sr_3 * 1.2).toFixed(2)}`);
 
   dpsAllArr.push(r.dps_final);
 }

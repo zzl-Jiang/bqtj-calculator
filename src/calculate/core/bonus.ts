@@ -72,7 +72,7 @@ export class Bonus {
   public ea0_hurt_mul_equip: number = 1.74;
 
   /** 成就勋章的百分比普伤 */
-  public ea0_hurt_mul_medal: number = 0.20;
+  public ea0_hurt_mul_medal: number = 0.195;
 
   /** 武器强化的百分比普伤 */
   public ea0_hurt_mul_strengthen: number = 5.30;
@@ -141,7 +141,7 @@ export class Bonus {
   public ea0_reload_equip: number = 2.08;
 
   /** 成就勋章的换弹速度 */
-  public ea0_reload_medal: number = 0.28;
+  public ea0_reload_medal: number = 0.285;
 
   /** 3暴概率 */
   public triple_crit: number = 0.14;
