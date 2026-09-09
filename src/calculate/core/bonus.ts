@@ -87,7 +87,7 @@ export class Bonus {
   public whole_dps_mul_achieve: number = 0.0510;
 
   /** 虚天塔的全体战力加成 */
-  public whole_dps_mul_tower: number = 0.0435;
+  public whole_dps_mul_tower: number = 0.0450;
 
   /** 巅峰的全体战力加成 */
   public whole_dps_mul_peak: number = 0.1500;
