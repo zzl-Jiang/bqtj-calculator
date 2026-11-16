@@ -972,6 +972,71 @@
   {
     "game": "爆枪突击",
     "moduleType": "arms",
+    "name": "electricCurve",
+    "cnName": "电弧",
+    "aiShootRange": 1200,
+    "armsArmMul": 0.5,
+    "armsType": "lightning",
+    "attackGap": 0.8,
+    "attackType": "holy",
+    "bodyImgRange": "newGun/electricCurve",
+    "boomD": {
+      "selfB": true
+    },
+    "bulletImgRange": "specialGun/bullet",
+    "bulletImgUrl": {
+      "name": "electricArcBullet"
+    },
+    "bulletLife": 4,
+    "bulletNum": 1,
+    "bulletSkillArr": [
+      "electricArcSunPRE"
+    ],
+    "bulletSpeed": 0,
+    "bulletWidth": 25,
+    "capacity": 20,
+    "category": [
+      "purgold"
+    ],
+    "chipNum": 300,
+    "color": "purgold",
+    "composeLv": 99,
+    "dpsMul": 0.3,
+    "evoMaxLv": 2,
+    "evoMustFirstLv": 13,
+    "extraMul": 1,
+    "godSkillArr": [
+      "superHitSlow",
+      "electricCurveSkill"
+    ],
+    "hitType": "rect",
+    "iconUrl": "newGun/electricCurveIcon",
+    "info": null,
+    "noHitB": true,
+    "noShakeTime": 0.5,
+    "penetrationGap": 1000,
+    "penetrationNum": 999,
+    "reloadGap": 2,
+    "screenShakeValue": 9,
+    "selfBoomImgUrl": {
+      "name": "yearDragon_hit"
+    },
+    "shakeAngle": 13,
+    "shootAngle": 1,
+    "shootRecoil": 5,
+    "shootShakeAngle": 30,
+    "shootSoundUrl": "sound/lightningShoot",
+    "sightMul": 2,
+    "skillArr": [
+      "Hit_SlowMove_ArmsSkill",
+      "Kill_Spurting_ArmsSkill"
+    ],
+    "uiDpsMul": 1.17,
+    "upValue": 10
+  },
+  {
+    "game": "爆枪突击",
+    "moduleType": "arms",
     "name": "rocket1",
     "cnName": "火箭筒-随机属性武器",
     "armsArmMul": 0.5,
@@ -2478,7 +2543,7 @@
     "bulletWidth": 35,
     "capacity": 25,
     "category": [
-      "未分类"
+      "special"
     ],
     "description": null,
     "dpsMul": 8,
@@ -2526,7 +2591,7 @@
     "bulletWidth": 30,
     "capacity": 15,
     "category": [
-      "未分类"
+      "special"
     ],
     "dpsMul": 5,
     "fireImgType": null,
@@ -2589,7 +2654,7 @@
     "bulletWidth": 900,
     "capacity": 12,
     "category": [
-      "未分类"
+      "special"
     ],
     "description": null,
     "dpsMul": 3,
@@ -2648,7 +2713,7 @@
     "bulletWidth": 30,
     "capacity": 24,
     "category": [
-      "未分类"
+      "special"
     ],
     "dpsMul": 3,
     "fireImgType": null,
@@ -2954,7 +3019,7 @@
     "bulletWidth": 500,
     "capacity": 19,
     "category": [
-      "newBlack"
+      "newBlack2"
     ],
     "chipNum": 150,
     "color": "black",
@@ -3516,7 +3581,7 @@
     "bulletWidth": 30,
     "capacity": 7,
     "category": [
-      "newBlack"
+      "newBlack2"
     ],
     "chipNum": 150,
     "color": "black",
@@ -4349,7 +4414,7 @@
     "bulletWidth": 1100,
     "capacity": 17,
     "category": [
-      "darkgold",
+      "yagold",
       "constellation"
     ],
     "color": "yagold",
@@ -4645,7 +4710,7 @@
       "death"
     ],
     "color": "orange",
-    "dpsMul": 1,
+    "dpsMul": 1.11,
     "hitImgUrl": "bulletHitEffect/yellow_motion",
     "hitType": "longLine",
     "iconUrl": "newGun/sniperSmilodon_icon",
@@ -4690,6 +4755,48 @@
     "shootSoundUrl": "sniper2/barrel_sound",
     "skillArr": [
       "fullCrushGod"
+    ],
+    "targetShakeValue": 10,
+    "upValue": 3
+  },
+  {
+    "game": "爆枪突击",
+    "moduleType": "arms",
+    "name": "sniperCicadaDea",
+    "cnName": "暴击·金蝉-肉鸽",
+    "armsArmMul": 0.5,
+    "armsType": "sniper",
+    "attackGap": 1,
+    "beatBack": 10,
+    "bodyImgRange": "specialGun/sniperCicada",
+    "bulletImgRange": "specialGun/bullet",
+    "bulletImgUrl": "longLine",
+    "bulletLife": 0.001,
+    "bulletNum": 1,
+    "bulletWidth": 800,
+    "capacity": 80,
+    "category": [
+      "death"
+    ],
+    "color": "orange",
+    "dpsMul": 1.11,
+    "hitImgUrl": "bulletHitEffect/yellow_motion",
+    "hitType": "longLine",
+    "iconUrl": "newGun/sniperCicada_icon",
+    "lineD": {
+      "blendMode": "add",
+      "lightColor": "0xFF9900",
+      "lightSize": 8,
+      "size": 3,
+      "type": "one"
+    },
+    "reloadGap": 1.3,
+    "screenShakeValue": 15,
+    "shootRecoil": 10,
+    "shootShakeAngle": 25,
+    "shootSoundUrl": "specialGun/sniperBlue_sound",
+    "skillArr": [
+      "sniperKillDea2"
     ],
     "targetShakeValue": 10,
     "upValue": 3
@@ -4801,6 +4908,48 @@
     "shootSoundUrl": "sniper1/barrel_sound",
     "skillArr": [
       "poisonArmsDea"
+    ],
+    "targetShakeValue": 10,
+    "upValue": 3
+  },
+  {
+    "game": "爆枪突击",
+    "moduleType": "arms",
+    "name": "sniperBlueDea",
+    "cnName": "暴击·猎鹰-肉鸽",
+    "armsArmMul": 0.5,
+    "armsType": "sniper",
+    "attackGap": 1,
+    "beatBack": 10,
+    "bodyImgRange": "specialGun/sniperBlue",
+    "bulletImgRange": "specialGun/bullet",
+    "bulletImgUrl": "longLine",
+    "bulletLife": 0.001,
+    "bulletNum": 1,
+    "bulletWidth": 800,
+    "capacity": 200,
+    "category": [
+      "death"
+    ],
+    "color": "blue",
+    "dpsMul": 1.11,
+    "hitImgUrl": "bulletHitEffect/yellow_motion",
+    "hitType": "longLine",
+    "iconUrl": "newGun/sniperBlue_icon",
+    "lineD": {
+      "blendMode": "add",
+      "lightColor": "0x9100FF",
+      "lightSize": 8,
+      "size": 3,
+      "type": "one"
+    },
+    "reloadGap": 1.3,
+    "screenShakeValue": 15,
+    "shootRecoil": 10,
+    "shootShakeAngle": 25,
+    "shootSoundUrl": "specialGun/sniperBlue_sound",
+    "skillArr": [
+      "sniperKillDea"
     ],
     "targetShakeValue": 10,
     "upValue": 3
@@ -5625,7 +5774,7 @@
     "bulletWidth": 900,
     "capacity": 8,
     "category": [
-      "newBlack"
+      "newBlack2"
     ],
     "chipNum": 300,
     "color": "black",
@@ -5702,7 +5851,7 @@
     "bulletWidth": 35,
     "capacity": 15,
     "category": [
-      "未分类"
+      "special"
     ],
     "color": "blue",
     "fireImgUrl": {
@@ -5751,7 +5900,7 @@
     "bulletWidth": 25,
     "capacity": 20,
     "category": [
-      "未分类"
+      "special"
     ],
     "color": "blue",
     "fireImgUrl": {
@@ -5806,7 +5955,7 @@
     "bulletWidth": 25,
     "capacity": 14,
     "category": [
-      "未分类"
+      "special"
     ],
     "color": "blue",
     "dpsMul": 2,
@@ -6586,6 +6735,57 @@
   {
     "game": "爆枪突击",
     "moduleType": "arms",
+    "name": "yearSheepDea",
+    "cnName": "未羊X-肉鸽",
+    "armsArmMul": 0.5,
+    "armsType": "wavegun",
+    "armsWeight": 5,
+    "attackGap": 0.7,
+    "beatBack": 10,
+    "bodyImgRange": "specialGun/yearSheep",
+    "bulletImgRange": "specialGun/bullet",
+    "bulletImgUrl": {
+      "_text": "specialGun/yearSheepBullet",
+      "con": "filter",
+      "imgDieType": "die",
+      "len": 30,
+      "raNum": 30,
+      "time": 0.03
+    },
+    "bulletLife": 0.001,
+    "bulletNum": 1,
+    "bulletShakeWidth": 50,
+    "bulletWidth": 900,
+    "capacity": 40,
+    "category": [
+      "death"
+    ],
+    "color": "orange",
+    "dpsMul": 0.5,
+    "flipX": 1,
+    "godSkillArr": [
+      "yearSheepSkillDea"
+    ],
+    "gunNum": 1,
+    "hitImgUrl": "bulletHitEffect/fitHit",
+    "hitType": "longLine",
+    "hurtRatio": 15,
+    "iconUrl": "specialGun/yearSheepIcon",
+    "noShakeTime": 0.5,
+    "penetrationNum": 12,
+    "reloadGap": 3,
+    "screenShakeValue": 15,
+    "shakeAngle": 0,
+    "shootAngle": 0,
+    "shootRecoil": 10,
+    "shootShakeAngle": 15,
+    "shootSoundUrl": "sound/waveShoot",
+    "targetShakeValue": 10,
+    "upValue": 3
+  },
+  {
+    "game": "爆枪突击",
+    "moduleType": "arms",
     "name": "airCannonX",
     "cnName": "空气炮X-肉鸽",
     "aiShootRange": 250,
@@ -7030,7 +7230,7 @@
       80
     ],
     "category": [
-      "newBlack"
+      "newBlack2"
     ],
     "chipNum": 150,
     "color": "black",
@@ -7380,176 +7580,6 @@
   {
     "game": "爆枪突击",
     "moduleType": "arms",
-    "name": "barrenAwn",
-    "cnName": "荒芒",
-    "armsArmMul": 0.65,
-    "armsType": "rocket",
-    "attackGap": 1,
-    "bodyImgRange": "specialGun/barrenAwn",
-    "boomD": {
-      "bodyB": true,
-      "floorB": true,
-      "radius": 130,
-      "selfB": true
-    },
-    "bounceD": {
-      "body": 0,
-      "floor": 0
-    },
-    "bulletImgRange": "specialGun/bullet",
-    "bulletImgUrl": {
-      "_text": "bullet/blueFire",
-      "con": "filter",
-      "raNum": 30
-    },
-    "bulletLife": 2,
-    "bulletNum": 17,
-    "bulletShakeWidth": [
-      0,
-      0
-    ],
-    "bulletSpeed": 30,
-    "bulletWidth": 35,
-    "capacity": 20,
-    "category": [
-      "particular"
-    ],
-    "chipB": true,
-    "chipNum": 160,
-    "color": "black",
-    "composeLv": 90,
-    "critD": {
-      "mul": 2,
-      "pro": 0.2
-    },
-    "description": "纪念币兑换",
-    "dpsMul": 2,
-    "dropLevelArr": [
-      999
-    ],
-    "fireImgUrl": {
-      "name": "gunFireRocket"
-    },
-    "flipX": 1,
-    "godSkillArr": [
-      "Hit_seckill_godArmsSkill",
-      "barrenAwnSkill"
-    ],
-    "hitImgUrl": {
-      "name": "smallSpace"
-    },
-    "hitType": "rect",
-    "iconUrl": "specialGun/barrenAwnIcon",
-    "noShakeTime": 0.5,
-    "penetrationGap": 1000,
-    "reloadGap": 2,
-    "screenShakeValue": 16,
-    "shakeAngle": 0,
-    "shootAngle": 90,
-    "shootRecoil": 12,
-    "shootShakeAngle": 40,
-    "shootSoundUrl": "sound/bigShoot",
-    "skillArr": [
-      "Hit_Spurting_ArmsSkill",
-      "Kill_Spurting_ArmsSkill"
-    ],
-    "twoShootPro": 0.3,
-    "uiDpsMul": 2,
-    "upValue": 20
-  },
-  {
-    "game": "爆枪突击",
-    "moduleType": "arms",
-    "name": "roamRocket",
-    "cnName": "漫游",
-    "aiShootRange": 600,
-    "armsArmMul": 0.5,
-    "armsType": "rocket",
-    "attackGap": 0.7,
-    "bodyImgRange": "specialGun/roamRocket",
-    "boomD": {
-      "bodyB": true,
-      "floorB": true,
-      "radius": 80,
-      "selfB": true
-    },
-    "bulletImgRange": "specialGun/bullet",
-    "bulletImgUrl": {
-      "name": "roamRocketBullet"
-    },
-    "bulletLife": 10,
-    "bulletNum": 1,
-    "bulletShakeWidth": [
-      0,
-      0
-    ],
-    "bulletSpeed": 10,
-    "bulletWidth": [
-      20,
-      25
-    ],
-    "capacity": [
-      6,
-      8
-    ],
-    "category": [
-      "particular"
-    ],
-    "chipB": true,
-    "chipNum": 100,
-    "color": "black",
-    "composeLv": 99,
-    "description": null,
-    "dpsMul": 2.5,
-    "dropLevelArr": [
-      999
-    ],
-    "fireImgUrl": {
-      "name": "gunFireRocket"
-    },
-    "flipX": 1,
-    "followD": {
-      "delay": 0.5,
-      "noLM": 1,
-      "value": 0.3
-    },
-    "godSkillArr": [
-      "superHitSlow"
-    ],
-    "hitImgUrl": {
-      "name": "midSpace"
-    },
-    "hitType": "rect",
-    "noHitTime": 0.5,
-    "noShakeTime": 0.5,
-    "penetrationGap": 1000,
-    "reloadGap": 2,
-    "screenShakeValue": 35,
-    "shakeAngle": 5,
-    "shootAngle": [
-      3,
-      10
-    ],
-    "shootRecoil": 12,
-    "shootShakeAngle": 30,
-    "shootSoundUrl": "specialGun/roamRocketSound",
-    "smokeImgUrl": {
-      "_text": "bulletHitEffect/smoke_small",
-      "con": "filter",
-      "raNum": 30
-    },
-    "speedD": {
-      "a": -5,
-      "max": 10,
-      "min": 2,
-      "random": 0.1
-    },
-    "uiDpsMul": 2,
-    "upValue": 5
-  },
-  {
-    "game": "爆枪突击",
-    "moduleType": "arms",
     "name": "crocodileDea",
     "cnName": "爆·沙鳄-肉鸽",
     "armsArmMul": 0.6,
@@ -7825,6 +7855,176 @@
   {
     "game": "爆枪突击",
     "moduleType": "arms",
+    "name": "barrenAwn",
+    "cnName": "荒芒",
+    "armsArmMul": 0.65,
+    "armsType": "rocket",
+    "attackGap": 1,
+    "bodyImgRange": "specialGun/barrenAwn",
+    "boomD": {
+      "bodyB": true,
+      "floorB": true,
+      "radius": 130,
+      "selfB": true
+    },
+    "bounceD": {
+      "body": 0,
+      "floor": 0
+    },
+    "bulletImgRange": "specialGun/bullet",
+    "bulletImgUrl": {
+      "_text": "bullet/blueFire",
+      "con": "filter",
+      "raNum": 30
+    },
+    "bulletLife": 2,
+    "bulletNum": 17,
+    "bulletShakeWidth": [
+      0,
+      0
+    ],
+    "bulletSpeed": 30,
+    "bulletWidth": 35,
+    "capacity": 20,
+    "category": [
+      "particular"
+    ],
+    "chipB": true,
+    "chipNum": 160,
+    "color": "black",
+    "composeLv": 90,
+    "critD": {
+      "mul": 2,
+      "pro": 0.2
+    },
+    "description": "纪念币兑换",
+    "dpsMul": 2,
+    "dropLevelArr": [
+      999
+    ],
+    "fireImgUrl": {
+      "name": "gunFireRocket"
+    },
+    "flipX": 1,
+    "godSkillArr": [
+      "Hit_seckill_godArmsSkill",
+      "barrenAwnSkill"
+    ],
+    "hitImgUrl": {
+      "name": "smallSpace"
+    },
+    "hitType": "rect",
+    "iconUrl": "specialGun/barrenAwnIcon",
+    "noShakeTime": 0.5,
+    "penetrationGap": 1000,
+    "reloadGap": 2,
+    "screenShakeValue": 16,
+    "shakeAngle": 0,
+    "shootAngle": 90,
+    "shootRecoil": 12,
+    "shootShakeAngle": 40,
+    "shootSoundUrl": "sound/bigShoot",
+    "skillArr": [
+      "Hit_Spurting_ArmsSkill",
+      "Kill_Spurting_ArmsSkill"
+    ],
+    "twoShootPro": 0.3,
+    "uiDpsMul": 2,
+    "upValue": 20
+  },
+  {
+    "game": "爆枪突击",
+    "moduleType": "arms",
+    "name": "roamRocket",
+    "cnName": "漫游",
+    "aiShootRange": 600,
+    "armsArmMul": 0.5,
+    "armsType": "rocket",
+    "attackGap": 0.7,
+    "bodyImgRange": "specialGun/roamRocket",
+    "boomD": {
+      "bodyB": true,
+      "floorB": true,
+      "radius": 80,
+      "selfB": true
+    },
+    "bulletImgRange": "specialGun/bullet",
+    "bulletImgUrl": {
+      "name": "roamRocketBullet"
+    },
+    "bulletLife": 10,
+    "bulletNum": 1,
+    "bulletShakeWidth": [
+      0,
+      0
+    ],
+    "bulletSpeed": 10,
+    "bulletWidth": [
+      20,
+      25
+    ],
+    "capacity": [
+      6,
+      8
+    ],
+    "category": [
+      "particular"
+    ],
+    "chipB": true,
+    "chipNum": 100,
+    "color": "black",
+    "composeLv": 99,
+    "description": null,
+    "dpsMul": 2.5,
+    "dropLevelArr": [
+      999
+    ],
+    "fireImgUrl": {
+      "name": "gunFireRocket"
+    },
+    "flipX": 1,
+    "followD": {
+      "delay": 0.5,
+      "noLM": 1,
+      "value": 0.3
+    },
+    "godSkillArr": [
+      "superHitSlow"
+    ],
+    "hitImgUrl": {
+      "name": "midSpace"
+    },
+    "hitType": "rect",
+    "noHitTime": 0.5,
+    "noShakeTime": 0.5,
+    "penetrationGap": 1000,
+    "reloadGap": 2,
+    "screenShakeValue": 35,
+    "shakeAngle": 5,
+    "shootAngle": [
+      3,
+      10
+    ],
+    "shootRecoil": 12,
+    "shootShakeAngle": 30,
+    "shootSoundUrl": "specialGun/roamRocketSound",
+    "smokeImgUrl": {
+      "_text": "bulletHitEffect/smoke_small",
+      "con": "filter",
+      "raNum": 30
+    },
+    "speedD": {
+      "a": -5,
+      "max": 10,
+      "min": 2,
+      "random": 0.1
+    },
+    "uiDpsMul": 2,
+    "upValue": 5
+  },
+  {
+    "game": "爆枪突击",
+    "moduleType": "arms",
     "name": "consCancer",
     "cnName": "巨蟹座",
     "armsArmMul": 0.5,
@@ -7843,7 +8043,7 @@
     "bulletWidth": 1700,
     "capacity": 8,
     "category": [
-      "darkgold",
+      "purgold",
       "constellation"
     ],
     "chipB": true,
@@ -8048,6 +8248,52 @@
     "sightMul": 1.5,
     "skillArr": null,
     "upValue": 10
+  },
+  {
+    "game": "爆枪突击",
+    "moduleType": "arms",
+    "name": "consLibraDea",
+    "cnName": "天秤座X-肉鸽",
+    "armsArmMul": 0.6,
+    "armsType": "rocket",
+    "attackGap": 0.8,
+    "bodyImgRange": "newGun/consLibra",
+    "bulletImgRange": "specialGun/bullet",
+    "bulletImgUrl": {
+      "name": "consLibraBullet"
+    },
+    "bulletLife": 3,
+    "bulletNum": 1,
+    "bulletSpeed": 40,
+    "bulletWidth": 40,
+    "capacity": 30,
+    "category": [
+      "death"
+    ],
+    "color": "orange",
+    "dpsMul": 1,
+    "fireImgUrl": {
+      "name": "purpleSpurtingFire"
+    },
+    "flipX": 1,
+    "godSkillArr": [
+      "consLibraDea"
+    ],
+    "hitImgUrl": {
+      "name": "consPurpleHit"
+    },
+    "hitType": "rect",
+    "iconUrl": "newGun/consLibraIcon",
+    "reloadGap": 2,
+    "screenShakeValue": 16,
+    "shakeAngle": 0,
+    "shootRecoil": 12,
+    "shootShakeAngle": 40,
+    "shootSoundUrl": "specialGun/yearMonkeySound",
+    "smokeImgUrl": {
+      "name": "consLibraSmoke"
+    },
+    "upValue": 0
   },
   {
     "game": "爆枪突击",
@@ -8637,7 +8883,8 @@
     "bulletWidth": 40,
     "capacity": 50,
     "category": [
-      "未分类"
+      "yagold",
+      "constellation"
     ],
     "color": "yagold",
     "composeLv": 99,
@@ -8646,7 +8893,7 @@
     "dropLevelArr": [
       999
     ],
-    "extraMul": 8.5,
+    "extraMul": 7.6,
     "fireImgUrl": {
       "name": "purpleGunFire"
     },
@@ -8759,7 +9006,7 @@
     "bulletWidth": 180,
     "capacity": 15,
     "category": [
-      "darkgold",
+      "purgold",
       "constellation"
     ],
     "chipNum": 300,
@@ -8842,7 +9089,7 @@
     },
     "description": "消灭首领僵尸治疗兵(99级)",
     "dpsMul": 3.5,
-    "evoMaxLv": 5,
+    "evoMaxLv": 7,
     "evoMustFirstLv": 9,
     "extraMul": 1,
     "godSkillArr": [
@@ -8869,6 +9116,75 @@
     "twoShootPro": 0.3,
     "uiDpsMul": 2,
     "upValue": 10
+  },
+  {
+    "game": "爆枪突击",
+    "moduleType": "arms",
+    "name": "extremeLaser",
+    "cnName": "激光极源",
+    "aiShootRange": 800,
+    "armsArmMul": 0.5,
+    "armsType": "laser",
+    "armsWeight": 5,
+    "attackGap": 0.7,
+    "attackType": "holy",
+    "beatBack": 2,
+    "bodyImgRange": "specialGun/extremeLaser",
+    "bounceD": {
+      "body": 0,
+      "floor": 0,
+      "noDieB": true
+    },
+    "bulletImgUrl": {
+      "_text": "bullet/purLaserBig",
+      "bottomLayerB": true,
+      "con": "add",
+      "everFleshB": true,
+      "imgDieType": "die",
+      "len": 28,
+      "raNum": 60,
+      "time": -1
+    },
+    "bulletLife": 0.7,
+    "bulletNum": 1,
+    "bulletWidth": 900,
+    "capacity": 30,
+    "category": [
+      "special"
+    ],
+    "color": "purgold",
+    "dpsMul": 0.1,
+    "fireImgUrl": {
+      "_text": "bulletHitEffect/purLaser",
+      "cacheB": true,
+      "con": "add",
+      "imgDieType": "die"
+    },
+    "flipX": 1,
+    "godSkillArr": [
+      "extremeLaserFire"
+    ],
+    "gunNum": 1,
+    "hitImgUrl": {
+      "_text": "bulletHitEffect/purLaser",
+      "cacheB": true,
+      "con": "add",
+      "imgDieType": "die"
+    },
+    "hitType": "longLine",
+    "hurtRatio": 15,
+    "noBeClearB": true,
+    "noMagneticB": true,
+    "penetrationNum": 999,
+    "reloadGap": 0.5,
+    "shakeAngle": 0,
+    "shootRecoil": 2,
+    "shootSoundUrl": "specialGun/lightConeSound",
+    "skillArr": [
+      "invincibleEmp"
+    ],
+    "targetShakeValue": 10,
+    "upValue": 3
   },
   {
     "game": "爆枪突击",
@@ -8953,75 +9269,6 @@
     "uiDpsMul": 2.3,
     "upValue": 15,
     "whippB": false
-  },
-  {
-    "game": "爆枪突击",
-    "moduleType": "arms",
-    "name": "extremeLaser",
-    "cnName": "激光极源",
-    "aiShootRange": 800,
-    "armsArmMul": 0.5,
-    "armsType": "laser",
-    "armsWeight": 5,
-    "attackGap": 0.7,
-    "attackType": "holy",
-    "beatBack": 2,
-    "bodyImgRange": "specialGun/extremeLaser",
-    "bounceD": {
-      "body": 0,
-      "floor": 0,
-      "noDieB": true
-    },
-    "bulletImgUrl": {
-      "_text": "bullet/purLaserBig",
-      "bottomLayerB": true,
-      "con": "add",
-      "everFleshB": true,
-      "imgDieType": "die",
-      "len": 28,
-      "raNum": 60,
-      "time": -1
-    },
-    "bulletLife": 0.7,
-    "bulletNum": 1,
-    "bulletWidth": 900,
-    "capacity": 30,
-    "category": [
-      "special"
-    ],
-    "color": "purgold",
-    "dpsMul": 0.1,
-    "fireImgUrl": {
-      "_text": "bulletHitEffect/purLaser",
-      "cacheB": true,
-      "con": "add",
-      "imgDieType": "die"
-    },
-    "flipX": 1,
-    "godSkillArr": [
-      "extremeLaserFire"
-    ],
-    "gunNum": 1,
-    "hitImgUrl": {
-      "_text": "bulletHitEffect/purLaser",
-      "cacheB": true,
-      "con": "add",
-      "imgDieType": "die"
-    },
-    "hitType": "longLine",
-    "hurtRatio": 15,
-    "noBeClearB": true,
-    "noMagneticB": true,
-    "penetrationNum": 999,
-    "reloadGap": 0.5,
-    "shakeAngle": 0,
-    "shootRecoil": 2,
-    "shootSoundUrl": "specialGun/lightConeSound",
-    "skillArr": [
-      "invincibleEmp"
-    ],
-    "targetShakeValue": 10,
-    "upValue": 3
   },
   {
     "game": "爆枪突击",
@@ -9494,7 +9741,7 @@
     "game": "爆枪突击",
     "moduleType": "arms",
     "name": "smileCrossbow",
-    "cnName": "含笑弩-肉鸽",
+    "cnName": "含笑弩",
     "aiShootRange": 1000,
     "armsArmMul": 0.5,
     "armsType": "crossbow",
@@ -9520,7 +9767,7 @@
     "bulletWidth": 20,
     "capacity": 5,
     "category": [
-      "death"
+      "special"
     ],
     "crossbowD": {
       "focoB": true,
@@ -9584,7 +9831,7 @@
     "bulletWidth": 20,
     "capacity": 6,
     "category": [
-      "death"
+      "special"
     ],
     "dpsMul": 0.8,
     "fireImgUrl": {
@@ -9622,7 +9869,7 @@
     "game": "爆枪突击",
     "moduleType": "arms",
     "name": "shotgunTyran",
-    "cnName": "暴龙-肉鸽",
+    "cnName": "暴龙-末日枪神",
     "aiShootRange": 800,
     "armsArmMul": 0.6,
     "armsType": "shotgun",
@@ -9641,7 +9888,7 @@
     "bulletWidth": 15,
     "capacity": 6,
     "category": [
-      "death"
+      "special"
     ],
     "dpsMul": 5,
     "extendGap": 50,
@@ -10996,7 +11243,7 @@
     "bulletWidth": 30,
     "capacity": 7,
     "category": [
-      "newBlack"
+      "newBlack2"
     ],
     "chipNum": 150,
     "color": "black",
@@ -11005,7 +11252,7 @@
       "mul": 2,
       "pro": 0.2
     },
-    "description": "消灭首领异火龙(94级)、纪念币商店、神武碎片合成",
+    "description": "消灭首领异火龙(94级)、纪念币商店、狼首时装碎片合成",
     "dpsMul": 1.8,
     "dropBodyArr": [
       "FireDragon"
@@ -11227,7 +11474,7 @@
     "game": "爆枪突击",
     "moduleType": "arms",
     "name": "sawEmitterE",
-    "cnName": "矿锯发射器E-肉鸽",
+    "cnName": "矿锯发射器E",
     "aiShootRange": 700,
     "armsArmMul": 0.5,
     "armsType": "cutter",
@@ -11248,7 +11495,7 @@
     "bulletWidth": 30,
     "capacity": 5,
     "category": [
-      "death"
+      "special"
     ],
     "dpsMul": 1,
     "fireImgUrl": {
@@ -11283,7 +11530,7 @@
     "game": "爆枪突击",
     "moduleType": "arms",
     "name": "sunDeath",
-    "cnName": "子母炮-肉鸽",
+    "cnName": "子母炮",
     "aiShootRange": 700,
     "armsArmMul": 0.65,
     "armsType": "rocket",
@@ -11309,7 +11556,7 @@
     "bulletWidth": 20,
     "capacity": 5,
     "category": [
-      "death"
+      "special"
     ],
     "dpsMul": 0.7,
     "fireImgUrl": {
@@ -11339,7 +11586,7 @@
     "game": "爆枪突击",
     "moduleType": "arms",
     "name": "lingPistol",
-    "cnName": "鬼雀-肉鸽",
+    "cnName": "鬼雀",
     "aiShootRange": 700,
     "armsArmMul": 1.05,
     "armsType": "pistol",
@@ -11355,7 +11602,7 @@
     "bulletWidth": 10,
     "capacity": 4,
     "category": [
-      "death"
+      "special"
     ],
     "color": "white",
     "flipX": 1,
@@ -11384,7 +11631,7 @@
     "game": "爆枪突击",
     "moduleType": "arms",
     "name": "guaiPistol",
-    "cnName": "怪雀-肉鸽",
+    "cnName": "怪雀",
     "aiShootRange": 800,
     "armsArmMul": 1.05,
     "armsType": "pistol",
@@ -11400,7 +11647,7 @@
     "bulletWidth": 10,
     "capacity": 30,
     "category": [
-      "death"
+      "special"
     ],
     "color": "white",
     "flipX": 1,
@@ -11428,7 +11675,7 @@
     "game": "爆枪突击",
     "moduleType": "arms",
     "name": "smileCrossbowE",
-    "cnName": "含笑弩E-肉鸽",
+    "cnName": "含笑弩E",
     "aiShootRange": 1000,
     "armsArmMul": 0.5,
     "armsType": "crossbow",
@@ -11454,7 +11701,7 @@
     "bulletWidth": 20,
     "capacity": 5,
     "category": [
-      "death"
+      "special"
     ],
     "crossbowD": {
       "focoB": true,
@@ -11493,7 +11740,7 @@
     "game": "爆枪突击",
     "moduleType": "arms",
     "name": "spiralCannonE",
-    "cnName": "鬼武E-肉鸽",
+    "cnName": "鬼武E",
     "aiShootRange": 500,
     "armsArmMul": 0.5,
     "armsType": "energy",
@@ -11513,7 +11760,7 @@
     "bulletWidth": 25,
     "capacity": 6,
     "category": [
-      "death"
+      "special"
     ],
     "followD": {
       "shootTween": 0.3
@@ -11542,7 +11789,7 @@
     "game": "爆枪突击",
     "moduleType": "arms",
     "name": "falconGunE",
-    "cnName": "隼武E-肉鸽",
+    "cnName": "隼武E",
     "aiShootRange": 700,
     "armsArmMul": 0.5,
     "armsType": "energy",
@@ -11561,7 +11808,7 @@
     "bulletWidth": 25,
     "capacity": 6,
     "category": [
-      "death"
+      "special"
     ],
     "hitImgUrl": {
       "name": "greenEnergyHit"
@@ -11913,7 +12160,7 @@
     "bulletWidth": 40,
     "capacity": 50,
     "category": [
-      "darkgold",
+      "yagold",
       "constellation"
     ],
     "color": "yagold",
@@ -11928,6 +12175,7 @@
     "dropLevelArr": [
       999
     ],
+    "extraMul": 1.1,
     "fireImgUrl": {
       "name": "enegryGunFire"
     },

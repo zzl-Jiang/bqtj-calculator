@@ -65,10 +65,26 @@ try {
   const loading = document.getElementById("loading-msg");
   const wrapper = document.querySelector(".table-wrapper")!;
 
-  console.time("战力表");
-  const grid = generatePowerGrid(ARMSNAMEARR);
-  console.timeEnd("战力表");
-  wrapper.appendChild(buildTable("爆枪突击 v37.10 极限战力表", grid));
+  // 表一：不带电弧
+  const list1 = ARMSNAMEARR.filter((n) => n !== "electricCurve");
+  console.time("战力表（不带电弧）");
+  const grid1 = generatePowerGrid(list1);
+  console.timeEnd("战力表（不带电弧）");
+  wrapper.appendChild(buildTable("爆枪突击 v37.21 极限战力表（不带电弧）", grid1));
+
+  // 表二：带电弧
+  const list2 = ["electricCurve", ...ARMSNAMEARR];
+  console.time("战力表（带电弧）");
+  const grid2 = generatePowerGrid(list2);
+  console.timeEnd("战力表（带电弧）");
+  wrapper.appendChild(buildTable("爆枪突击 v37.21 极限战力表（带电弧）", grid2));
+
+  // 备注：电弧二（进阶电弧）当前版本尚无法制作，避免误导玩家
+  const note = document.createElement("div");
+  note.className = "note-warning";
+  note.textContent =
+    "⚠️ 备注：当前版本「电弧二」（电弧进阶形态）尚无法制作——进阶所需碎片数量已超出当前获取上限、相关获取渠道尚未开放，实际游戏内暂不可获得。上方「带电弧」表为电弧满配（含进阶）的理论数值，仅供参照。";
+  wrapper.appendChild(note);
 
   loading?.remove();
 } catch (e) {
