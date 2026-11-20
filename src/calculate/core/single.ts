@@ -30,12 +30,15 @@ export interface WeaponPowerResult {
  * @param armsName 武器名称标识符
  * @param b0       加成数据（调用前设置好 VIP/总统/ui_dps_mul_part 等）
  */
-export function calcWeaponPower(armsName: string, b0: Bonus): WeaponPowerResult {
+export function calcWeaponPower(armsName: string, b0: Bonus, useBaseEvo = false): WeaponPowerResult {
   // 获取武器定义数据
   const d0: ArmsDefine = armsDefineService.getDefine(armsName);
 
   // 计算进阶等级（getEvoHurtMul 和 getUIDpsMul 共用）
-  const evoLv: number = d0.evoMaxLv > 0 ? d0.evoMaxLv - 1 + d0.evoMustFirstLv : 0;
+  // useBaseEvo = true 时取未进阶（初始）等级，否则取满进阶等级
+  const evoLv: number = d0.evoMaxLv > 0
+    ? (useBaseEvo ? d0.evoMustFirstLv : d0.evoMaxLv - 1 + d0.evoMustFirstLv)
+    : 0;
 
   // 各零件有效等级（不兼容类型自动置 0）
   const lv_part_acc: number = getPartLevel(LV_PART, d0, 'acc');
@@ -87,7 +90,7 @@ export function calcWeaponPower(armsName: string, b0: Bonus): WeaponPowerResult 
     hurt_1_add;
 
   /** 乘区四：神级加成 */
-  const C_evo: number = getEvoHurtMul(d0); // 进阶系数
+  const C_evo: number = getEvoHurtMul(d0, useBaseEvo ? 0 : undefined); // 进阶系数
   // 计算神级加成后伤害
   const hurt_3: number = hurt_2 * (1 + b0.getDpsAll() + b0.getHurtAll()) * C_evo;
 
