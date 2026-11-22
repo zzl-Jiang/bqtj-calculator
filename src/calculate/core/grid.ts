@@ -75,10 +75,8 @@ interface WeaponResult {
  * 生成极限战力表。
  * grid[president][col]：纵轴 总统 有/无，横轴依次为 v0-4格/v0-5格/v0-6格/v1~v10。
  */
-export function generatePowerGrid(weaponList?: string[], baseEvoNames?: string[]): PowerGrid {
+export function generatePowerGrid(weaponList?: string[]): PowerGrid {
   const allNames: string[] = weaponList ?? [];
-  // 需要按未进阶（初始形态）计算的武器名集合
-  const baseEvoSet = new Set(baseEvoNames ?? []);
 
   // 缓存: `${name}|${vip}|${president}|${showMul}|${vehicleDps}` → 战力
   const cache = new Map<string, number>();
@@ -89,7 +87,7 @@ export function generatePowerGrid(weaponList?: string[], baseEvoNames?: string[]
     const key = `${name}|${vip}|${president}|${showMul}|${vehicleDps}`;
     if (cache.has(key)) return cache.get(key)!;
     const b = makeBonus(vip, president, showMul, vehicleDps);
-    const r = calcWeaponPower(name, b, baseEvoSet.has(name));
+    const r = calcWeaponPower(name, b);
     cache.set(key, r.dps_final);
     return r.dps_final;
   }

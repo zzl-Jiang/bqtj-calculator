@@ -84,19 +84,12 @@ try {
   console.timeEnd("战力表（不带电弧）");
   wrapper.appendChild(buildTable("爆枪突击 v37.21 极限战力表（不带电弧）", grid1));
 
-  // 表二：电弧1（未进阶，2026.11.23 起才可能获得）
-  console.time("战力表（电弧1）");
-  const grid2 = generatePowerGrid(arcList, ["electricCurve"]);
-  console.timeEnd("战力表（电弧1）");
-  wrapper.appendChild(buildTable("爆枪突击 v37.21 极限战力表（电弧1·未进阶）", grid2));
-  addNote("⚠️ 备注：由于碎片数量受每周上限限制，「电弧1」需在 2026.11.23 之后才可能获得。");
-
-  // 表三：电弧2（满进阶，2026.12.21 起才可能获得）
-  console.time("战力表（电弧2）");
-  const grid3 = generatePowerGrid(arcList);
-  console.timeEnd("战力表（电弧2）");
-  wrapper.appendChild(buildTable("爆枪突击 v37.21 极限战力表（电弧2·满进阶）", grid3));
-  addNote("⚠️ 备注：由于碎片数量受每周上限限制，「电弧2」需在 2026.12.21 之后才可能获得。");
+  // 表二：带电弧（电弧2·满进阶，2026.12.14 起才可能获得）
+  console.time("战力表（带电弧）");
+  const grid2 = generatePowerGrid(arcList);
+  console.timeEnd("战力表（带电弧）");
+  wrapper.appendChild(buildTable("爆枪突击 v37.21 极限战力表（带电弧）", grid2));
+  addNote("⚠️ 备注：由于碎片数量受每周上限限制，「电弧2」（满进阶）需在 2026.12.14 之后才可能获得。");
 
   loading?.remove();
 } catch (e) {
