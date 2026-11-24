@@ -1031,7 +1031,7 @@
       "Hit_SlowMove_ArmsSkill",
       "Kill_Spurting_ArmsSkill"
     ],
-    "uiDpsMul": 1.17,
+    "uiDpsMul": 0.88,
     "upValue": 10
   },
   {

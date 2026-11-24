@@ -65,31 +65,10 @@ try {
   const loading = document.getElementById("loading-msg");
   const wrapper = document.querySelector(".table-wrapper")!;
 
-  /** 追加一条警告备注 */
-  const addNote = (text: string): void => {
-    const note = document.createElement("div");
-    note.className = "note-warning";
-    note.textContent = text;
-    wrapper.appendChild(note);
-  };
-
-  // 不带电弧的武器列表（其余 7 把）
-  const baseList = ARMSNAMEARR.filter((n) => n !== "electricCurve");
-  // 带上电弧的武器列表
-  const arcList = ["electricCurve", ...ARMSNAMEARR];
-
-  // 表一：不带电弧
-  console.time("战力表（不带电弧）");
-  const grid1 = generatePowerGrid(baseList);
-  console.timeEnd("战力表（不带电弧）");
-  wrapper.appendChild(buildTable("爆枪突击 v37.21 极限战力表（不带电弧）", grid1));
-
-  // 表二：带电弧（电弧2·满进阶，2026.12.14 起才可能获得）
-  console.time("战力表（带电弧）");
-  const grid2 = generatePowerGrid(arcList);
-  console.timeEnd("战力表（带电弧）");
-  wrapper.appendChild(buildTable("爆枪突击 v37.21 极限战力表（带电弧）", grid2));
-  addNote("⚠️ 备注：由于碎片数量受每周上限限制，「电弧2」（满进阶）需在 2026.12.14 之后才可能获得。");
+  console.time("战力表");
+  const grid = generatePowerGrid(ARMSNAMEARR);
+  console.timeEnd("战力表");
+  wrapper.appendChild(buildTable("爆枪突击 v37.30 极限战力表", grid));
 
   loading?.remove();
 } catch (e) {
